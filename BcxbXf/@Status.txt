@@ -1,0 +1,211 @@
+8/12'19
+'Final' review... made cosmetic changes and hopefully fixed posn picker behavior
+in iOS. Must test in iOS.
+
+
+7/26'19
+Bolded text in Results.
+Blurb about fielding at top of Fielding Profile pag.
+
+
+7/19'19..7/23'19
+Revamped extra innings handling & the << and >> buttons.
+I think it's tight now... tested with temp debug code (search 'extra innings')
+
+
+7/18'19
+Fixed bug with issue 1907.01, where btnGo was being enabled too soon while
+EShowResults was still running. See comment in code for more detail
+
+Fielding profile disk is implemented. Showing fielding skill string, along with 
+explanation of 0..6.
+
+
+7/16'19
+Running well. Fixed enablement of buttons and fixed Move Up & Down so it can't move 
+non-batting pitcher, or #9 hitter down.
+
+Started working on Fielding disk... it has a experimental icon on the DISK button, but runs well.
+
+
+7/15'19
+I overhauled to use actual pa (for league and batters) and bfp (for pitchers) i/o
+the approximations that I had been using. Now, I compute adjusted pa & bfp by 
+subtracting ibb and and estmate of sac bunt attempts. For batters and league, the estimated
+sac bunt attempts is based on 'sh', and for pitchers it is a factor times bfp, since 
+'sh' is not available for pitchers.
+
+Future enhancements the factor for sac bunt attempts s/b varied by league. Could be stored in the 
+league record and so vary it by leagure ans year. Could store in CF_LeagueStats along with complPct.
+
+1907.04
+Revamped for using actual pa and bfp.
+
+7/10'19
+The iPhone version of the Ewb site is implemented, along with a modified top-level page. 
+And the iPhone version of the help page is implemented.
+
+1907.02
+Introduced credibility constants in CParamSet.FillBatParas and in .FillPitParas.
+
+1907.01
+Fixed so msg that you must fix defence, it still enabled Play.
+
+6/30'19
+It now reads team data from the Internet.
+I revamped error handling.
+
+
+1906.05
+Changes to read team data from Web.
+
+
+6/28'19
+Started to make changes for reading teams from Web i/o packaged with app.
+I just started. Modified GetLeaguesList only. (Also utility fn to return a string reader).
+So if you need to restore, just that one thing to back out (and the orig is there, commented.)
+
+
+6/27'19
+Implimented OpionsPage and AboutPage.
+STATUS: Works good on both platforms.
+
+
+6/26'19
+PlaysPage implemented.
+Corrected a bug that is in the iPad version, where after saying you can't steal
+or you can't sacrifice, then cmdGo is disabled so you're stuck.
+Solved it by diabling those switch controls in PlaysPage if no base runners.
+
+Reconfigured tool bar menu color scheme and height, so it's black on white.
+
+
+6/25'19
+Set up full main toolbar. 5 buttons.
+Tried to use XF Toobar/ToolBarItems but hard to disable them.
+STATUS: Runs on iOS & Android but missing Plays, Options, Help/About.
+NEXT: Implement Plays page. 
+
+
+6/20'19
+I have made the changes to streamkine the lineup card flow, eleimunated
+cmdDoIt... it's replaced with a DisplayAlart(Yes/No). And the confirmation
+DisplayAlert is removed (user can just see the change).
+This seems to work good, but NEEDS TESTING! (Try it on iOS.)
+
+
+6/20'19
+I plan now to streamline the lineupcard process, eliminate cmdDoIt and just have a 
+DisplayAlert with the proposed change. Wish me luck.
+
+
+6/19'19
+All the subs actions are coded, incl Replace and Change Posn. Needs debugging, a few 
+glitches (w/ dh, etc.)
+STATUS: Running, but needs debugging.
+
+
+6/18'19
+I overhauled the MainScreen's Appearing handler, using the new 'returningFrom' property, so
+that there can be separate logic for each page being returned from. (In Bcxb_Ios you have separate 
+'ReturningFrom...' so you don't have this problem.)
+
+So for this I removed 'NeedsScreenRefresh' as being the wrong approach.
+
+
+--1906.04 (Removed)
+Added new property of CGame, 'NeedsScreenRefresh'. If this is true, then in
+MainScreen it calls InitBatter().
+
+
+6/11'19
+LineupCard in process
+
+
+--1906.03 
+Added new properties to CLineUpCard: TeamNickVis, TeamNickHome.
+This is for labels on tabs on LineupCardPage 
+
+
+6/6'19
+Imlimented CTextToSpeach through the Xamarin dependency service. See code tag -1906.01
+This is a good working snapshot. BACKED UP AS "BcxbXf_b1@190608 - next lineup card"
+
+Next: LineupCard and substitution.
+First step will be: do lineup card prototype, then decide how much goes on the same page
+or on separate pages (buttons, etc.)
+
+
+6/4'19
+Implimented profile disks w/ SkiaSharp. Working.
+
+
+6/3'19
+Rebuilding done -- clean compile with ProfileDisk2Page and
+GProfileDisks.
+
+
+6/3'19
+Had to rebuild ProfileDiskPage (now called ProfileDisk2Page) due
+to problem re 'InitializeComponent' not found. 
+I am in process of this rebuild.
+(The x:class pointed to an bogus class name -- this perhaps was
+the problem).
+
+
+5/30'19
+In process: ProfileDisks & SkiaSharp
+
+5/23-24'19
+Box scores working, buttons for Home/Vis with nicknames.
+Tested OK on IOS.
+
+
+5/17'19
+Main screen and Pick Teams working on iOS and Android.
+Out balls were a problem on iOS with case sensitivity, but got it fixed.
+Next: Box scores: What to use?
+
+
+5/16'19 (On Tpd2)
+I resolved scaling of main page by using all relative vertical sizing.
+MenuItems converted to buttons so can be disabled (short of implementing Command objects).
+I got many UI event handlers working, mainly show runners, linescore, out balls.
+Tested on Android only Must now try on iOS.
+
+
+5/14'19 (On XPS2)
+Filding and runner fields on the diamond.
+Now: Will test if its working.
+
+
+5/13'19
+Linescore in white on black with 1px deviders,
+Runs good on iOS and Android!
+Next: Add fielding names to the diamond, and batters & runners.
+
+
+5/13'19
+Running on iOS and Android, with minimal screen controls: menu bar,diamond, play-by-play, "Play" button.
+Next:
+1. Add a grid to the main screen?
+2. Add line scrore as a 2x18 (or so) grid.
+
+
+5/7'19
+Got the diamond on the screen -- using AbsoluteLayout.
+Must now add the linescrore as a 2 30 (or whatever grid),
+And make the main page a 1 column grid with "rws" for linescore, 
+diamond & outs, play-by-play, and main button. Use *'s to size.
+
+
+5/5'19
+PickTeams working.
+Overhauled so on new game, it holds ref to PickTeams to see what was picked.
+Next will be: flush out MainScreen w/ images, line score etc.
+
+
+5/1'19
+It runs and plays the game.
+Just main screen.
+Will next add PickTeamsPage.

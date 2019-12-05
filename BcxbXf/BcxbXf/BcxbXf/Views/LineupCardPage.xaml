@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:iOSSpecific="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             x:Class="BcxbXf.Views.LineupCardPage"
+             NavigationPage.HasBackButton="true">
+
+   <ContentPage.Resources>
+      <ResourceDictionary>
+         <Style x:Key="ButtonStyle1" TargetType="Button">
+            <Setter Property="FontSize" Value="Small" />
+            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="BackgroundColor" Value="LightGray" />
+            <!--<Setter Property="WidthRequest" Value="40" />-->
+            <!--<Setter Property="HeightRequest" Value="40" />-->
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Margin" Value="0,0,0,0" />
+         </Style>
+         <Style x:Key="LabelItem1" TargetType="Label">
+            <Setter Property="FontSize" Value="Small" />
+            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="Margin" Value="0,0,0,0" />
+            <Setter Property="BackgroundColor" Value="White" />
+            <Setter Property="HorizontalOptions" Value="End" />
+            <Setter Property="VerticalOptions" Value="End" />
+            <Setter Property="HorizontalTextAlignment" Value="End" />
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+         </Style>
+         <Style x:Key="BackGround1" TargetType="VisualElement" >
+            <Setter Property="BackgroundColor" Value="White" />
+         </Style>
+
+      </ResourceDictionary>
+   </ContentPage.Resources>
+
+
+   <ContentPage.Content>
+      <!--<Frame BorderColor="Black" Style="{StaticResource BackGround1}" Margin="0" >
+         <ScrollView Style="{StaticResource BackGround1}" Margin="0" >-->
+            <StackLayout Padding="0" Spacing="0" Style="{StaticResource BackGround1}" >
+
+               <Grid Padding="0" Style="{StaticResource BackGround1}" >
+                  <Grid.ColumnDefinitions>
+                     <ColumnDefinition Width="*" />
+                     <ColumnDefinition Width="*" />
+                  </Grid.ColumnDefinitions>
+                  <Grid.RowDefinitions>
+                     <RowDefinition Height="30"  />
+                  </Grid.RowDefinitions>
+
+                  <Button x:Name="btnVisCard"  Text="{Binding TeamNickVis}" Padding="0" Margin="0,0,0,0" Clicked="btnVisCard_Clicked" BackgroundColor="White" Grid.Column="0" HorizontalOptions="FillAndExpand"/>
+                  <Button x:Name="btnHomeCard" Text="{Binding TeamNickHome}" Padding="0" Margin="0,0,0,0" Clicked="btnHomeCard_Clicked" BackgroundColor="Gray" Grid.Column="1" HorizontalOptions="FillAndExpand"/>
+
+               </Grid>
+
+               <Grid Padding="0" Style="{StaticResource BackGround1}" >
+                  <Grid.ColumnDefinitions>
+                     <ColumnDefinition Width="*" />
+                     <ColumnDefinition Width="2.5*" />
+                     <ColumnDefinition Width="0.8*" />
+                     <ColumnDefinition Width="1.2*" />
+                     <ColumnDefinition Width="3*" />
+                  </Grid.ColumnDefinitions>
+
+                  <Grid.RowDefinitions>
+                     <RowDefinition Height="30" />
+                  </Grid.RowDefinitions>
+
+                  <Label Margin="0,0,0,0" Text="" TextColor="LightGray" Grid.Column="0" Style="{StaticResource LabelItem1}" />
+                  <Label Margin="0,0,0,0" Text="Player" TextColor="LightGray" Grid.Column="1" HorizontalOptions="Start" Style="{StaticResource LabelItem1}" />
+                  <Label Margin="0,0,0,0" Text="Pos" TextColor="LightGray" HorizontalOptions="Center"   Grid.Column="2" Style="{StaticResource LabelItem1}" />
+                  <Label Margin="0,0,0,0" Text="Base" TextColor="LightGray" HorizontalOptions="Center"  Grid.Column="3" Style="{StaticResource LabelItem1}" />
+                  <Label Margin="0,0,0,0" Text="Fielding" TextColor="LightGray" Grid.Column="4" HorizontalOptions="Start" Style="{StaticResource LabelItem1}" />
+
+               </Grid>
+
+               <ListView 
+                  x:Name= "lstCard" ItemsSource="{Binding CurrentLineup}" 
+                  SeparatorVisibility="None" SelectionMode="Single" 
+                  RowHeight="25" Style="{StaticResource BackGround1}" 
+                  ItemSelected="lstCard_ItemSelected" > 
+                  <ListView.ItemTemplate>
+                     <DataTemplate>
+                        <ViewCell>
+                           <Grid Padding="0" RowSpacing="0" Style="{StaticResource BackGround1}" >
+                              <Grid.ColumnDefinitions>
+                                 <ColumnDefinition Width="*" />
+                                 <ColumnDefinition Width="2.5*" />
+                                 <ColumnDefinition Width="0.8*" />
+                                 <ColumnDefinition Width="1.2*" />
+                                 <ColumnDefinition Width="3*" />
+                              </Grid.ColumnDefinitions>
+
+                              <Label Margin="0,0,0,0" Text="{Binding DisplaySlot}" Grid.Column="0" Style="{StaticResource LabelItem1}" FontAttributes="Bold" TextColor="Blue" />
+                              <Label Margin="0,0,0,0" Text="{Binding DisplayName}" Grid.Column="1" HorizontalOptions="Start" Style="{StaticResource LabelItem1}" />
+                              <Label Margin="0,0,0,0" Text="{Binding DisplayPos}" Grid.Column="2" HorizontalOptions="Center" Style="{StaticResource LabelItem1}" />
+                              <Label Margin="0,0,0,0" Text="{Binding DisplayBase}" Grid.Column="3" HorizontalOptions="Center"  Style="{StaticResource LabelItem1}" />
+                              <Label Margin="0,0,0,0" Text="{Binding DisplaySkill}" Grid.Column="4" HorizontalOptions="Start" Style="{StaticResource LabelItem1}" />
+
+                           </Grid>
+
+                        </ViewCell>
+                     </DataTemplate>
+                  </ListView.ItemTemplate>
+
+               </ListView>
+
+               <Frame BorderColor="White" HorizontalOptions="FillAndExpand" Style="{StaticResource BackGround1}" Margin="0" >
+
+                  <StackLayout Orientation="Vertical" >
+                     <StackLayout Orientation="Horizontal" >
+                        <Button 
+                           x:Name="cmdMoveUp" Text="Move Up" Style="{StaticResource ButtonStyle1}" 
+                           HorizontalOptions="FillAndExpand" IsEnabled="False" Clicked="cmdMoveUp_Clicked" />
+                        <Button 
+                           x:Name="cmdMoveDown" Text="Move Down" Style="{StaticResource ButtonStyle1}" 
+                           HorizontalOptions="FillAndExpand" IsEnabled="False" Clicked="cmdMoveDown_Clicked" />
+                     </StackLayout>
+                     <StackLayout Orientation="Horizontal" >
+                        <Button 
+                           x:Name="cmdPinchHit" Text="Pinch Hit" Style="{StaticResource ButtonStyle1}" 
+                           HorizontalOptions="FillAndExpand" Clicked="cmdPinchHit_Clicked" />
+                        <Button 
+                           x:Name="cmdPinchRun" Text="Pinch Run" Style="{StaticResource ButtonStyle1}" 
+                           HorizontalOptions="FillAndExpand" Clicked="cmdPinchRun_Clicked" />
+                     </StackLayout>
+                     <StackLayout Orientation="Horizontal" >
+                        <Button 
+                           x:Name="cmdReplace" Text="Replace" Style="{StaticResource ButtonStyle1}" 
+                           HorizontalOptions="FillAndExpand" Clicked="cmdReplace_Clicked"/>
+                        <Label x:Name="lblPosn" Text="New Posn:" WidthRequest="50" />
+                        <Picker 
+                           x:Name="pkrPosn" Title="" TextColor="Black" BackgroundColor="LightGray" WidthRequest="50" 
+                           SelectedIndexChanged="pkrPosn_SelectedIndexChanged"
+                           iOSSpecific:Picker.UpdateMode="WhenFinished"/>
+                     </StackLayout>
+
+                  </StackLayout>
+
+               </Frame>
+
+         <!--<Label.FontFamily>
+                  <OnPlatform x:TypeArguments="x:String">
+                     <On Platform="iOS" Value="Courier New" />
+                     <On Platform="Android" Value="monospace" />
+                  </OnPlatform>
+               </Label.FontFamily>-->
+
+
+      </StackLayout>
+
+         <!--</ScrollView> -->
+
+      <!--</Frame>-->
+
+   </ContentPage.Content>
+</ContentPage>

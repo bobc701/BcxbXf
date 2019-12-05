@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BcxbXf.PickTeamsPage"
+   >
+
+   <ContentPage.Content>
+       <StackLayout Padding="10, 50, 10, 0">
+          <Label Text="Pick Teams" FontAttributes="Bold" />
+          <Label Text="Tap 'Visiting Team' and then select a team from the list. Then do the same for 'Home Team'. Finally, tap 'New game with these teams'." />
+          <StackLayout Orientation="Horizontal" Padding="0,50,0,15">
+             <Label Text="Visiting team:" />
+             <Picker x:Name="pickerVis" Title="Pick team" TextColor="Black" SelectedIndexChanged="picker_IndexChanged" />
+          </StackLayout>
+          <StackLayout Orientation="Horizontal" Padding="0,0,0,15">
+             <Label Text="Home team:" />
+             <Picker x:Name="pickerHome" Title="Pick team" TextColor="Black" SelectedIndexChanged="picker_IndexChanged" />
+          </StackLayout>
+
+          <Button x:Name="btnUse" Text="New game with these teams" FontAttributes="Bold" Clicked="btnUse_Clicked" IsEnabled="False" />
+          <Button x:Name="btnCanc" Text="Cancel" Clicked="btnCanc_Clicked" FontAttributes="Bold" />
+       </StackLayout>
+   </ContentPage.Content>
+
+</ContentPage>

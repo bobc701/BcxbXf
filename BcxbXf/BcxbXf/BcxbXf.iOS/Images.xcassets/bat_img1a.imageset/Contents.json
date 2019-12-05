@@ -1,0 +1,24 @@
+{
+  "images": [
+    {
+      "scale": "1x",
+      "idiom": "iphone",
+      "filename": "bat_img1a.png"
+    },
+    {
+      "scale": "2x",
+      "idiom": "iphone",
+      "filename": "bat_img1a1.png"
+    },
+    {
+      "scale": "3x",
+      "idiom": "iphone",
+      "filename": "bat_img1a2.png"
+    }
+  ],
+  "properties": {},
+  "info": {
+    "version": 1,
+    "author": ""
+  }
+}

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BcxbXf.Views.OptionsPage">
+    <ContentPage.Content>
+
+      <StackLayout Padding="10,50,10,0">
+
+         <StackLayout Orientation="Horizontal" Padding="0,0,0,15">
+            <Label Text="Play-by-play voice on:"></Label>
+            <Switch x:Name="optSpeech" Toggled="optSpeech_Toggled" IsToggled="False" IsVisible="True"/>
+         </StackLayout>
+
+         <StackLayout Orientation="Horizontal" Padding="0,0,0,15">
+            <Label Text="Faster play-by-play:"></Label>
+            <Switch x:Name="optFastEOP" Toggled="OptFastEOP_Toggled" IsToggled="False" IsVisible="True"/>
+         </StackLayout>
+         
+         <StackLayout Orientation="Horizontal">
+            <Label Text="Auto:" IsVisible="False"></Label>
+            <Switch x:Name="optAuto" Toggled="optAuto_Toggled" IsToggled="False" IsVisible="False"/>
+         </StackLayout>
+
+         <StackLayout Orientation="Horizontal">
+            <Label Text="Fast:" IsVisible="False"></Label>
+            <Switch x:Name="optFast" Toggled="optFast_Toggled" IsToggled="False" IsVisible="False"/>
+         </StackLayout>
+
+         <StackLayout Orientation="Horizontal">
+            <Label Text="Fast to EOG:" IsVisible="False"></Label>
+            <Switch x:Name="optFastEOG" Toggled="optFastEOG_Toggled" IsToggled="False" IsVisible="False"/>
+         </StackLayout>
+
+
+      </StackLayout>
+   </ContentPage.Content>
+</ContentPage>

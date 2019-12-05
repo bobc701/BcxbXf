@@ -1,0 +1,134 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>TRACE;XF</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>TRACE;XF</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Speech\**" />
+    <EmbeddedResource Remove="Speech\**" />
+    <None Remove="Speech\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Views\ProfileDiskPage.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Views\ProfileDiskPage.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Model\cfeng1.bcx" />
+    <None Remove="Resources\Model\cfeng2.bcx" />
+    <None Remove="Resources\Model\cfeng3.bcx" />
+    <None Remove="Resources\Model\CFlistNames.txt" />
+    <None Remove="Resources\Teams\AL2018.bcxl" />
+    <None Remove="Resources\Teams\ARI2018.bcxt" />
+    <None Remove="Resources\Teams\ATL2018.bcxt" />
+    <None Remove="Resources\Teams\BAL2018.bcxt" />
+    <None Remove="Resources\Teams\BOS2018.bcxt" />
+    <None Remove="Resources\Teams\CHA2018.bcxt" />
+    <None Remove="Resources\Teams\CHN2018.bcxt" />
+    <None Remove="Resources\Teams\CIN2018.bcxt" />
+    <None Remove="Resources\Teams\CLE2018.bcxt" />
+    <None Remove="Resources\Teams\COL2018.bcxt" />
+    <None Remove="Resources\Teams\DET2018.bcxt" />
+    <None Remove="Resources\Teams\HOU2018.bcxt" />
+    <None Remove="Resources\Teams\KC2018.bcxt" />
+    <None Remove="Resources\Teams\LAA2018.bcxt" />
+    <None Remove="Resources\Teams\LAN2018.bcxt" />
+    <None Remove="Resources\Teams\MIA2018.bcxt" />
+    <None Remove="Resources\Teams\MIL2018.bcxt" />
+    <None Remove="Resources\Teams\MIN2018.bcxt" />
+    <None Remove="Resources\Teams\NL2018.bcxl" />
+    <None Remove="Resources\Teams\NYA2018.bcxt" />
+    <None Remove="Resources\Teams\NYN2018.bcxt" />
+    <None Remove="Resources\Teams\OAK2018.bcxt" />
+    <None Remove="Resources\Teams\PHI2018.bcxt" />
+    <None Remove="Resources\Teams\PIT2018.bcxt" />
+    <None Remove="Resources\Teams\SD2018.bcxt" />
+    <None Remove="Resources\Teams\SEA2018.bcxt" />
+    <None Remove="Resources\Teams\SF2018.bcxt" />
+    <None Remove="Resources\Teams\STL2018.bcxt" />
+    <None Remove="Resources\Teams\TB2018.bcxt" />
+    <None Remove="Resources\Teams\TEX2018.bcxt" />
+    <None Remove="Resources\Teams\TOR2018.bcxt" />
+    <None Remove="Resources\Teams\WAS2018.bcxt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Model\cfeng1.bcx" />
+    <EmbeddedResource Include="Resources\Model\cfeng2.bcx" />
+    <EmbeddedResource Include="Resources\Model\cfeng3.bcx" />
+    <EmbeddedResource Include="Resources\Model\CFlistNames.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SkiaSharp.Views.Forms" Version="1.68.0" />
+    <PackageReference Include="Xamarin.Forms" Version="4.1.0.581479" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Resources\Images\" />
+    <Folder Include="Resources\Results\" />
+    <Folder Include="Resources\Teams\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Views\AvailablePage.xaml.cs">
+      <DependentUpon>AvailablePage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Views\AboutPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\AvailablePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\BoxScorePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\FieldingDiskPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\LineupCardPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\OptionsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PickTeamsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PlaysPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ProfileDisk2Page.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <Import Project="..\..\..\..\..\BcxbLib_SAP\BcxbLib_SAP_b1_cteam\BcxbLib_SAP.projitems" Label="Shared" />
+</Project>

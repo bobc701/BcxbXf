@@ -1,0 +1,379 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BcxbXf"
+             x:Class="BcxbXf.MainPage"
+             NavigationPage.HasNavigationBar="false">
+
+    <!--<ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="20, 40, 20, 20" />
+            <On Platform="Android, WinPhone, Windows" Value="0" />
+        </OnPlatform>
+    </ContentPage.Padding>-->
+
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="5, 30, 5, 0" />
+            <On Platform="Android, WinPhone, Windows" Value="0" />
+        </OnPlatform>
+    </ContentPage.Padding>
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="ButtonStyle1" TargetType="Button">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="#22B14C" />
+                <!--<Setter Property="WidthRequest" Value="40" />-->
+                <!--<Setter Property="HeightRequest" Value="40" />-->
+                <Setter Property="Margin" Value="0,0,0,0" />
+            </Style>
+            
+            <Style x:Key="ToolbarButton" TargetType="Button">
+               <Setter Property="FontSize" >
+                     <OnPlatform x:TypeArguments="x:String">
+                        <On Platform="iOS" Value="Large" />
+                        <On Platform="Android" Value="Micro" />
+                     </OnPlatform>
+               </Setter>
+               <Setter Property="TextColor" Value="Black" />
+               <Setter Property="BackgroundColor" Value="White" /> <!--#22B14C" -->
+               <Setter Property="Margin" Value="0,0,0,0" />
+               <Setter Property="Padding" Value="0,0,0,0" />
+               <Setter Property="HorizontalOptions" Value="Center" />
+                
+            </Style>
+            
+            <Style x:Key="LineScoreItem" TargetType="Label">
+                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="Margin" Value="0,0,0,0" />
+                <Setter Property="BackgroundColor" Value="Black" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+            </Style>
+
+            <Style x:Key="LineScoreHeader" TargetType="Label">
+                <Setter Property="FontSize" Value="Micro" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="Margin" Value="0,0,0,0" />
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+            </Style>
+
+            <Style x:Key="BaseRunner" TargetType="Label" >
+                <Setter Property="TextColor" Value="Yellow" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+   <!--<ContentPage.ToolbarItems>
+      <ToolbarItem Text="New Game" Clicked="mnuPickTeams_OnClick" />
+      <ToolbarItem x:Name="cmdManageV" Text="Manage" Clicked="mnuMngVis_OnClick" />
+      <ToolbarItem Text="Plays" Clicked="mnuPlays_OnClick" />
+      <ToolbarItem Text="Options" Clicked="mnuOptions_OnClick" />
+      <ToolbarItem Text="Help" Clicked="mnuHelp_OnClick" />
+   </ContentPage.ToolbarItems>-->
+
+   <Grid Padding="0,0,0,0" Margin="0,0,0,0" RowSpacing="1" ColumnSpacing="1">
+
+      <Grid.ColumnDefinitions>
+         <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+         <RowDefinition Height="0.40*" />
+         <RowDefinition Height="*" />
+         <RowDefinition Height="2.75*" />
+         <RowDefinition Height="1.75*" />
+         <RowDefinition Height="0.6*" />
+      </Grid.RowDefinitions>
+
+
+      <!--<StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal" BackgroundColor="Gray" >
+         <Button Text="New Game" Clicked="mnuPickTeams_OnClick" TextColor="White" BackgroundColor="Gray" />
+         <Button x:Name="cmdManageV" Text="Manage"  Clicked="mnuMngVis_OnClick" TextColor="White" BackgroundColor="Gray" IsEnabled="false"/>
+         <Button x:Name="cmdPlays" Text="Plays"  Clicked="mnuPlays_OnClick" TextColor="White"  BackgroundColor="Gray" IsEnabled="false"/>
+         <Button x:Name="cmdOptions" Text="Options"  Clicked="mnuOptions_OnClick" TextColor="White"  BackgroundColor="Gray" IsEnabled="false"/>
+         <Button x:Name="cmdHelp" Text="Help"  Clicked="mnuHelp_OnClick" TextColor="White"  BackgroundColor="Gray" IsEnabled="false"/>
+      </StackLayout>-->
+
+
+   <!--================================================================
+      The tool bar at top of main page 
+      Implimemented a buttons in a 1-row grid
+      ================================================================= -->
+
+      <Grid Padding="0" BackgroundColor="White" Grid.Row="0" >
+
+         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.7*" />
+            <ColumnDefinition Width="0.6*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="1.1*" />
+            <ColumnDefinition Width="*" />
+         </Grid.ColumnDefinitions>
+
+         <Button Text="New Game" Grid.Column="0" Clicked="mnuPickTeams_OnClick" Style="{StaticResource ToolbarButton}" />
+         <Button x:Name="cmdManageV" Text="Mng" Grid.Column="1" Clicked="mnuMngVis_OnClick" Style="{StaticResource ToolbarButton}" IsEnabled="false"/>
+         <Button x:Name="cmdPlays" Text="Plays" Grid.Column="2" Clicked="mnuPlays_OnClick" Style="{StaticResource ToolbarButton}" IsEnabled="true"/>
+         <Button x:Name="cmdOptions" Text="Options" Grid.Column="3" Clicked="mnuOptions_OnClick" Style="{StaticResource ToolbarButton}" IsEnabled="true"/>
+         <Button x:Name="cmdHelp" Grid.Column="4" Clicked="mnuHelp_OnClick" Style="{StaticResource ToolbarButton}" IsEnabled="true">
+            <Button.Text>
+               <OnPlatform x:TypeArguments="x:String">
+                  <On Platform="iOS" Value="Help" />
+                  <On Platform="Android" Value="Help/About" />
+               </OnPlatform>
+            </Button.Text>
+         </Button>
+
+      </Grid> <!-- Toolbar -->
+
+
+   <!--"==================================================="
+      Linescore
+      ="==================================================="-->
+
+      <Grid Grid.Row="1" Grid.Column="0" 
+            BackgroundColor="White"  
+            RowSpacing="1" ColumnSpacing="1">
+
+         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="0.2*" />
+            <ColumnDefinition Width="1.2*" />
+            <ColumnDefinition Width="1.2*" />
+            <ColumnDefinition Width="*" />
+         </Grid.ColumnDefinitions>
+         <Grid.RowDefinitions>
+            <RowDefinition Height="0.6*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+         </Grid.RowDefinitions>
+
+
+         <!-- Shift left & right -->
+         <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0" BackgroundColor="White">
+            <Button x:Name="cmdShiftLeft"  Text="&lt;&lt;" IsVisible="False" Clicked="cmdShiftLeft_Clicked" WidthRequest="30" FontSize="Micro"
+               BackgroundColor="DarkGray" TextColor="Black" Margin="2,0,1,0" HorizontalOptions="Start" Padding="0,0,0,0"/>
+            <Button x:Name="cmdShiftRight" Text="&gt;&gt;" IsVisible="False" Clicked="cmdShiftRight_Clicked" WidthRequest="30" FontSize="Micro" 
+               BackgroundColor="DarkGray" TextColor="Black" Margin="0,0,0,0" Padding="0,0,0,0" />
+         </StackLayout>
+
+         <!-- Inning numbers -->
+         <Label x:Name="grdInning01" Text="1" Grid.Row="0" Grid.Column="1" Style="{StaticResource LineScoreHeader}" />
+         <Label x:Name="grdInning02" Text="2" Grid.Row="0" Grid.Column="2" Style="{StaticResource LineScoreHeader}" />
+         <Label x:Name="grdInning03" Text="3" Grid.Row="0" Grid.Column="3" Style="{StaticResource LineScoreHeader}" />
+         <Label x:Name="grdInning04" Text="4" Grid.Row="0" Grid.Column="4" Style="{StaticResource LineScoreHeader}" />
+         <Label x:Name="grdInning05" Text="5" Grid.Row="0" Grid.Column="5" Style="{StaticResource LineScoreHeader}" />
+         <Label x:Name="grdInning06" Text="6" Grid.Row="0" Grid.Column="6" Style="{StaticResource LineScoreHeader}" />
+         <Label x:Name="grdInning07" Text="7" Grid.Row="0" Grid.Column="7" Style="{StaticResource LineScoreHeader}" />
+         <Label x:Name="grdInning08" Text="8" Grid.Row="0" Grid.Column="8" Style="{StaticResource LineScoreHeader}" />
+         <Label x:Name="grdInning09" Text="9" Grid.Row="0" Grid.Column="9" Style="{StaticResource LineScoreHeader}" />
+
+         <Label Text="r" Grid.Row="0" Grid.Column="11" Style="{StaticResource LineScoreHeader}" />
+         <Label Text="h" Grid.Row="0" Grid.Column="12" Style="{StaticResource LineScoreHeader}" />
+         <Label Text="e" Grid.Row="0" Grid.Column="13" Style="{StaticResource LineScoreHeader}" />
+
+         <!-- Visitor line -->
+         <Label x:Name="txtAbbrev0" Text="Vis" Grid.Row="1" Grid.Column="0" Style="{StaticResource LineScoreItem}" />
+
+         <Label x:Name="grdLinescore001" Text="0" Grid.Row="1" Grid.Column="1" Style="{StaticResource LineScoreItem}" />
+         <Label x:Name="grdLinescore002" Text="" Grid.Row="1" Grid.Column="2" Style="{StaticResource LineScoreItem}" />
+         <Label x:Name="grdLinescore003" Text="" Grid.Row="1" Grid.Column="3" Style="{StaticResource LineScoreItem}" />
+         <Label x:Name="grdLinescore004" Text="" Grid.Row="1" Grid.Column="4" Style="{StaticResource LineScoreItem}" />
+         <Label x:Name="grdLinescore005" Text="" Grid.Row="1" Grid.Column="5" Style="{StaticResource LineScoreItem}" />
+         <Label x:Name="grdLinescore006" Text="" Grid.Row="1" Grid.Column="6" Style="{StaticResource LineScoreItem}" />
+         <Label x:Name="grdLinescore007" Text="" Grid.Row="1" Grid.Column="7" Style="{StaticResource LineScoreItem}" />
+         <Label x:Name="grdLinescore008" Text="" Grid.Row="1" Grid.Column="8" Style="{StaticResource LineScoreItem}" />
+         <Label x:Name="grdLinescore009" Text="" Grid.Row="1" Grid.Column="9" Style="{StaticResource LineScoreItem}" />
+
+         <Label x:Name="grdRHE00" Text="0" Grid.Row="1" Grid.Column="11" Style="{StaticResource LineScoreItem}" />
+         <Label x:Name="grdRHE01" Text="0" Grid.Row="1" Grid.Column="12" Style="{StaticResource LineScoreItem}" />
+         <Label x:Name="grdRHE02" Text="0" Grid.Row="1" Grid.Column="13" Style="{StaticResource LineScoreItem}" />
+
+         <!-- Home line -->
+         <Label x:Name="txtAbbrev1" Text="Home" Grid.Row="2" Grid.Column="0" Style="{StaticResource LineScoreItem}" />
+
+         <Label x:Name="grdLinescore101" Text="" Grid.Row="2" Grid.Column="1" Style="{StaticResource LineScoreItem}" />
+         <Label x:Name="grdLinescore102" Text="" Grid.Row="2" Grid.Column="2" Style="{StaticResource LineScoreItem}" />
+         <Label x:Name="grdLinescore103" Text="" Grid.Row="2" Grid.Column="3" Style="{StaticResource LineScoreItem}" />
+         <Label x:Name="grdLinescore104" Text="" Grid.Row="2" Grid.Column="4" Style="{StaticResource LineScoreItem}" />
+         <Label x:Name="grdLinescore105" Text="" Grid.Row="2" Grid.Column="5" Style="{StaticResource LineScoreItem}" />
+         <Label x:Name="grdLinescore106" Text="" Grid.Row="2" Grid.Column="6" Style="{StaticResource LineScoreItem}" />
+         <Label x:Name="grdLinescore107" Text="" Grid.Row="2" Grid.Column="7" Style="{StaticResource LineScoreItem}" />
+         <Label x:Name="grdLinescore108" Text="" Grid.Row="2" Grid.Column="8" Style="{StaticResource LineScoreItem}" />
+         <Label x:Name="grdLinescore109" Text="" Grid.Row="2" Grid.Column="9" Style="{StaticResource LineScoreItem}" />
+
+         <Label x:Name="grdRHE10" Text="0" Grid.Row="2" Grid.Column="11" Style="{StaticResource LineScoreItem}" />
+         <Label x:Name="grdRHE11" Text="0" Grid.Row="2" Grid.Column="12" Style="{StaticResource LineScoreItem}" />
+         <Label x:Name="grdRHE12" Text="0" Grid.Row="2" Grid.Column="13" Style="{StaticResource LineScoreItem}" />
+
+
+      </Grid> <!-- Linescore -->
+
+
+      <!--===================================================
+         Main field graphic...
+         ====================================================-->
+
+      <AbsoluteLayout Grid.Row="2" Grid.Column="0" BackgroundColor="Green" >
+         <Image  x:Name="imgDiamond" Source="test9.png" Aspect="AspectFit" 
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                AbsoluteLayout.LayoutBounds="0, 0, 1, 1" 
+                AbsoluteLayout.LayoutFlags="All" />
+
+         <!-- ======================
+             Out balls
+             ====================== -->
+         <Label Text="Outs" 
+                   AbsoluteLayout.LayoutBounds=".16, .80, AutoSize, AutoSize" 
+                   AbsoluteLayout.LayoutFlags="PositionProportional" />
+         <Image  x:Name="lblOuts1" Source="whtball"  
+                   AbsoluteLayout.LayoutBounds=".10, .92, AutoSize, AutoSize" 
+                   AbsoluteLayout.LayoutFlags="PositionProportional" />
+         <Image  x:Name="lblOuts2" Source="whtball" 
+                   AbsoluteLayout.LayoutBounds=".18, .92, AutoSize, AutoSize" 
+                   AbsoluteLayout.LayoutFlags="PositionProportional" />
+         <Image  x:Name="lblOuts3" Source="whtball" 
+                   AbsoluteLayout.LayoutBounds=".26, .92, AutoSize, AutoSize" 
+                   AbsoluteLayout.LayoutFlags="PositionProportional" />
+
+
+         <!-- ======================
+             Fielders
+             ====================== -->
+
+         <Label x:Name="lblFielder1" Text="" 
+                   AbsoluteLayout.LayoutBounds=".5, .70, AutoSize, AutoSize" 
+                   AbsoluteLayout.LayoutFlags="PositionProportional" />
+
+         <Label x:Name="lblFielder2" Text="" 
+                   AbsoluteLayout.LayoutBounds=".5, 1.0, AutoSize, AutoSize" 
+                   AbsoluteLayout.LayoutFlags="PositionProportional" />
+
+         <Label x:Name="lblFielder3" Text="" 
+                   AbsoluteLayout.LayoutBounds=".7, .55, AutoSize, AutoSize" 
+                   AbsoluteLayout.LayoutFlags="PositionProportional" />
+
+         <Label x:Name="lblFielder4" Text="" 
+                   AbsoluteLayout.LayoutBounds=".7, .37, AutoSize, AutoSize" 
+                   AbsoluteLayout.LayoutFlags="PositionProportional" />
+
+         <Label x:Name="lblFielder5" Text="" 
+                   AbsoluteLayout.LayoutBounds=".3, .55, AutoSize, AutoSize" 
+                   AbsoluteLayout.LayoutFlags="PositionProportional" />
+
+         <Label x:Name="lblFielder6" Text="" 
+                   AbsoluteLayout.LayoutBounds=".33, .37, AutoSize, AutoSize" 
+                   AbsoluteLayout.LayoutFlags="PositionProportional" />
+
+         <Label x:Name="lblFielder7" Text="" 
+                   AbsoluteLayout.LayoutBounds=".15, .2, AutoSize, AutoSize" 
+                   AbsoluteLayout.LayoutFlags="PositionProportional" />
+
+         <Label x:Name="lblFielder8" Text="" 
+                   AbsoluteLayout.LayoutBounds=".5, .08, AutoSize, AutoSize" 
+                   AbsoluteLayout.LayoutFlags="PositionProportional" />
+
+         <Label x:Name="lblFielder9" Text="" 
+                   AbsoluteLayout.LayoutBounds=".85, .2, AutoSize, AutoSize" 
+                   AbsoluteLayout.LayoutFlags="PositionProportional" />
+
+
+         <!-- ======================
+             Runners
+             ====================== -->
+
+         <Label x:Name="lblRunner1" Text="" 
+                   AbsoluteLayout.LayoutBounds=".70, .62, AutoSize, AutoSize" 
+                   AbsoluteLayout.LayoutFlags="PositionProportional"
+                   Style="{StaticResource BaseRunner}" />
+
+         <Label x:Name="lblRunner2" Text="" 
+                   AbsoluteLayout.LayoutBounds=".5, .46, AutoSize, AutoSize" 
+                   AbsoluteLayout.LayoutFlags="PositionProportional" 
+                    Style="{StaticResource BaseRunner}" />
+
+         <Label x:Name="lblRunner3" Text="" TextColor="Yellow" FontAttributes="Bold"
+                   AbsoluteLayout.LayoutBounds=".3, .62, AutoSize, AutoSize" 
+                   AbsoluteLayout.LayoutFlags="PositionProportional"
+                    Style="{StaticResource BaseRunner}"/>
+
+         <Label x:Name="lblBatter" Text="" 
+                   AbsoluteLayout.LayoutBounds=".5, .88, AutoSize, AutoSize" 
+                   AbsoluteLayout.LayoutFlags="PositionProportional"
+                    Style="{StaticResource BaseRunner}"/>
+
+
+      </AbsoluteLayout> <!-- Main foeld graphic -->
+
+
+   <!--=================================================
+      Results ...
+      ==================================================-->
+
+      <ScrollView Grid.Row="3" Grid.Column="0" VerticalScrollBarVisibility="Always" >
+         <Label 
+            x:Name="txtResults" Text="Results" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  
+            FontSize="Small" HorizontalTextAlignment="Start"
+            TextColor="Black" FontAttributes="Bold"
+            BackgroundColor="#EFE4B0" 
+            Margin="0" >
+         </Label>
+         <!-- Results -->
+      </ScrollView>
+
+      <!--====================================================
+         Button row at bottom
+         =====================================================-->
+
+      <!--<StackLayout Grid.Row="4" Grid.Column="0" Orientation="Horizontal" >-->
+      <Grid Padding="0" BackgroundColor="Black" Grid.Row="4" Grid.Column="0" >
+         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+         <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+         </Grid.RowDefinitions>
+
+         <Button Grid.Row="0" Grid.Column="0" 
+               x:Name="btnGo" Text="START" Clicked="btnGo_Clicked" Margin="0" Padding="0,0,0,0" BackgroundColor="DarkGray"
+                     CornerRadius="10">
+         </Button>
+         <Button Grid.Row="0" Grid.Column="1" 
+               x:Name="btnBoxScore" Text="BOX" Clicked="btnBoxScore_Clicked" Margin="0" Padding="0,0,0,0" TextColor="White" BackgroundColor="DarkCyan"
+                     CornerRadius="10" >
+         </Button>
+         <!--<Button Grid.Row="0" Grid.Column="2" 
+               x:Name="btnProfileDisks" Text="" Clicked="btnProfileDisks_Clicked" Margin="0" Padding="0,0,0,0" TextColor="White" BackgroundColor="DarkCyan"
+                     CornerRadius="10" Image="bat_img1a.png" >
+         </Button>-->
+         <ImageButton Grid.Row="0" Grid.Column="2" 
+               x:Name="btnProfileDisks" Clicked="btnProfileDisks_Clicked" Margin="0" Padding="0,0,0,0" BackgroundColor="DarkCyan"
+                     CornerRadius="10" Source="bat_img1a.png" Aspect="Fill" >
+         </ImageButton>
+
+      </Grid> <!-- Button row at bottom -->
+  
+
+   </Grid>
+
+</ContentPage>

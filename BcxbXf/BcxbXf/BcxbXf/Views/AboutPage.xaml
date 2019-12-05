@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BcxbXf.Views.AboutPage">
+
+   <ContentPage.Content>
+      <StackLayout BackgroundColor="#22B14C">
+
+         <Grid Padding="0,30,0,0" Margin="0,0,0,0" RowSpacing="30" ColumnSpacing="1">
+
+            <Grid.RowDefinitions>
+               <RowDefinition Height="*" />
+               <RowDefinition Height="*" />
+               <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Image Source="zeemerix_logo.png" Grid.Row="0"
+               HorizontalOptions="Center" 
+               VerticalOptions="Center"
+               Scale="0.80"
+            />
+
+            <StackLayout Grid.Row="1" >
+
+               <Button x:Name="btnHelp" Grid.Row="1"
+                   Text="Help with Zeemerix Baseball"
+                   TextColor="White"
+                   HorizontalOptions="CenterAndExpand" 
+                   Clicked="btnHelp_Clicked"
+               />
+
+               <Button x:Name="btnVisit" Grid.Row="2"
+                   Text="Visit zeemerix.com"
+                   TextColor="White"
+                   HorizontalOptions="CenterAndExpand" 
+                   Clicked="btnVisit_Clicked"
+               />
+
+            </StackLayout>
+
+            <StackLayout Grid.Row="2" >
+
+               <Label
+                   Text="(c) 2019 Zeemerix Digital Solutions"
+                   TextColor="Blue" 
+                   HorizontalOptions="CenterAndExpand" 
+                   VerticalOptions="Center"
+               />
+
+               <Label
+                   Text="www.zeemerix.com"
+                   TextColor="Blue"
+                   HorizontalOptions="CenterAndExpand" 
+               />
+
+               <Label
+                   Text="Version 1.0.01"
+                   TextColor="Blue"
+                   HorizontalOptions="CenterAndExpand" 
+               />
+
+            </StackLayout>
+
+         </Grid>
+
+      </StackLayout>
+
+   </ContentPage.Content>
+
+
+</ContentPage>
