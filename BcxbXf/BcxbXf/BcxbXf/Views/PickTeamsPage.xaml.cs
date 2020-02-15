@@ -16,6 +16,8 @@ namespace BcxbXf {
 
       public string[] SelectedTeams { get; set; } = new string[2]; //<-- This is how selections are passed back to MainPage.
 
+      public Action Dismiss;
+
 
       public PickTeamsPage(List<string> teamList) {
       // ---------------------------------------------------------------
@@ -33,7 +35,9 @@ namespace BcxbXf {
          //DisplayAlert("", "Use these teams", "OK");
          SelectedTeams[0] = (string)pickerVis.SelectedItem;
          SelectedTeams[1] = (string)pickerHome.SelectedItem;
+         Dismiss?.Invoke();
          Navigation.PopModalAsync();
+
       }
 
 
@@ -50,5 +54,7 @@ namespace BcxbXf {
          btnUse.IsEnabled = (pickerVis.SelectedIndex >= 0 && pickerHome.SelectedIndex >= 0);
 
       }
+
+
    }
 }

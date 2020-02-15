@@ -226,7 +226,7 @@ namespace BCX.BCXCommon {
             return teamList;
          }
          catch (Exception ex) {
-            string msg = "Error getting teams in league: " + league1 + "\r\n" + ex.Message;
+            string msg = $"Error getting teams in league, {league1}, from zeemerix.com" + "\r\n" + ex.Message;
             throw new Exception(msg);
 
 
@@ -259,7 +259,7 @@ namespace BCX.BCXCommon {
          }
 
          catch (Exception ex) {
-            string msg = "Error getting list of available leagues: \r\n" + ex.Message;
+            string msg = "Error getting list of available leagues from zeemerix.com: \r\n" + ex.Message;
             throw new Exception(msg);
          }
 
