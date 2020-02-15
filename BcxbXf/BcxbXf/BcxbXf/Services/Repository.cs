@@ -46,39 +46,39 @@ namespace BcxbXf.Services
       }
 
 
-      public static StreamReader GetTextFileOnLine(string token) {
-         // ---------------------------------------------------------------
-         //WebClient client = new WebClient(); 
-         string path = "";
-         Stream strm;
+      //      public static StreamReader GetTextFileOnLine(string token) {
+      //         // ---------------------------------------------------------------
+      //         //WebClient client = new WebClient(); 
+      //         string path = "";
+      //         Stream strm;
 
-         switch (token) {
-            case "DataDate": path = @"http://www.4bcx.com/NflData/DataDate1.txt"; break;
-            case "Spread": path = @"http://www.4bcx.com/NflData/SpreadTable3.txt"; break;
-            case "Results": path = @"http://www.4bcx.com/NflData/ResultsTemplate1.txt"; break;
-            case "Schedule": path = @"http://www.4bcx.com/NflData/Schedule2.txt"; break;
-         }
+      //         switch (token) {
+      //            case "DataDate": path = @"http://www.4bcx.com/NflData/DataDate1.txt"; break;
+      //            case "Spread": path = @"http://www.4bcx.com/NflData/SpreadTable3.txt"; break;
+      //            case "Results": path = @"http://www.4bcx.com/NflData/ResultsTemplate1.txt"; break;
+      //            case "Schedule": path = @"http://www.4bcx.com/NflData/Schedule2.txt"; break;
+      //         }
 
-      // ----------------------------------------------------
-      // Found this approach on Web.
-      // Uses HttpWebRequest i/o WebClient, and so allows you 
-      // to set the timeout period.
-      // HttpWebRequest --> HttpWebResponse --> Stream --> StreamReader
-      // ----------------------------------------------------
-         var request = (HttpWebRequest)WebRequest.Create(path);
-         request.Timeout = 30000;
-         request.ReadWriteTimeout = 30000;
-         //-bc 1807.01: using 'using' per StackOverflow...
-         //using (var wresp = (HttpWebResponse)request.GetResponse()) { 
-         //   strm = wresp.GetResponseStream();
-         //}
-         var wresp = (HttpWebResponse)request.GetResponse();
-         strm = wresp.GetResponseStream();
+      //      // ----------------------------------------------------
+      //      // Found this approach on Web.
+      //      // Uses HttpWebRequest i/o WebClient, and so allows you 
+      //      // to set the timeout period.
+      //      // HttpWebRequest --> HttpWebResponse --> Stream --> StreamReader
+      //      // ----------------------------------------------------
+      //         var request = (HttpWebRequest)WebRequest.Create(path);
+      //         request.Timeout = 30000;
+      //         request.ReadWriteTimeout = 30000;
+      //         //-bc 1807.01: using 'using' per StackOverflow...
+      //         //using (var wresp = (HttpWebResponse)request.GetResponse()) { 
+      //         //   strm = wresp.GetResponseStream();
+      //         //}
+      //         var wresp = (HttpWebResponse)request.GetResponse();
+      //         strm = wresp.GetResponseStream();
 
-         //strm = client.OpenRead(path);
-         return new StreamReader(strm);
+      //         //strm = client.OpenRead(path);
+      //         return new StreamReader(strm);
 
-      }
+      //      }
 
 
 

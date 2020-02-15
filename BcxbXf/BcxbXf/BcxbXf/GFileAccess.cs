@@ -304,7 +304,7 @@ namespace BCX.BCXCommon {
       // ---------------------------------------------------------------
       //WebClient client = new WebClient(); 
          string path = "";
-         path = @"http://www.4bcx.com/BcxbTeams/" + fName + ".txt"; 
+         path = @"http://www.zeemerix.com/BcxbTeams/" + fName + ".txt"; 
 
       // ----------------------------------------------------
       // Found this approach on Web.
