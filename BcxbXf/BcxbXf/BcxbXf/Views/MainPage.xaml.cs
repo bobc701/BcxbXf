@@ -698,15 +698,6 @@ namespace BcxbXf
       }
 
 
-      protected override void  OnAppearing() {
-
-         int n = 10;
-         n++;
-
-      }
-
-
-
       async void mnuPickTeams_OnClick(object sender, EventArgs e) {
       // -----------------------------------------------------------------
          try {
@@ -727,31 +718,30 @@ namespace BcxbXf
             fPickTeams = new PickTeamsPage(teamList);
 
             //#2002.01: Overhaul of return logic...
-            fPickTeams.Dismiss += () =>
-            {
-               OnAppearing(); //Hmmm... Will this fire event, Appearing?
-               try {
-                  if ((fPickTeams?.SelectedTeams[0] ?? "") == "") return;
-                  if ((fPickTeams?.SelectedTeams[1] ?? "") == "") return;
+            //fPickTeams.Dismiss += () =>
+            //{
+            //   try {
+            //      if ((fPickTeams?.SelectedTeams[0] ?? "") == "") return;
+            //      if ((fPickTeams?.SelectedTeams[1] ?? "") == "") return;
 
-                  Debug.WriteLine("Vititing team: " + fPickTeams.SelectedTeams[0]);
-                  Debug.WriteLine("Home team: " + fPickTeams.SelectedTeams[1]);
+            //      Debug.WriteLine("Vititing team: " + fPickTeams.SelectedTeams[0]);
+            //      Debug.WriteLine("Home team: " + fPickTeams.SelectedTeams[1]);
 
-                  SetupNewGame(fPickTeams.SelectedTeams);
-                  txtResults.Text =
-                     "\nTap 'Mng' above to change starting lineups." +
-                     "\nWhen done, tap 'Start' below." +
-                     "\n\nMake sure phone is not in silent mode" +
-                     "\nto hear audio play-by-play.";
-                  fPickTeams = null;
+            //      SetupNewGame(fPickTeams.SelectedTeams);
+            //      txtResults.Text =
+            //         "\nTap 'Mng' above to change starting lineups." +
+            //         "\nWhen done, tap 'Start' below." +
+            //         "\n\nMake sure phone is not in silent mode" +
+            //         "\nto hear audio play-by-play.";
+            //      fPickTeams = null;
 
-               }
-               catch (Exception ex) {
-                  DisplayAlert("Error", ex.Message, "Dismiss");
+            //   }
+            //   catch (Exception ex) {
+            //      DisplayAlert("Error", ex.Message, "Dismiss");
 
-               }
+            //   }
 
-            };
+            //};
 
             returningFrom = "PickTeamsPage";
             //await Navigation.PushModalAsync(new PickTeamsPage(selectedTeams));
@@ -769,6 +759,7 @@ namespace BcxbXf
       // -------------------------------------------------------------
          fLineup = new LineupCardPage(mGame, 0);
          returningFrom = "LineupCardPage";
+
          await Navigation.PushAsync(fLineup);
       }
 
