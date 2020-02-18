@@ -301,24 +301,27 @@ namespace BCX.BCXCommon {
       }
 
       public static StringReader GetTextFileOnLine(string fName) {
-      // ---------------------------------------------------------------
-      //WebClient client = new WebClient(); 
+         // ---------------------------------------------------------------
+         //WebClient client = new WebClient(); 
          string path = "";
-         path = @"http://www.zeemerix.com/BcxbTeams/" + fName + ".txt"; 
+         path = @"http://www.zeemerix.com/BcxbTeams/" + fName + ".txt";
 
-      // ----------------------------------------------------
-      // Found this approach on Web.
-      // Uses HttpWebRequest i/o WebClient, and so allows you 
-      // to set the timeout period.
-      // HttpWebRequest --> HttpWebResponse --> Stream --> StreamReader
-      // ----------------------------------------------------
+         // ----------------------------------------------------
+         // Found this approach on Web.
+         // Uses HttpWebRequest i/o WebClient, and so allows you 
+         // to set the timeout period.
+         // HttpWebRequest --> HttpWebResponse --> Stream --> StreamReader
+         // ----------------------------------------------------
          HttpWebRequest request = (HttpWebRequest)WebRequest.Create(path);
          request.Timeout = 15000;
          request.ReadWriteTimeout = 15000;
-         var resp = (HttpWebResponse)request.GetResponse();
 
-         var f = new StreamReader(resp.GetResponseStream());
-         string s = f.ReadToEnd();
+         //#2002.02: Adding 'using' here...
+         string s;
+         using (var resp = (HttpWebResponse)request.GetResponse()) {
+            var f = new StreamReader(resp.GetResponseStream());
+            s = f.ReadToEnd();
+         }
          return new StringReader(s);
 
       }

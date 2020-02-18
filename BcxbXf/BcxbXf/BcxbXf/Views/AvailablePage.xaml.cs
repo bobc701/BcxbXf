@@ -27,7 +27,7 @@ namespace BcxbXf.Views
       public CBatter SelectedPlayer = null;
       private CLineupCard card;
 
-      public Action Dismiss;
+      //public Action Dismiss;
 
       public AvailablePage(CLineupCard card1, string nickName, char crit) {
       // ---------------------------------------------------------------------
@@ -43,7 +43,7 @@ namespace BcxbXf.Views
       private void cmdChoose_Clicked(object sender, EventArgs e) {
       // ---------------------------------------------------------
          SelectedPlayer = (CBatter)lstAvail.SelectedItem;
-         Dismiss();
+         //Dismiss();
          Navigation.PopModalAsync();
 
       }
@@ -52,7 +52,6 @@ namespace BcxbXf.Views
       private void cmdCancel_Clicked(object sender, EventArgs e) {
       // ---------------------------------------------------------
          SelectedPlayer = null;
-         Dismiss();
          Navigation.PopModalAsync();
 
       }

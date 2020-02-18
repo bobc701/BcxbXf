@@ -277,10 +277,6 @@ namespace BcxbXf.Views {
          this.operation.type = 'h';
          this.operation.x = ((CBatter)lstCard.SelectedItem).bx;
          this.fAvail = new AvailablePage(lineupCard, g.t[(int)abMng].nick, 'n');
-         fAvail.Dismiss += () => {
-            Console.WriteLine("We've returned from Available!");
-            HandleChangeRequest();
-         };
          await Navigation.PushModalAsync(fAvail);
 
 
@@ -315,10 +311,6 @@ namespace BcxbXf.Views {
          this.operation.type = 'r';
          this.operation.x = ((CBatter)lstCard.SelectedItem).bx;
          this.fAvail = new AvailablePage(lineupCard, g.t[(int)abMng].nick, 'n');
-         fAvail.Dismiss += () => {
-            Console.WriteLine("We've returned from Available!");
-            HandleChangeRequest();
-         };
          await Navigation.PushModalAsync(fAvail);
 
       }
@@ -334,11 +326,7 @@ namespace BcxbXf.Views {
          operation.type = 's';
          this.operation.x = ((CBatter)lstCard.SelectedItem).bx;
          this.fAvail = new AvailablePage(lineupCard, g.t[(int)abMng].nick, ch);
-         fAvail.Dismiss += () => {
-            Console.WriteLine("We've returned from Available!");
-            HandleChangeRequest();
-         };
-
+ 
          await Navigation.PushModalAsync(fAvail);
 
       }

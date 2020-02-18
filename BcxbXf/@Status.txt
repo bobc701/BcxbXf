@@ -1,5 +1,13 @@
+#2002.02: Use 'using
+Use 'using' with HttpWebRequest.GetResonse.
+I found that starting new game a second time was timing out.
+This was new... I saw a remark online that suggested it could be  server-specific,
+and I have just switched to WinHost!
+
+
 #2002.01: Overhaul of return logic...
-Please earch code tag in EN
+...with PopModalAsync.
+Please search code tag in EN
 
 
 1/6'20
