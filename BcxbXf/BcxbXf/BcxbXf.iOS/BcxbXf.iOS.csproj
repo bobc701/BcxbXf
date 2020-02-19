@@ -76,7 +76,7 @@
     <CodesignKey>Apple Distribution: Bob Clemens (7B2Q2QFBAK)</CodesignKey>
     <CodesignEntitlements>
     </CodesignEntitlements>
-    <MtouchLink>None</MtouchLink>
+    <MtouchLink>SdkOnly</MtouchLink>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
     <MtouchFloat32>true</MtouchFloat32>
     <OptimizePNGs>true</OptimizePNGs>
