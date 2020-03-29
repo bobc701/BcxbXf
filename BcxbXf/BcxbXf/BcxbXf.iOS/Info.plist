@@ -25,10 +25,12 @@
 	<string>com.zeemerix.bcxbxf</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
-	<key>CFBundleName</key>
+  <key>UIUserInterfaceStyle</key>
+  <string>Light</string>
+  <key>CFBundleName</key>
 	<string>BcxbXf</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.02</string>
+	<string>1.0.03</string>
 	<key>UIRequiresFullScreen</key>
 	<true/>
 	<key>XSAppIconAssets</key>
@@ -39,6 +41,6 @@
 		<false/>
 	</dict>
 	<key>CFBundleVersion</key>
-	<string>1005</string>
+	<string>1006</string>
 </dict>
 </plist>

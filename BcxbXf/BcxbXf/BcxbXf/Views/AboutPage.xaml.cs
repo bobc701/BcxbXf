@@ -21,7 +21,7 @@ namespace BcxbXf.Views
       private void btnHelp_Clicked(object sender, EventArgs e) {
       // ---------------------------------------------------------------
 
-         var addr = "http://www.zeemerix.com/baseball_iphone/help/default.html";
+         var addr = "https://www.zeemerixdata.com/baseball_iphone/help/default.html";
          Device.OpenUri(new Uri(addr));
 
       }

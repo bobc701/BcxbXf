@@ -41,8 +41,8 @@
     <MtouchArch>x86_64</MtouchArch>
     <ConsolePause>false</ConsolePause>
     <DefineConstants>__IOS__;__MOBILE__;__UNIFIED__;IOS</DefineConstants>
-    <CodesignKey>iPhone Distribution: Robert Clemens (7B2Q2QFBAK)</CodesignKey>
-    <CodesignProvision>Zeemerix Distrib bcxbxf</CodesignProvision>
+    <CodesignKey>Apple Distribution: Bob Clemens (7B2Q2QFBAK)</CodesignKey>
+    <CodesignProvision>Zeemerix Dist Profile 3</CodesignProvision>
     <CodesignExtraArgs />
     <CodesignResourceRules />
     <CodesignEntitlements />
