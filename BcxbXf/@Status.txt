@@ -1,3 +1,8 @@
+
+02/30'20
+Fixed so that the LineupCard ListView showed highleght color.
+Forced Light view with UIUserInterfaceStyle = Light in info.plist.
+
 #2002.02: Use 'using
 Use 'using' with HttpWebRequest.GetResonse.
 I found that starting new game a second time was timing out.

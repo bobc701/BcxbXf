@@ -20,7 +20,7 @@
             <Setter Property="FontSize" Value="Small" />
             <Setter Property="TextColor" Value="Black" />
             <Setter Property="Margin" Value="0,0,0,0" />
-            <Setter Property="BackgroundColor" Value="White" />
+            <!--<Setter Property="BackgroundColor" Value="White" />-->
             <Setter Property="HorizontalOptions" Value="End" />
             <Setter Property="VerticalOptions" Value="End" />
             <Setter Property="HorizontalTextAlignment" Value="End" />
@@ -49,7 +49,7 @@
                   </Grid.RowDefinitions>
 
                   <Button x:Name="btnVisCard"  Text="{Binding TeamNickVis}" Padding="0" Margin="0,0,0,0" Clicked="btnVisCard_Clicked" BackgroundColor="White" Grid.Column="0" HorizontalOptions="FillAndExpand"/>
-                  <Button x:Name="btnHomeCard" Text="{Binding TeamNickHome}" Padding="0" Margin="0,0,0,0" Clicked="btnHomeCard_Clicked" BackgroundColor="Gray" Grid.Column="1" HorizontalOptions="FillAndExpand"/>
+                  <Button x:Name="btnHomeCard" Text="{Binding TeamNickHome}" Padding="0" Margin="0,0,0,0" Clicked="btnHomeCard_Clicked" BackgroundColor="LightGray" Grid.Column="1" HorizontalOptions="FillAndExpand"/>
 
                </Grid>
 
@@ -67,22 +67,22 @@
                   </Grid.RowDefinitions>
 
                   <Label Margin="0,0,0,0" Text="" TextColor="LightGray" Grid.Column="0" Style="{StaticResource LabelItem1}" />
-                  <Label Margin="0,0,0,0" Text="Player" TextColor="LightGray" Grid.Column="1" HorizontalOptions="Start" Style="{StaticResource LabelItem1}" />
-                  <Label Margin="0,0,0,0" Text="Pos" TextColor="LightGray" HorizontalOptions="Center"   Grid.Column="2" Style="{StaticResource LabelItem1}" />
-                  <Label Margin="0,0,0,0" Text="Base" TextColor="LightGray" HorizontalOptions="Center"  Grid.Column="3" Style="{StaticResource LabelItem1}" />
-                  <Label Margin="0,0,0,0" Text="Fielding" TextColor="LightGray" Grid.Column="4" HorizontalOptions="Start" Style="{StaticResource LabelItem1}" />
+                  <Label Margin="0,0,0,0" Text="Player" TextColor="DarkGray" Grid.Column="1" HorizontalOptions="Start" Style="{StaticResource LabelItem1}" />
+                  <Label Margin="0,0,0,0" Text="Pos" TextColor="DarkGray" HorizontalOptions="Center"   Grid.Column="2" Style="{StaticResource LabelItem1}" />
+                  <Label Margin="0,0,0,0" Text="Base" TextColor="DarkGray" HorizontalOptions="Center"  Grid.Column="3" Style="{StaticResource LabelItem1}" />
+                  <Label Margin="0,0,0,0" Text="Fielding" TextColor="DarkGray" Grid.Column="4" HorizontalOptions="Start" Style="{StaticResource LabelItem1}" />
 
                </Grid>
 
                <ListView 
                   x:Name= "lstCard" ItemsSource="{Binding CurrentLineup}" 
                   SeparatorVisibility="None" SelectionMode="Single" 
-                  RowHeight="25" Style="{StaticResource BackGround1}" 
+                  RowHeight="25" 
                   ItemSelected="lstCard_ItemSelected" > 
                   <ListView.ItemTemplate>
                      <DataTemplate>
                         <ViewCell>
-                           <Grid Padding="0" RowSpacing="0" Style="{StaticResource BackGround1}" >
+                           <Grid Padding="0" RowSpacing="0"  >
                               <Grid.ColumnDefinitions>
                                  <ColumnDefinition Width="*" />
                                  <ColumnDefinition Width="2.5*" />

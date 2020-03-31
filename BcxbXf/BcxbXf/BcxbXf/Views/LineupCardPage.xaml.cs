@@ -158,7 +158,7 @@ namespace BcxbXf.Views {
          this.abMng = side.home;
          this.lstCard.SelectedItem = null;
          btnHomeCard.BackgroundColor = Color.White;
-         btnVisCard.BackgroundColor = Color.Gray;
+         btnVisCard.BackgroundColor = Color.LightGray;
          ConfigureControls();
       }
 
@@ -169,7 +169,7 @@ namespace BcxbXf.Views {
          this.abMng = side.vis;
          this.lstCard.SelectedItem = null;
          btnVisCard.BackgroundColor = Color.White;
-         btnHomeCard.BackgroundColor = Color.Gray;
+         btnHomeCard.BackgroundColor = Color.LightGray;
          ConfigureControls();
       }
 
