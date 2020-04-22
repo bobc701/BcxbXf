@@ -20,7 +20,7 @@
             <Setter Property="FontSize" Value="Small" />
             <Setter Property="TextColor" Value="Black" />
             <Setter Property="Margin" Value="0,0,0,0" />
-            <Setter Property="BackgroundColor" Value="White" />
+            <!--<Setter Property="BackgroundColor" Value="White" />-->
             <Setter Property="HorizontalOptions" Value="Start" />
             <Setter Property="VerticalOptions" Value="End" />
             <Setter Property="HorizontalTextAlignment" Value="Start" />
@@ -58,13 +58,13 @@
          <ListView 
                   x:Name="lstAvail" ItemsSource="{Binding Available}" 
                   SeparatorVisibility="None" SelectionMode="Single" 
-                  RowHeight="25" Style="{StaticResource BackGround1}" 
+                  RowHeight="25"
                   ItemSelected="lstAvail_ItemSelected" >
 
             <ListView.ItemTemplate>
                <DataTemplate>
                   <ViewCell>
-                     <Grid Padding="0" RowSpacing="0" Style="{StaticResource BackGround1}" >
+                     <Grid Padding="0" RowSpacing="0" >
                         <Grid.ColumnDefinitions>
                            <ColumnDefinition Width="0.4*" />
                            <ColumnDefinition Width="*" />

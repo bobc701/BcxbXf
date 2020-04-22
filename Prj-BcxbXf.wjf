@@ -12,12 +12,7 @@
 <filter exclude="yes">bin</filter>
 <filter exclude="yes">obj</filter>
 <item exclude="no" recurse="yes">C:\prj\BCX\BCXBWinPrj\BcxbLib_SAP\BcxbLib_SAP_b1_cteam\</item>
-<item exclude="yes" recurse="yes">C:\prj\BCX\BCXBWinPrj\BcxbLib_SAP\BcxbLib_SAP_b1_cteam\.git\</item>
-<item exclude="yes" recurse="yes">C:\prj\BCX\BCXBWinPrj\BcxbLib_SAP\BcxbLib_SAP_b1_cteam\.vs\</item>
 <item exclude="no" recurse="yes">C:\prj\BCX\BCXBWinPrj\Working_XF\</item>
-<item exclude="yes" recurse="yes">C:\prj\BCX\BCXBWinPrj\Working_XF\BcxbXf_b1 @190608 - next lineup card\</item>
-<item exclude="yes" recurse="yes">C:\prj\BCX\BCXBWinPrj\Working_XF\BcxbXf_b1@190510 - next disks\</item>
-<item exclude="yes" recurse="yes">C:\prj\BCX\BCXBWinPrj\Working_XF\BcxbXf_b1@190530\</item>
 <item exclude="yes" recurse="yes">C:\prj\BCX\BCXBWinPrj\Working_XF\BcxbXf_b1\BcxbXf\.vs\</item>
 <item exclude="yes" recurse="yes">C:\prj\BCX\BCXBWinPrj\Working_XF\BcxbXf_b1\BcxbXf\BcxbXf\BcxbXf.Android\bin\</item>
 <item exclude="yes" recurse="yes">C:\prj\BCX\BCXBWinPrj\Working_XF\BcxbXf_b1\BcxbXf\BcxbXf\BcxbXf.Android\obj\</item>
@@ -29,7 +24,7 @@
 <output>
 <name append="dateyyyy">Prj-BcxbXf-.zip</name>
 <folder append="none">C:\WinzipArchives\</folder>
-<log type="full" overwrite="yes">&lt;zipfolder&gt;</log>
+<log type="none">&lt;zipfolder&gt;</log>
 </output>
 <options>
 <flags>0001</flags>
