@@ -10,6 +10,8 @@ using BCX.BCXB;
 using BCX.BCXCommon;
 using BcxbXf.Views;
 
+using Xamarin.Essentials;
+
 
 namespace BcxbXf
 {
@@ -52,6 +54,7 @@ namespace BcxbXf
          ViewDidLoad();
          EnableControls();
 
+         VersionTracking.Track(); //#2004.01
 
          Appearing += delegate (object sender, EventArgs e) {
             // ---------------------------------------------------------

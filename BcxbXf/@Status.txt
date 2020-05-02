@@ -1,3 +1,6 @@
+04/23'20
+Added version tracking with Xamarin.Essentials (#2004.01 -- See E/N) [This change for testing]
+
 04/15'20
 This went into production as V1.0.05
 
@@ -5,7 +8,7 @@ This went into production as V1.0.05
 Fixed so that the LineupCard ListView showed highleght color.
 Forced Light view with UIUserInterfaceStyle = Light in info.plist.
 
-#2002.02: Use 'using
+#2002.02:
 Use 'using' with HttpWebRequest.GetResonse.
 I found that starting new game a second time was timing out.
 This was new... I saw a remark online that suggested it could be  server-specific,

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xamarin.Essentials; //#2004.01
 
 namespace BcxbXf.Views
 {
@@ -16,6 +17,12 @@ namespace BcxbXf.Views
       // -----------------------------------------------------------
          InitializeComponent();
          this.Title = "Help / About";
+
+      // Version tracking with Xamarin.Essentials (#2004,01)
+         var ver = VersionTracking.CurrentVersion;
+         var bld = VersionTracking.CurrentBuild;
+         this.lblVersion.Text = $"Version {ver}, Build {bld}";
+
       }
 
       private void btnHelp_Clicked(object sender, EventArgs e) {

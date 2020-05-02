@@ -53,8 +53,8 @@
                    HorizontalOptions="CenterAndExpand" 
                />
 
-               <Label
-                   Text="Version 1.0.05, Build 1009"
+               <Label x:Name="lblVersion"
+                   Text="Version 9.9.99, Build 9999"
                    TextColor="Blue"
                    HorizontalOptions="CenterAndExpand" 
                />
