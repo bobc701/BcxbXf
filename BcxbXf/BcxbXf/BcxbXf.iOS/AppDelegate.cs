@@ -4,6 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using System.Threading;
 
 namespace BcxbXf.iOS
 {
@@ -24,7 +25,7 @@ namespace BcxbXf.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
-
+            Thread.Sleep(3000); // Ver 2: Delay toshow splash 
             return base.FinishedLaunching(app, options);
         }
     }

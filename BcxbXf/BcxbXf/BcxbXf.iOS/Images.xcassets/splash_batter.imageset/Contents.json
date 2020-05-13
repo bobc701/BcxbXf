@@ -3,20 +3,20 @@
     {
       "appearances": [],
       "scale": "1x",
-      "idiom": "universal",
-      "filename": "spinner3.png"
+      "idiom": "iphone",
+      "filename": "splashBatter1c.jpg"
     },
     {
       "appearances": [],
       "scale": "2x",
-      "idiom": "universal",
-      "filename": "spinner31.png"
+      "idiom": "iphone",
+      "filename": "splashBatter1c1.jpg"
     },
     {
       "appearances": [],
       "scale": "3x",
-      "idiom": "universal",
-      "filename": "spinner32.png"
+      "idiom": "iphone",
+      "filename": "splashBatter1c2.jpg"
     }
   ],
   "properties": {},

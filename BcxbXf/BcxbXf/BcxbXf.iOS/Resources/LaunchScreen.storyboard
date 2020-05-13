@@ -17,29 +17,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zeemerix PlayByPlay Baseball" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="272" translatesAutoresizingMaskIntoConstraints="NO" numberOfLines="2">
-                                <rect key="frame" x="71" y="382.5" width="272" height="131"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <rect key="frame" x="20" y="194" width="374" height="131"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
                                 <nil key="highlightedColor"/>
                                 <constraints>
                                     <constraint id="276" firstAttribute="height" constant="131"/>
-                                    <constraint id="277" firstAttribute="width" constant="272"/>
+                                    <constraint id="2866" firstAttribute="width" constant="374"/>
                                 </constraints>
+                                <color key="textColor" colorSpace="calibratedRGB" red="0.29803921568627451" green="0.8" blue="0.36078431372549019" alpha="1"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="2637" translatesAutoresizingMaskIntoConstraints="NO" image="zeemerix_logo.png">
-                                <rect key="frame" x="87" y="154" width="240" height="80"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="2637" translatesAutoresizingMaskIntoConstraints="NO" image="splash_batter">
+                                <rect key="frame" x="24" y="483" width="366" height="200"/>
                                 <constraints>
-                                    <constraint id="2638" firstAttribute="width" constant="240"/>
-                                    <constraint id="2639" firstAttribute="height" constant="80"/>
+                                    <constraint id="3093" firstAttribute="height" constant="200"/>
+                                    <constraint id="3095" firstAttribute="width" constant="366"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <constraints>
-                            <constraint id="278" firstItem="272" firstAttribute="centerY" secondItem="yd7-JS-zBw" secondAttribute="centerY" constant="80"/>
                             <constraint id="279" firstItem="272" firstAttribute="centerX" secondItem="yd7-JS-zBw" secondAttribute="centerX"/>
-                            <constraint id="2646" firstItem="2637" firstAttribute="centerX" secondItem="yd7-JS-zBw" secondAttribute="centerX"/>
-                            <constraint id="2647" firstAttribute="centerY" secondItem="2637" secondAttribute="centerY" constant="174"/>
+                            <constraint id="2865" firstAttribute="centerY" secondItem="272" secondAttribute="centerY" constant="108"/>
+                            <constraint id="2872" firstItem="2637" firstAttribute="centerX" secondItem="yd7-JS-zBw" secondAttribute="centerX"/>
+                            <constraint id="3096" firstAttribute="bottom" secondItem="2637" secondAttribute="bottom" constant="53"/>
                         </constraints>
-                        <color key="backgroundColor" colorSpace="calibratedRGB" red="0.46274509803921571" green="0.796078431372549" blue="0.39215686274509803" alpha="1"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XAI-xm-WK6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -48,6 +49,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="zeemerix_logo.png" width="300" height="98"/>
+        <image name="splash_batter" width="179" height="92"/>
     </resources>
 </document>

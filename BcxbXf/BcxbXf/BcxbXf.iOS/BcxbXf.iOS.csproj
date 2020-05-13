@@ -189,6 +189,18 @@
     <ImageAsset Include="Images.xcassets\glove_img1a.imageset\glove_img1a2.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Images.xcassets\splash_batter.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\splash_batter.imageset\splashBatter1c.jpg">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\splash_batter.imageset\splashBatter1c1.jpg">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Images.xcassets\splash_batter.imageset\splashBatter1c2.jpg">
+      <Visible>false</Visible>
+    </ImageAsset>
     <ImageAsset Include="Images.xcassets\zeemerix_logo.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
