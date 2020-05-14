@@ -16,18 +16,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zeemerix PlayByPlay Baseball" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="272" translatesAutoresizingMaskIntoConstraints="NO" numberOfLines="2">
-                                <rect key="frame" x="20" y="194" width="374" height="131"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zeemerix PlayByPlay Baseball" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="272" translatesAutoresizingMaskIntoConstraints="NO" numberOfLines="3" misplaced="YES">
+                                <rect key="frame" x="52" y="166" width="290" height="217"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="42"/>
                                 <nil key="highlightedColor"/>
-                                <constraints>
-                                    <constraint id="276" firstAttribute="height" constant="131"/>
-                                    <constraint id="2866" firstAttribute="width" constant="374"/>
-                                </constraints>
                                 <color key="textColor" colorSpace="calibratedRGB" red="0.29803921568627451" green="0.8" blue="0.36078431372549019" alpha="1"/>
+                                <constraints>
+                                    <constraint id="3523" firstAttribute="height" constant="217"/>
+                                    <constraint id="3524" firstAttribute="width" constant="290"/>
+                                </constraints>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="2637" translatesAutoresizingMaskIntoConstraints="NO" image="splash_batter">
-                                <rect key="frame" x="24" y="483" width="366" height="200"/>
+                                <rect key="frame" x="24" y="440" width="366" height="200"/>
                                 <constraints>
                                     <constraint id="3093" firstAttribute="height" constant="200"/>
                                     <constraint id="3095" firstAttribute="width" constant="366"/>
@@ -35,10 +35,10 @@
                             </imageView>
                         </subviews>
                         <constraints>
-                            <constraint id="279" firstItem="272" firstAttribute="centerX" secondItem="yd7-JS-zBw" secondAttribute="centerX"/>
-                            <constraint id="2865" firstAttribute="centerY" secondItem="272" secondAttribute="centerY" constant="108"/>
                             <constraint id="2872" firstItem="2637" firstAttribute="centerX" secondItem="yd7-JS-zBw" secondAttribute="centerX"/>
-                            <constraint id="3096" firstAttribute="bottom" secondItem="2637" secondAttribute="bottom" constant="53"/>
+                            <constraint id="3312" firstItem="272" firstAttribute="centerX" secondItem="yd7-JS-zBw" secondAttribute="centerX"/>
+                            <constraint id="3522" firstAttribute="centerY" secondItem="272" secondAttribute="centerY" constant="93"/>
+                            <constraint id="3746" firstItem="2637" firstAttribute="centerY" secondItem="yd7-JS-zBw" secondAttribute="centerY" constant="172"/>
                         </constraints>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                     </view>
