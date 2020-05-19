@@ -321,4 +321,9 @@
   <ItemGroup>
     <BundleResource Include="Resources\zeemerix_logo.png" />
   </ItemGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties XamarinHotReloadWrongLinkerErrorInfoBarBcxbXfiOSHideInfoBar="True" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>
