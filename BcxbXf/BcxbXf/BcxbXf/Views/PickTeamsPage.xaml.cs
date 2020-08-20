@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 using BCX.BCXCommon;
+using BcxbXf.Models;
 
 namespace BcxbXf {
    [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -22,6 +23,7 @@ namespace BcxbXf {
       public PickTeamsPage(List<string> teamList) {
       // ---------------------------------------------------------------
          InitializeComponent();
+         BindingContext = new PickTeamsViewModel();
 
          pickerVis.ItemsSource = teamList;
          pickerHome.ItemsSource = teamList;
@@ -57,4 +59,6 @@ namespace BcxbXf {
 
 
    }
+
+
 }

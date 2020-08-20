@@ -162,7 +162,7 @@ namespace BcxbXf
       }
 
 
-      private void SetupNewGame(string[] newTeams) {
+      private async Task SetupNewGame(string[] newTeams) {
          // --------------------------------------------------------
          // Have just returned from PickTeams, and have the selected teams
          // in newTeams[] which is array of string...
@@ -181,28 +181,25 @@ namespace BcxbXf
          mGame.PlayState = PLAY_STATE.START;
 
          try {
-
-            using (StringReader f = GFileAccess.GetTextFileOnLine(newTeams[1] + ".bcxt")) {
-               //using (StringReader f = (StringReader)mGame.GetTeamFileReader(newTeams[1])) {
-               mGame.t[1].ReadTeam(f, 1);
-               f.Close();
-            }
+            string tm = "???"; //selectedTeams[1].TeamTag.Trim(); //<-- FIX THIS
+            int yr = 0; //selectedTeams[1].Year; //<-- FIX THIS
+            DTO_TeamRoster ros = await GFileAccess.GetTeamRosterOnLine(tm, yr);
+            if (ros == null) throw new Exception($"Error: Could not load data for team, {newTeams[1]}");
+            mGame.t[1].ReadTeam(ros, 1);
          }
          catch (Exception ex) {
-            string msg = "Error reading " + newTeams[1] + " team data from Internet: \r\n" + ex.Message;
-            throw new Exception(msg);
+            throw new Exception($"Error loading data for team, {newTeams[1]}\r\n{ex.Message}");
          }
 
-         try { 
-         using (StringReader f = GFileAccess.GetTextFileOnLine(newTeams[0] + ".bcxt")) {
-               //using (StringReader f = (StringReader)mGame.GetTeamFileReader(newTeams[0])) {
-               mGame.t[0].ReadTeam(f, 0);
-               f.Close();
-            }
+         try {
+            string tm = "???"; // selectedTeams[0].TeamTag.Trim(); //<-- FIX THIS
+            int yr = 0; // selectedTeams[0].Year; //<-- FIX THIS
+            DTO_TeamRoster ros = await GFileAccess.GetTeamRosterOnLine(tm, yr);
+            if (ros == null) throw new Exception($"Error: Could not load data for team, {newTeams[0]}");
+            mGame.t[0].ReadTeam(ros, 0);
          }
          catch (Exception ex) {
-            string msg = "Error reading " + newTeams[0] + " team data from Internet: \r\n" + ex.Message;
-            throw new Exception(msg);
+            throw new Exception($"Error loading data for team, {newTeams[0]}\r\n{ex.Message}");
          }
 
          mGame.cmean.CombineLeagueMeans(mGame.t[0].lgMean, mGame.t[1].lgMean);

@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pickerView="clr-namespace:BcxbXf.Extend;assembly=BcxbXf"
              x:Class="BcxbXf.PickTeamsPage"
    >
 
@@ -11,8 +12,17 @@
           <StackLayout Orientation="Horizontal" Padding="0,50,0,15">
              <Label Text="Visiting team:" />
              <Picker x:Name="pickerVis" Title="Pick team" TextColor="Black" SelectedIndexChanged="picker_IndexChanged" />
-          </StackLayout>
-          <StackLayout Orientation="Horizontal" Padding="0,0,0,15">
+         </StackLayout>
+
+         <pickerView:DualPickerView 
+                x:Name ="picker2"
+                Margin="15"
+                Title="two columns"
+                HorizontalOptions="FillAndExpand" 
+                SelectedSource="{Binding TwoSource}">
+         </pickerView:DualPickerView>
+
+         <StackLayout Orientation="Horizontal" Padding="0,0,0,15">
              <Label Text="Home team:" />
              <Picker x:Name="pickerHome" Title="Pick team" TextColor="Black" SelectedIndexChanged="picker_IndexChanged" />
           </StackLayout>

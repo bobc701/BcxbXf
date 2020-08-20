@@ -4,8 +4,13 @@ using System.Text;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Diagnostics;
 using System.Threading.Tasks;
+
 using static BcxbXf.Services.Repository;
+using BCX.BCXB;
 
 namespace BCX.BCXCommon {
 
@@ -28,6 +33,20 @@ namespace BCX.BCXCommon {
 
       private static string OrgName = "Zeemerix";
       private static string ProductName = "Zeemerix Baseball";
+
+      internal static HttpClient client;
+      internal static List<CTeamRecord> TeamCache = new List<CTeamRecord>();
+
+
+      static GFileAccess() {
+         // --------------------------------------------------------------- static constructor
+         // Use httpS here as I have added SSL cert to Z.com on WinHost (7/15'20)...
+         client = new HttpClient() { BaseAddress = new Uri("https://www.zeemerix.com") };
+         client.DefaultRequestHeaders.Accept.Clear();
+         client.DefaultRequestHeaders.Accept.Add(
+             new MediaTypeWithQualityHeaderValue("application/json"));
+
+      }
 
 
 #if IOS
@@ -354,16 +373,120 @@ namespace BCX.BCXCommon {
          return new StringReader(resp);
       }
       */
+   
+
+
+   public static async Task<DTO_TeamRoster> GetTeamRosterOnLine(string team, int year) {
+      // --------------------------------------------------------------------------------------
+      var url = new Uri(client.BaseAddress, $"liveteamrdr/api/team/{team}/{year}");
+
+      client.DefaultRequestHeaders.Accept.Clear();
+      client.DefaultRequestHeaders.Accept.Add(
+          new MediaTypeWithQualityHeaderValue("application/json"));
+
+      DTO_TeamRoster roster = null;
+      HttpResponseMessage response = await client.GetAsync(url.ToString());
+      if (response.IsSuccessStatusCode) {
+         roster = await response.Content.ReadAsAsync<DTO_TeamRoster>();
+      }
+      else {
+         roster = null;
+         throw new Exception($"Error loading team {team} for {year}");
+      }
+      return roster;
+
    }
 
 
-   public struct CTeamRecord {
+   public static async Task<List<CTeamRecord>> GetTeamListForYearOnLine(int year) {
+      // --------------------------------------------------------------------------------------
+
+      //var t = new List<CTeamRecord> {
+      //   new CTeamRecord { TeamTag = "NYY2018", City = "New York", LineName = "NYY", NickName = "Yankees", UsesDh = true, LgID = "AL" },
+      //   new CTeamRecord { TeamTag = "NYM2018", City = "New York", LineName = "NYM", NickName = "Mets", UsesDh = false, LgID = "NL" },
+      //   new CTeamRecord { TeamTag = "BOS2015", City = "Boston", LineName = "Bos", NickName = "Red Sox", UsesDh = true, LgID = "AL" },
+      //   new CTeamRecord { TeamTag = "PHI2015", City = "Philadelphia", LineName = "Phi", NickName = "Phillies", UsesDh = false, LgID = "NL" },
+      //   new CTeamRecord { TeamTag = "WAS2019", City = "Washington", LineName = "Was", NickName = "Nationals", UsesDh = false, LgID = "NL" }
+      //};
+      //return t;
+
+      // Right here I could have logic that maintains a master list and refreshes by 10-year ranges.
+
+      var url = new Uri(client.BaseAddress, $"liveteamrdr/api/team-list/{year}/{year}");
+
+      client.DefaultRequestHeaders.Accept.Clear();
+      client.DefaultRequestHeaders.Accept.Add(
+            new MediaTypeWithQualityHeaderValue("application/json"));
+
+      List<CTeamRecord> teamList = null;
+      HttpResponseMessage response = await client.GetAsync(url.ToString());
+      if (response.IsSuccessStatusCode) {
+         teamList = await response.Content.ReadAsAsync<List<CTeamRecord>>();
+      }
+      else {
+         teamList = null;
+         throw new Exception($"Error loading list of teams for {year}\r\nStatus code: {response.StatusCode}"); // 2.0.01
+      }
+      return teamList;
+
+   }
+
+   public static async Task<List<CTeamRecord>> GetTeamListForYearFromCache(int year) {
+      // --------------------------------------------------------------------------------------
+      List<CTeamRecord> result;
+      Debug.WriteLine($"TeamCache.Count at start of GetTeamListForYearFromCache: {TeamCache.Count}");
+
+      result = TeamCache.Where(t => t.Year == year).ToList();
+      if (result.Count > 0) {
+         return result;
+      }
+      else {
+         // The year is not in the teamCache, 
+         // so, fetch 10 year block from DB and add to cache...
+         int year1 = 10 * (year / 10);
+         int year2 = year1 + 9;
+         var url = new Uri(client.BaseAddress, $"liveteamrdr/api/team-list/{year1}/{year2}");
+
+         client.DefaultRequestHeaders.Accept.Clear();
+         client.DefaultRequestHeaders.Accept.Add(
+               new MediaTypeWithQualityHeaderValue("application/json"));
+
+         List<CTeamRecord> yearList10;
+         HttpResponseMessage response = await client.GetAsync(url.ToString());
+         if (response.IsSuccessStatusCode) {
+            yearList10 = await response.Content.ReadAsAsync<List<CTeamRecord>>();
+         }
+         else {
+            yearList10 = null;
+            throw new Exception($"Error loading list of teams for {year}\r\nStatus code: {response.StatusCode}");
+         }
+         TeamCache.AddRange(yearList10);
+
+         result = TeamCache.Where(t => t.Year == year).ToList();
+         return result;
+
+      }
+
+   }
+
+   public static void ClearTeamCache() {
+      // ----------------------------------------------------------
+      TeamCache.Clear();
+
+   }
+
+}
+
+
+public struct CTeamRecord {
       // ---------------------------------------------------
-      public string TeamTag;
-      public string LineName;
-      public string City;
-      public string NickName;
-      public bool UsesDh;
+      public string TeamTag { get; set; }
+      public int Year { get; set; }
+      public string LineName { get; set; }
+      public string City { get; set; }
+      public string NickName { get; set; }
+      public bool UsesDh { get; set; }
+      public string LgID { get; set; }
    }
 
 }
