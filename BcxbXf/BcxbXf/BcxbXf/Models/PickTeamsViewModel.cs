@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 using BcxbXf.Extend;
+using BCX.BCXCommon;
 
 namespace BcxbXf.Models {
 
@@ -29,7 +30,7 @@ namespace BcxbXf.Models {
          for (int y = 2019; y >= 1901; y--) {
             TwoSource.Add(new LeftComponent { 
                Name = y.ToString(), 
-               RightComponentList = new ObservableCollection<RightComponent>() 
+               RightComponentList = new ObservableCollection<CTeamRecord>() 
             });
          }
 

@@ -487,6 +487,10 @@ public struct CTeamRecord {
       public string NickName { get; set; }
       public bool UsesDh { get; set; }
       public string LgID { get; set; }
+
+      public override string ToString() {
+         return $"{Year} - {City} {NickName}";
+      }
    }
 
 }

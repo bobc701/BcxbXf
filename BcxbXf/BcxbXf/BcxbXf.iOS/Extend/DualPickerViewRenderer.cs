@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using Foundation;
 using BcxbXf.Extend;
 using BcxbXf.iOS.extend;
+using BCX.BCXCommon;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 using System.Collections.ObjectModel;
+using BCX.BCXB;
 
 [assembly: ExportRenderer(typeof(DualPickerView), typeof(DualPickerViewRenderer))]
 namespace BcxbXf.iOS.extend
@@ -141,25 +143,27 @@ namespace BcxbXf.iOS.extend
                 else
                 {
                     LeftComponent p = _pickerView.SelectedSource[SelectedIndex];
-                    return p.RightComponentList[(int)row].Name;
+                    CTeamRecord team = p.RightComponentList[(int)row];
+                    return $"{team.City} {team.NickName}";
                 }
             }
 
 
-            public override void Selected(UIPickerView pickerView, nint row, nint component)
+            public async override void Selected(UIPickerView pickerView, nint row, nint component)
             {
                 if (component == 0)
                 {
                     SelectedIndex = (int)pickerView.SelectedRowInComponent(0); // Isn't this same as 'row'???
                     LeftComponent q = _pickerView.SelectedSource[(int)row];
                     string yr = q.Name.ToString().Trim();
-                    //teamList = await GFileAccess.GetTeamListForYearFromCache(int.Parse(yr));  // <-- Turn this on!!!
-                    q.RightComponentList = new ObservableCollection<RightComponent> {
-                        new RightComponent {Id = 0, Name = q.Name + "-01" },
-                        new RightComponent {Id = 1, Name = q.Name + "-02" },
-                        new RightComponent {Id = 2, Name = q.Name + "-03" },
-                        new RightComponent {Id = 3, Name = q.Name + "-04" }
-                     };
+                    var teamList = await GFileAccess.GetTeamListForYearFromCache(int.Parse(yr));  // <-- Turn this on!!!
+                    q.RightComponentList = new ObservableCollection<CTeamRecord>(teamList);
+                    //q.RightComponentList = new ObservableCollection<RightComponent> {
+                    //    new RightComponent {Id = 0, Name = q.Name + "-01" },
+                    //    new RightComponent {Id = 1, Name = q.Name + "-02" },
+                    //    new RightComponent {Id = 2, Name = q.Name + "-03" },
+                    //    new RightComponent {Id = 3, Name = q.Name + "-04" }
+                    // };
                     pickerView.ReloadComponent(1);
                 }
 
@@ -171,10 +175,10 @@ namespace BcxbXf.iOS.extend
 
                 // 获取选中的property
                 int index = (int)pickerView.SelectedRowInComponent(1);
-                SelectedItem = p.Name + "-" + p.RightComponentList[index].Name;
+                //SelectedItem = p.Name + "-" + p.RightComponentList[index].Name;
+                SelectedItem = p.RightComponentList[index].ToString();
 
-
-                if (!string.IsNullOrEmpty(SelectedItem))
+            if (!string.IsNullOrEmpty(SelectedItem))
                     _pickerView.OnSelectedPropertyChanged(_pickerView, SelectedItem);
             }
 

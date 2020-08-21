@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BCX.BCXCommon;
+using System;
 using System.Collections.ObjectModel;
 
 namespace BcxbXf.Extend
@@ -7,7 +8,7 @@ namespace BcxbXf.Extend
     {
         public object Name { get; set; }
 
-        public ObservableCollection<RightComponent> RightComponentList { get; set; }
+        public ObservableCollection<CTeamRecord> RightComponentList { get; set; }
     }
 
 
