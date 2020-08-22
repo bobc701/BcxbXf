@@ -27,6 +27,7 @@ namespace BcxbXf.Models {
          //TwoSource.Add(new GroupModel { GroupName = "enterprise", Property = enterprise });
          //TwoSource.Add(new GroupModel { GroupName = "countries", Property = countries });
 
+         TwoSource.Add(new LeftComponent { Name = "Choose Year", RightComponentList = new ObservableCollection<CTeamRecord>() });
          for (int y = 2019; y >= 1901; y--) {
             TwoSource.Add(new LeftComponent { 
                Name = y.ToString(), 
