@@ -282,9 +282,19 @@ namespace BCX.BCXCommon {
             throw new Exception(msg);
          }
 
+      }
 
+
+      public static List<string> GetYearList() {
+         // ---------------------------------------------------------
+         // For now, just return list from 2019 down to 1901.
+         // TODO: Enhance this to read the range from DB.
+         // ---------------------------------------------------------
+         IEnumerable<string> list = Enumerable.Range(1901, 119).Reverse().Select(y => y.ToString());
+         return list.ToList();
 
       }
+
 
 
       /// <summary>
@@ -491,6 +501,11 @@ public struct CTeamRecord {
       public override string ToString() {
          return $"{Year} - {City} {NickName}";
       }
+
+      public string GetTitle() {
+         return $"{City} {NickName}";
+      }
+
    }
 
 }

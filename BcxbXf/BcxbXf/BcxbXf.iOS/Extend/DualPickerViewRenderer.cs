@@ -98,10 +98,14 @@ namespace BcxbXf.iOS.extend
             return (float)c.B;
         }
 
-
+    //  -----------------------------------------------
         public class PickerSource : UIPickerViewModel
+    //  -----------------------------------------------
         {
             private DualPickerView _pickerView { get; }
+            private bool usingDh;
+            public List<string> yearList = GFileAccess.GetYearList();
+            public List<CTeamRecord> teamList = new List<CTeamRecord>();
 
             public int SelectedIndex { get; internal set; }
 
@@ -112,6 +116,7 @@ namespace BcxbXf.iOS.extend
                 _pickerView = pickerView;
 
                 SelectedIndex = 0;
+
             }
 
             public override nint GetComponentCount(UIPickerView pickerView)
@@ -146,40 +151,73 @@ namespace BcxbXf.iOS.extend
                     if (row == 0) return "Choose team";
                     LeftComponent p = _pickerView.SelectedSource[SelectedIndex];
                     CTeamRecord team = p.RightComponentList[(int)row-1];
-                    return $"{team.City} {team.NickName}";
+                    return team.GetTitle(); 
                 }
             }
 
 
-            public async override void Selected(UIPickerView pickerView, nint row, nint component)
-            {
-                if (component == 0)
-                {
-                    SelectedIndex = (int)pickerView.SelectedRowInComponent(0); // Isn't this same as 'row'???
-                    if (SelectedIndex == 0) return;
-                    LeftComponent q = _pickerView.SelectedSource[(int)row-1];
-                    string yr = q.Name.ToString().Trim();
-                    var teamList = await GFileAccess.GetTeamListForYearFromCache(int.Parse(yr));  // <-- Turn this on!!!
-                    q.RightComponentList = new ObservableCollection<CTeamRecord>(teamList);
-                    pickerView.Select(row: 1, component: 1, false); // Reset team to row 0 (which is row 1)
-                    pickerView.ReloadComponent(1);
-                }
+        public async override void Selected(UIPickerView pickerView, nint row, nint component) {
 
-                // 获取选中的group
-                LeftComponent p = _pickerView.SelectedSource[SelectedIndex-1];
-
-                if (p.RightComponentList.Count <= 0)
-                    return;
-
-                // 获取选中的property
-                int index = (int)pickerView.SelectedRowInComponent(1) - 1;
-                if (index == 0) return;
-                //SelectedItem = p.Name + "-" + p.RightComponentList[index].Name;
-                SelectedItem = p.RightComponentList[index].ToString();
-
-            if (!string.IsNullOrEmpty(SelectedItem))
-                    _pickerView.OnSelectedPropertyChanged(_pickerView, SelectedItem);
+            try {
+               //ctlr.StartActivity();
+               switch (component) {
+                  case 0:
+                     if (row == 0)
+                        teamList.Clear();
+                     else {
+                        string yr = yearList[(int)row - 1];
+                        //teamList = GFileAccess.GetTeamsInLeague(s, out usingDh);
+                        teamList = await GFileAccess.GetTeamListForYearFromCache(int.Parse(yr));
+                     }
+                     pickerView.Select(row: 0, component: 1, false); // Reset team to row 0
+                     pickerView.ReloadComponent(1);
+                     break;
+                  case 1:
+                     if (row == 0)
+                        PickerChanged(new CTeamRecord(), false);
+                     else
+                        PickerChanged(teamList[(int)row - 1], true);
+                     break;
+               }
+               //ctlr.StopActivity();
             }
+            catch (Exception ex) {
+               //ctlr.StopActivity();
+               //CAlert.ShowOkAlert("Error selecting year", ex.Message, "OK", ctlr);
+               throw new Exception(ex.Message);
+            }
+
+        }
+
+
+
+            //if (component == 0)
+            //    {
+            //        SelectedIndex = (int)pickerView.SelectedRowInComponent(0); // Isn't this same as 'row'???
+            //        if (SelectedIndex == 0) return;
+            //        LeftComponent q = _pickerView.SelectedSource[(int)row-1];
+            //        string yr = q.Name.ToString().Trim();
+            //        var teamList = await GFileAccess.GetTeamListForYearFromCache(int.Parse(yr));  // <-- Turn this on!!!
+            //        q.RightComponentList = new ObservableCollection<CTeamRecord>(teamList);
+            //        pickerView.Select(row: 1, component: 1, false); // Reset team to row 0 (which is row 1)
+            //        pickerView.ReloadComponent(1);
+            //    }
+
+            //    // 获取选中的group
+            //    LeftComponent p = _pickerView.SelectedSource[SelectedIndex-1];
+
+            //    if (p.RightComponentList.Count <= 0)
+            //        return;
+
+            //    // 获取选中的property
+            //    int index = (int)pickerView.SelectedRowInComponent(1) - 1;
+            //    if (index == 0) return;
+            //    //SelectedItem = p.Name + "-" + p.RightComponentList[index].Name;
+            //    SelectedItem = p.RightComponentList[index].ToString();
+
+            //if (!string.IsNullOrEmpty(SelectedItem))
+            //        _pickerView.OnSelectedPropertyChanged(_pickerView, SelectedItem);
+            //}
 
 
             public override nfloat GetComponentWidth(UIPickerView pickerView, nint component)

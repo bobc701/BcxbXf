@@ -34,6 +34,9 @@ namespace BcxbXf.Models {
             });
          }
 
+         yearList = GFileAccess.GetYearList();
+
+
       }
 
 
