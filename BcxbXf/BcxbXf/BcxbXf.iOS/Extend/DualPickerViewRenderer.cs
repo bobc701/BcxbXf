@@ -137,13 +137,15 @@ namespace BcxbXf.iOS.extend
             {
                 if (component == 0)
                 {
-                    LeftComponent p = _pickerView.SelectedSource[(int)row];
+                    if (row == 0) return "Choose year";
+                    LeftComponent p = _pickerView.SelectedSource[(int)row-1];
                     return (string)p.Name;
                 }
                 else
                 {
+                    if (row == 0) return "Choose team";
                     LeftComponent p = _pickerView.SelectedSource[SelectedIndex];
-                    CTeamRecord team = p.RightComponentList[(int)row];
+                    CTeamRecord team = p.RightComponentList[(int)row-1];
                     return $"{team.City} {team.NickName}";
                 }
             }
@@ -154,27 +156,24 @@ namespace BcxbXf.iOS.extend
                 if (component == 0)
                 {
                     SelectedIndex = (int)pickerView.SelectedRowInComponent(0); // Isn't this same as 'row'???
-                    LeftComponent q = _pickerView.SelectedSource[(int)row];
+                    if (SelectedIndex == 0) return;
+                    LeftComponent q = _pickerView.SelectedSource[(int)row-1];
                     string yr = q.Name.ToString().Trim();
                     var teamList = await GFileAccess.GetTeamListForYearFromCache(int.Parse(yr));  // <-- Turn this on!!!
                     q.RightComponentList = new ObservableCollection<CTeamRecord>(teamList);
-                    //q.RightComponentList = new ObservableCollection<RightComponent> {
-                    //    new RightComponent {Id = 0, Name = q.Name + "-01" },
-                    //    new RightComponent {Id = 1, Name = q.Name + "-02" },
-                    //    new RightComponent {Id = 2, Name = q.Name + "-03" },
-                    //    new RightComponent {Id = 3, Name = q.Name + "-04" }
-                    // };
+                    pickerView.Select(row: 1, component: 1, false); // Reset team to row 0 (which is row 1)
                     pickerView.ReloadComponent(1);
                 }
 
                 // 获取选中的group
-                LeftComponent p = _pickerView.SelectedSource[SelectedIndex];
+                LeftComponent p = _pickerView.SelectedSource[SelectedIndex-1];
 
                 if (p.RightComponentList.Count <= 0)
                     return;
 
                 // 获取选中的property
-                int index = (int)pickerView.SelectedRowInComponent(1);
+                int index = (int)pickerView.SelectedRowInComponent(1) - 1;
+                if (index == 0) return;
                 //SelectedItem = p.Name + "-" + p.RightComponentList[index].Name;
                 SelectedItem = p.RightComponentList[index].ToString();
 
