@@ -15,28 +15,44 @@ namespace BcxbXf {
    public partial class PickTeamsPage : ContentPage {
 
 
-      public string[] SelectedTeams { get; set; } = new string[2]; //<-- This is how selections are passed back to MainPage.
+      public CTeamRecord[] SelectedTeams { get; set; } = new CTeamRecord[2]; //<-- This is how selections are passed back to MainPage.
 
       //public Action Dismiss;
 
 
-      public PickTeamsPage(List<string> teamList) {
+      public PickTeamsPage() {
       // ---------------------------------------------------------------
          InitializeComponent();
          BindingContext = new PickTeamsViewModel();
 
-         pickerVis.ItemsSource = teamList;
-         pickerHome.ItemsSource = teamList;
-         //pickerVis.ItemDisplayBinding = new Binding("TeamTag");
-         //pickerHome.ItemDisplayBinding = new Binding("TeamTag");
+         //pickerVis.SelectedIndexChanged +=
+         //   (object sender, EventArgs e) => {
+         //      btnUse.IsEnabled =
+         //         (pickerVis.SelectedItem != null) && ((CTeamRecord)(pickerVis.SelectedItem)).Year != 0 &&
+         //         (pickerHome.SelectedItem != null) && ((CTeamRecord)(pickerHome.SelectedItem)).Year != 0;
+         //   };
+
+         //pickerHome.SelectedIndexChanged +=
+         //   (object sender, EventArgs e) => {
+         //      btnUse.IsEnabled =
+         //         (pickerVis.SelectedItem != null) && ((CTeamRecord)(pickerVis.SelectedItem)).Year != 0 &&
+         //         (pickerHome.SelectedItem != null) && ((CTeamRecord)(pickerHome.SelectedItem)).Year != 0;
+         //   };
+
+
+         //pickerVis.ItemsSource = teamList;
+         //pickerHome.ItemsSource = teamList;
+         ////pickerVis.ItemDisplayBinding = new Binding("TeamTag");
+         ////pickerHome.ItemDisplayBinding = new Binding("TeamTag");
       }
 
 
       private void btnUse_Clicked(object sender, EventArgs e) {
-      // -------------------------------------------------------
+         // -------------------------------------------------------
          //DisplayAlert("", "Use these teams", "OK");
-         SelectedTeams[0] = (string)pickerVis.SelectedItem;
-         SelectedTeams[1] = (string)pickerHome.SelectedItem;
+         SelectedTeams[0] = pickerVis.NewPickedTeam; //(CTeamRecord)pickerVis.SelectedItem; 
+         SelectedTeams[1] = pickerHome.NewPickedTeam;//(CTeamRecord)pickerHome.SelectedItem;
+
          //Dismiss?.Invoke();
          Navigation.PopModalAsync();
 
@@ -46,15 +62,16 @@ namespace BcxbXf {
       private void btnCanc_Clicked(object sender, EventArgs e) {
       // -------------------------------------------------------
          //DisplayAlert("", "Cancel", "OK");
-         SelectedTeams[0] = "";
-         SelectedTeams[1] = "";
+         SelectedTeams[0] = new CTeamRecord();
+         SelectedTeams[1] = new CTeamRecord();
          Navigation.PopModalAsync();
       }
 
       private void picker_IndexChanged(object sender, EventArgs e) {
-      // ------------------------------------------------------------------
-         btnUse.IsEnabled = (pickerVis.SelectedIndex >= 0 && pickerHome.SelectedIndex >= 0);
-
+         // ------------------------------------------------------------------
+         btnUse.IsEnabled =
+            (pickerVis.SelectedItem != null) && ((CTeamRecord)(pickerVis.SelectedItem)).Year != 0 &&
+            (pickerHome.SelectedItem != null) && ((CTeamRecord)(pickerHome.SelectedItem)).Year != 0;
       }
 
 

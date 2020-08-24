@@ -62,8 +62,8 @@ namespace BcxbXf
                case "PickTeamsPage":
 
                   try {
-                     if ((fPickTeams?.SelectedTeams[0] ?? "") == "") return;
-                     if ((fPickTeams?.SelectedTeams[1] ?? "") == "") return;
+                     if (fPickTeams?.SelectedTeams[0].Year == 0) return;
+                     if (fPickTeams?.SelectedTeams[1].Year == 0) return;
 
                      Debug.WriteLine("Vititing team: " + fPickTeams.SelectedTeams[0]);
                      Debug.WriteLine("Home team: " + fPickTeams.SelectedTeams[1]);
@@ -162,14 +162,14 @@ namespace BcxbXf
       }
 
 
-      private async Task SetupNewGame(string[] newTeams) {
+      private async Task SetupNewGame(CTeamRecord[] newTeams) {
          // --------------------------------------------------------
          // Have just returned from PickTeams, and have the selected teams
          // in newTeams[] which is array of string...
 
          //mGame.UsingDh = selectedTeams[1].UsesDh; 
 
-         if ((newTeams[0] ?? "") == "" || (newTeams[1] ?? "") == "") return; //User did not pick.       
+         if ((newTeams[0].Year == 0 ) || (newTeams[1].Year == 0)) return; //User did not pick.       
 
          // User has selected 2 teams for new game.
          // So set up the two CTeam objects for the 2 teams...
@@ -181,8 +181,8 @@ namespace BcxbXf
          mGame.PlayState = PLAY_STATE.START;
 
          try {
-            string tm = "???"; //selectedTeams[1].TeamTag.Trim(); //<-- FIX THIS
-            int yr = 0; //selectedTeams[1].Year; //<-- FIX THIS
+            string tm = newTeams[1].TeamTag.Trim(); 
+            int yr = newTeams[1].Year; 
             DTO_TeamRoster ros = await GFileAccess.GetTeamRosterOnLine(tm, yr);
             if (ros == null) throw new Exception($"Error: Could not load data for team, {newTeams[1]}");
             mGame.t[1].ReadTeam(ros, 1);
@@ -192,8 +192,8 @@ namespace BcxbXf
          }
 
          try {
-            string tm = "???"; // selectedTeams[0].TeamTag.Trim(); //<-- FIX THIS
-            int yr = 0; // selectedTeams[0].Year; //<-- FIX THIS
+            string tm = newTeams[0].TeamTag.Trim(); 
+            int yr = newTeams[0].Year; 
             DTO_TeamRoster ros = await GFileAccess.GetTeamRosterOnLine(tm, yr);
             if (ros == null) throw new Exception($"Error: Could not load data for team, {newTeams[0]}");
             mGame.t[0].ReadTeam(ros, 0);
@@ -701,18 +701,18 @@ namespace BcxbXf
 
       // Do this here in order to determine Internet connectivity
       // before opening the PickTeams page...
-            List<string> leagueList = GFileAccess.GetLeagueList();
-            List<string> teamList = new List<string>();
+            //List<string> leagueList = GFileAccess.GetLeagueList();
+            //List<string> teamList = new List<string>();
 
-            foreach (string lg in leagueList) {
-               List<CTeamRecord> tlist = GFileAccess.GetTeamsInLeague(lg, out bool dh);
-               foreach (CTeamRecord t in tlist) {
-                  teamList.Add(t.TeamTag);
-               }
-            }
+            //foreach (string lg in leagueList) {
+            //   List<CTeamRecord> tlist = GFileAccess.GetTeamsInLeague(lg, out bool dh);
+            //   foreach (CTeamRecord t in tlist) {
+            //      teamList.Add(t.TeamTag);
+            //   }
+            //}
 
 
-            fPickTeams = new PickTeamsPage(teamList);
+            fPickTeams = new PickTeamsPage();
 
             //#2002.01: Overhaul of return logic...
             //fPickTeams.Dismiss += () =>

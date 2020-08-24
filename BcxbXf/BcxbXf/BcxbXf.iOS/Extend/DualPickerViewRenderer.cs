@@ -177,9 +177,10 @@ namespace BcxbXf.iOS.extend
                 int index = (int)pickerView.SelectedRowInComponent(1);
                 //if (index == 0) return;
                 //SelectedItem = p.Name + "-" + p.RightComponentList[index].Name;
-                SelectedItem = p.RightComponentList[index].ToString();
+                SelectedItem = p.RightComponentList[index];
+                _pickerView.SelectedItem = SelectedItem;
 
-            if (!string.IsNullOrEmpty(SelectedItem))
+            if (SelectedItem.Year != 0)
                     _pickerView.OnSelectedPropertyChanged(_pickerView, SelectedItem);
             }
 

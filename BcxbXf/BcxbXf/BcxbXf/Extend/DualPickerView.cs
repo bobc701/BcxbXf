@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
+using BCX.BCXCommon;
 
 namespace BcxbXf.Extend
 {
@@ -18,6 +19,8 @@ namespace BcxbXf.Extend
                                     typeof(DualPickerView), defaultValue: null,
                                     defaultBindingMode: BindingMode.TwoWay);
 
+
+      public CTeamRecord NewPickedTeam { get; set; } = new CTeamRecord(); //This was key to getting the selected value as a CTeamRecord
 
         public DualPickerView()
         {
@@ -40,11 +43,12 @@ namespace BcxbXf.Extend
 
         public void OnSelectedPropertyChanged(BindableObject bindable, object newValue)
         {
-            var picker = (DualPickerView)bindable;
-            // Update value
-            picker.Items[0] = newValue.ToString();
+         var picker = (DualPickerView)bindable;
+         // Update value
+         picker.Items[0] = newValue.ToString();
+         picker.NewPickedTeam = (CTeamRecord)newValue;
 
-            picker.SelectedIndex = 0;
-        }
-    }
+         picker.SelectedIndex = 0;
+      }
+   }
 }
