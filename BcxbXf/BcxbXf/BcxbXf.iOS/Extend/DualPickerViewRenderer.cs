@@ -106,7 +106,7 @@ namespace BcxbXf.iOS.extend
 
             public int SelectedIndex { get; internal set; }
 
-            public string SelectedItem { get; internal set; }
+            public CTeamRecord SelectedItem { get; internal set; }
 
             public PickerSource(DualPickerView pickerView)
             {
@@ -138,13 +138,13 @@ namespace BcxbXf.iOS.extend
             {
                 if (component == 0)
                 {
-                    if (row == 0) return "Choose year";
+                    if (row == 0) return "Year";
                     LeftComponent p = _pickerView.SelectedSource[(int)row];
                     return (string)p.Name;
                 }
                 else
                 {
-                    if (row == 0) return "Choose team";
+                    if (row == 0) return "Team";
                     LeftComponent p = _pickerView.SelectedSource[SelectedIndex];
                     CTeamRecord team = p.RightComponentList[(int)row];
                     return $"{team.City} {team.NickName}";

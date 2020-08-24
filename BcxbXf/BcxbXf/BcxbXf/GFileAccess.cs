@@ -489,7 +489,7 @@ public struct CTeamRecord {
       public string LgID { get; set; }
 
       public override string ToString() {
-         return $"{Year} - {City} {NickName}";
+         return Year == 0 ? "" : $"{Year} - {City} {NickName}";
       }
    }
 

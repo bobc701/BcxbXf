@@ -9,23 +9,38 @@
        <StackLayout Padding="10, 50, 10, 0">
           <Label Text="Pick Teams" FontAttributes="Bold" />
           <Label Text="Tap 'Visiting Team' and then select a team from the list. Then do the same for 'Home Team'. Finally, tap 'New game with these teams'." />
-          <StackLayout Orientation="Horizontal" Padding="0,50,0,15">
+          <!--<StackLayout Orientation="Horizontal" Padding="0,50,0,15">
              <Label Text="Visiting team:" />
              <Picker x:Name="pickerVis" Title="Pick team" TextColor="Black" SelectedIndexChanged="picker_IndexChanged" />
-         </StackLayout>
+          </StackLayout>-->
 
-         <pickerView:DualPickerView 
-                x:Name ="picker2"
+         <StackLayout Orientation="Horizontal" Padding="0,50,0,15">
+            <Label Text="Visiting team:" />
+            <pickerView:DualPickerView 
+                x:Name ="pickerVis"
                 Margin="15"
                 Title="two columns"
                 HorizontalOptions="FillAndExpand" 
-                SelectedSource="{Binding TwoSource}">
-         </pickerView:DualPickerView>
+                SelectedSource="{Binding TwoSource}"
+                FontSize="Small">
+            </pickerView:DualPickerView>
+         </StackLayout>
+         <StackLayout Orientation="Horizontal" Padding="0,50,0,15">
+            <Label Text="Home team:" />
+            <pickerView:DualPickerView 
+                x:Name ="pickerHome"
+                Margin="15"
+                Title="two columns"
+                HorizontalOptions="FillAndExpand" 
+                SelectedSource="{Binding TwoSource}"
+                FontSize="Small">
+            </pickerView:DualPickerView>
+         </StackLayout>
 
-         <StackLayout Orientation="Horizontal" Padding="0,0,0,15">
+         <!--<StackLayout Orientation="Horizontal" Padding="0,0,0,15">
              <Label Text="Home team:" />
              <Picker x:Name="pickerHome" Title="Pick team" TextColor="Black" SelectedIndexChanged="picker_IndexChanged" />
-          </StackLayout>
+          </StackLayout>-->
 
           <Button x:Name="btnUse" Text="New game with these teams" FontAttributes="Bold" Clicked="btnUse_Clicked" IsEnabled="False" />
           <Button x:Name="btnCanc" Text="Cancel" Clicked="btnCanc_Clicked" FontAttributes="Bold" />
