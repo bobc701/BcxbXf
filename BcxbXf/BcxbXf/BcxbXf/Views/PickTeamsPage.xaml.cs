@@ -23,23 +23,22 @@ namespace BcxbXf {
       public PickTeamsPage() {
       // ---------------------------------------------------------------
          InitializeComponent();
-         BindingContext = new PickTeamsViewModel();
+         BindingContext = new PickTeamsViewModel(); 
 
-         //pickerVis.SelectedIndexChanged +=
-         //   (object sender, EventArgs e) => {
-         //      btnUse.IsEnabled =
-         //         (pickerVis.SelectedItem != null) && ((CTeamRecord)(pickerVis.SelectedItem)).Year != 0 &&
-         //         (pickerHome.SelectedItem != null) && ((CTeamRecord)(pickerHome.SelectedItem)).Year != 0;
-         //   };
+         pickerVis.SelectedIndexChanged +=
+            (object sender, EventArgs e) => {
+               btnUse.IsEnabled =
+                  pickerVis.NewPickedTeam.Year != 0 && pickerHome.NewPickedTeam.Year != 0;
+            };
 
-         //pickerHome.SelectedIndexChanged +=
-         //   (object sender, EventArgs e) => {
-         //      btnUse.IsEnabled =
-         //         (pickerVis.SelectedItem != null) && ((CTeamRecord)(pickerVis.SelectedItem)).Year != 0 &&
-         //         (pickerHome.SelectedItem != null) && ((CTeamRecord)(pickerHome.SelectedItem)).Year != 0;
-         //   };
+         pickerHome.SelectedIndexChanged +=
+            (object sender, EventArgs e) => {
+               btnUse.IsEnabled =
+                  pickerVis.NewPickedTeam.Year != 0 && pickerHome.NewPickedTeam.Year != 0;
+            };
 
-
+         pickerVis.ParentPage = this; //#3000.01
+         pickerHome.ParentPage = this;
          //pickerVis.ItemsSource = teamList;
          //pickerHome.ItemsSource = teamList;
          ////pickerVis.ItemDisplayBinding = new Binding("TeamTag");
@@ -69,9 +68,25 @@ namespace BcxbXf {
 
       private void picker_IndexChanged(object sender, EventArgs e) {
          // ------------------------------------------------------------------
-         btnUse.IsEnabled =
-            (pickerVis.SelectedItem != null) && ((CTeamRecord)(pickerVis.SelectedItem)).Year != 0 &&
-            (pickerHome.SelectedItem != null) && ((CTeamRecord)(pickerHome.SelectedItem)).Year != 0;
+         //btnUse.IsEnabled =
+         //   pickerVis.NewPickedTeam.Year != 0 &&
+         //   pickerHome.NewPickedTeam.Year != 0;
+            //(pickerVis.SelectedItem != null) && ((CTeamRecord)(pickerVis.SelectedItem)).Year != 0 &&
+            //(pickerHome.SelectedItem != null) && ((CTeamRecord)(pickerHome.SelectedItem)).Year != 0;
+      }
+
+      public void StartActivity() { // #3000.01
+         // --------------------------------
+         Activity1.IsVisible = true;
+         Activity1.IsRunning = true; ;
+      }
+
+
+      public void StopActivity() { // #3000.01
+         // -------------------------------
+         Activity1.IsRunning = false;
+         Activity1.IsVisible = true;
+
       }
 
 

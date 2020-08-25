@@ -20,7 +20,8 @@ namespace BcxbXf.Extend
                                     defaultBindingMode: BindingMode.TwoWay);
 
 
-      public CTeamRecord NewPickedTeam { get; set; } = new CTeamRecord(); //This was key to getting the selected value as a CTeamRecord
+        public CTeamRecord NewPickedTeam { get; set; } = new CTeamRecord(); //This was key to getting the selected value as a CTeamRecord
+        public PickTeamsPage ParentPage = null; //#3000.01 You can E/N for a write up of this
 
         public DualPickerView()
         {

@@ -53,7 +53,7 @@ namespace BcxbXf
          EnableControls();
 
 
-         Appearing += delegate (object sender, EventArgs e) {
+         Appearing += async delegate (object sender, EventArgs e) {
             // ---------------------------------------------------------
             Debug.WriteLine("We've returned from " + returningFrom);
 
@@ -68,7 +68,8 @@ namespace BcxbXf
                      Debug.WriteLine("Vititing team: " + fPickTeams.SelectedTeams[0]);
                      Debug.WriteLine("Home team: " + fPickTeams.SelectedTeams[1]);
 
-                     SetupNewGame(fPickTeams.SelectedTeams);
+                     txtResults.Text = "\nLoading player stats. Please wait..."; //#3000.02... note 'async delegate' above.
+                     await SetupNewGame(fPickTeams.SelectedTeams);
                      txtResults.Text =
                         "\nTap 'Mng' above to change starting lineups." +
                         "\nWhen done, tap 'Start' below." +

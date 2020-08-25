@@ -6,7 +6,7 @@
    >
 
    <ContentPage.Content>
-       <StackLayout Padding="10, 50, 10, 0">
+      <StackLayout Padding="10,20,0,0" Margin="0,10,0,0">
           <Label Text="Pick Teams" FontAttributes="Bold" />
           <Label Text="Tap 'Visiting Team' and then select a team from the list. Then do the same for 'Home Team'. Finally, tap 'New game with these teams'." />
           <!--<StackLayout Orientation="Horizontal" Padding="0,50,0,15">
@@ -14,22 +14,22 @@
              <Picker x:Name="pickerVis" Title="Pick team" TextColor="Black" SelectedIndexChanged="picker_IndexChanged" />
           </StackLayout>-->
 
-         <StackLayout Orientation="Horizontal" Padding="0,50,0,15">
+         <StackLayout Orientation="Horizontal" Padding="0,10,0,0" Margin="0,10,0,0">
             <Label Text="Visiting team:" />
             <pickerView:DualPickerView 
                 x:Name ="pickerVis"
-                Margin="15"
+                Margin="15,0,15,0"
                 Title="Select team..."
                 HorizontalOptions="FillAndExpand" 
                 SelectedSource="{Binding TwoSource}"
                 FontSize="Small">
             </pickerView:DualPickerView>
          </StackLayout>
-         <StackLayout Orientation="Horizontal" Padding="0,50,0,15">
+         <StackLayout Orientation="Horizontal" Padding="0,10,0,0" Margin="0,10,0,0">
             <Label Text="Home team:" />
             <pickerView:DualPickerView 
                 x:Name ="pickerHome"
-                Margin="15"
+                Margin="15,0,15,0"
                 Title="Select team..."
                 HorizontalOptions="FillAndExpand" 
                 SelectedSource="{Binding TwoSource}"
@@ -42,9 +42,11 @@
              <Picker x:Name="pickerHome" Title="Pick team" TextColor="Black" SelectedIndexChanged="picker_IndexChanged" />
           </StackLayout>-->
 
-          <Button x:Name="btnUse" Text="New game with these teams" FontAttributes="Bold" Clicked="btnUse_Clicked" IsEnabled="True" />
+          <Button x:Name="btnUse" Text="New game with these teams" FontAttributes="Bold" Clicked="btnUse_Clicked" IsEnabled="False" />
           <Button x:Name="btnCanc" Text="Cancel" Clicked="btnCanc_Clicked" FontAttributes="Bold" />
-       </StackLayout>
+          <ActivityIndicator 
+             x:Name="Activity1" IsVisible="False" IsEnabled="True" IsRunning="False" />
+      </StackLayout>
    </ContentPage.Content>
 
 </ContentPage>

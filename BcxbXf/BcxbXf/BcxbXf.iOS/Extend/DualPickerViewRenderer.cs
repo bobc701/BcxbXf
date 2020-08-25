@@ -160,7 +160,12 @@ namespace BcxbXf.iOS.extend
                     if (SelectedIndex == 0) return;
                     LeftComponent q = _pickerView.SelectedSource[(int)row];
                     string yr = q.Name.ToString().Trim();
+
+                 // #3000.01... (See E/N note for how to improve this.)
+                    _pickerView.ParentPage.StartActivity();
                     var teamList = await GFileAccess.GetTeamListForYearFromCache(int.Parse(yr));
+                    _pickerView.ParentPage.StopActivity();
+
                     teamList.Insert(0, new CTeamRecord());
                     q.RightComponentList = new ObservableCollection<CTeamRecord>(teamList);
                     pickerView.Select(row: 1, component: 1, true); // Reset team to row 0 (which is row 1)
