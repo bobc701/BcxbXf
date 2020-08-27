@@ -34,8 +34,8 @@ namespace BCX.BCXCommon {
       private static string OrgName = "Zeemerix";
       private static string ProductName = "Zeemerix Baseball";
 
-      internal static HttpClient client;
-      internal static List<CTeamRecord> TeamCache = new List<CTeamRecord>();
+      public static HttpClient client;
+      public static List<CTeamRecord> TeamCache = new List<CTeamRecord>();
 
 
       static GFileAccess() {

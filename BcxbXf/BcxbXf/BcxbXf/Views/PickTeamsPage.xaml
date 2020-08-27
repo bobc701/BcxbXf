@@ -45,7 +45,9 @@
           <Button x:Name="btnUse" Text="New game with these teams" FontAttributes="Bold" Clicked="btnUse_Clicked" IsEnabled="False" />
           <Button x:Name="btnCanc" Text="Cancel" Clicked="btnCanc_Clicked" FontAttributes="Bold" />
           <ActivityIndicator 
-             x:Name="Activity1" IsVisible="False" IsEnabled="True" IsRunning="False" />
+             x:Name="Activity1" 
+             Color="Red" 
+             IsVisible="False" IsEnabled="True" IsRunning="False" />
       </StackLayout>
    </ContentPage.Content>
 

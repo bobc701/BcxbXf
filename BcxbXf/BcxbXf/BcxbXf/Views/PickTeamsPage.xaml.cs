@@ -89,6 +89,21 @@ namespace BcxbXf {
 
       }
 
+      // #3000.01
+      // This is not yet wired in, but reccommend doing so.
+      // Call this from Selected in the custom renderer.
+      // So that renderer is not coupled with GFileAccess.
+
+      public async Task<List<CTeamRecord>> GetTeamList(int yr) {
+      // ---------------------------------------------------------
+         StartActivity();
+         var teamList = await GFileAccess.GetTeamListForYearFromCache(yr);
+         StopActivity();
+         return teamList;
+
+
+      }
+
 
    }
 

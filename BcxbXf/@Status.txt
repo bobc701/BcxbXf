@@ -1,3 +1,9 @@
+8/25'20 -- #3000.01
+#3000.01 - Changes so activity indicator works in conjunction with DualPickerView
+#3000.02 - Changes so Result says 'Please wait...' while team data loads
+#3000.03 - Change so GFileAccess.TeamCache is primed with 2010..2019 during app load
+
+
 05/11'20
 d2001: New splash screen
 

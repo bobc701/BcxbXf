@@ -1,10 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Threading;
+using System.Threading.Tasks;
+using System.Diagnostics;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using Foundation;
 using UIKit;
-using System.Threading;
+
+using BCX.BCXCommon;
 
 namespace BcxbXf.iOS
 {
@@ -25,8 +31,39 @@ namespace BcxbXf.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
-            Thread.Sleep(3000); // Ver 2: Delay toshow splash 
+            PrimeTeamCache(); // We can't await this because overridden method is not async. #3000.03
+            Thread.Sleep(4500); // Delay toshow splash 
+            Debug.WriteLine($"TeamCache.Count after FinishedLaunching: {GFileAccess.TeamCache.Count}");
             return base.FinishedLaunching(app, options);
         }
-    }
+
+
+      private async Task PrimeTeamCache() { // #3000.03
+         // ---------------------------------------------------------
+         // This routine will do an initial fill of the teamCache using 2000-2019,
+         // while the splash screen is being displayed.
+         // If no internet, this will fail and do nothing.
+
+         try {
+            var url = new System.Uri(GFileAccess.client.BaseAddress, $"liveteamrdr/api/team-list/2010/2019");
+
+            List<BCX.BCXCommon.CTeamRecord> yearList10;
+            HttpResponseMessage response = await GFileAccess.client.GetAsync(url.ToString());
+            if (response.IsSuccessStatusCode) {
+               yearList10 = await response.Content.ReadAsAsync<List<BCX.BCXCommon.CTeamRecord>>();
+            }
+            else {
+               throw new Exception($"Error loading initial list of teams\r\nStatus code: {response.StatusCode}");
+            }
+            GFileAccess.TeamCache.AddRange(yearList10);
+         }
+         catch (Exception ex) {
+            // Just do nothing here. Can't show error dialog.
+            // CAlert.ShowOkAlert("Error initializing data", ex.Message, "OK", this);
+         }
+
+      }
+
+   }
+
 }
