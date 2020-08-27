@@ -52,7 +52,7 @@ namespace BcxbXf.Models {
             px = g.t[side].ybox[i];
             if (px == 0) break;
             pit = g.t[side].pit[px];
-            pit.ps.boxName = pit.pname;
+            pit.ps.boxName = pit.pname2;
             /*for (int j=1; j<=10; j++)*/ PitcherBoxVis.Add(pit.ps);
          }
 
