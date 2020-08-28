@@ -159,7 +159,7 @@ namespace BcxbXf.iOS.extend
                     SelectedIndex = (int)pickerView.SelectedRowInComponent(0); // Isn't this same as 'row'???
                     if (SelectedIndex == 0) return;
                     LeftComponent q = _pickerView.SelectedSource[(int)row];
-                    string yr = q.Name.ToString().Trim();
+                    string yr = row == 0 ? "0" : q.Name.ToString().Trim();
 
                  // #3000.01... (See E/N note for how to improve this.)
                     _pickerView.ParentPage.StartActivity();
@@ -175,8 +175,7 @@ namespace BcxbXf.iOS.extend
                 // 获取选中的group
                 LeftComponent p = _pickerView.SelectedSource[SelectedIndex];
 
-                if (p.RightComponentList.Count <= 0)
-                    return;
+                if (p.RightComponentList.Count <= 0) return;
 
                 // 获取选中的property
                 int index = (int)pickerView.SelectedRowInComponent(1);

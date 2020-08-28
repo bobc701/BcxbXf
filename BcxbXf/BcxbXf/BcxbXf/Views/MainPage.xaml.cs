@@ -69,12 +69,17 @@ namespace BcxbXf
                      Debug.WriteLine("Home team: " + fPickTeams.SelectedTeams[1]);
 
                      txtResults.Text = "\nLoading player stats. Please wait..."; //#3000.02... note 'async delegate' above.
+                     Activity2.IsVisible = true;
+                     Activity2.IsRunning = true;
                      await SetupNewGame(fPickTeams.SelectedTeams);
                      txtResults.Text =
                         "\nTap 'Mng' above to change starting lineups." +
                         "\nWhen done, tap 'Start' below." +
                         "\n\nMake sure phone is not in silent mode" +
                         "\nto hear audio play-by-play.";
+                     Activity2.IsRunning = false;
+                     Activity2.IsVisible = false;
+
                      fPickTeams = null;
 
                   }

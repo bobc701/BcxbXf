@@ -328,16 +328,27 @@
       Results ...
       ==================================================-->
 
-      <ScrollView Grid.Row="3" Grid.Column="0" VerticalScrollBarVisibility="Always" >
-         <Label 
-            x:Name="txtResults" Text="Results" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  
-            FontSize="Small" HorizontalTextAlignment="Start"
-            TextColor="Black" FontAttributes="Bold"
-            BackgroundColor="#EFE4B0" 
-            Margin="0" >
-         </Label>
-         <!-- Results -->
-      </ScrollView>
+      <AbsoluteLayout Grid.Row="3" Grid.Column="0" BackgroundColor="#EFE4B0" >
+
+         <ScrollView  
+            VerticalScrollBarVisibility="Always" 
+            AbsoluteLayout.LayoutBounds="0.0, 0.0, AutoSize, AutoSize" 
+            AbsoluteLayout.LayoutFlags="PositionProportional" >
+            <Label 
+               x:Name="txtResults" Text="Results" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  
+               FontSize="Small" HorizontalTextAlignment="Start"
+               TextColor="Black" FontAttributes="Bold"
+               BackgroundColor="#EFE4B0" 
+               Margin="0" >
+            </Label>
+         </ScrollView>
+         <ActivityIndicator 
+               x:Name="Activity2" 
+               AbsoluteLayout.LayoutBounds=".5, .5, AutoSize, AutoSize" 
+               AbsoluteLayout.LayoutFlags="PositionProportional" 
+               Color="Blue" 
+               IsVisible="false" IsEnabled="True" IsRunning="false" />
+      </AbsoluteLayout>
 
       <!--====================================================
          Button row at bottom

@@ -85,7 +85,7 @@ namespace BcxbXf {
       public void StopActivity() { // #3000.01
          // -------------------------------
          Activity1.IsRunning = false;
-         Activity1.IsVisible = true;
+         Activity1.IsVisible = false;
 
       }
 

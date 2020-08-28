@@ -1,3 +1,7 @@
+8/27'20
+Branch d3004 -- Will try to put activity indicator atop Results text box.
+
+
 8/25'20 -- #3000.01
 #3000.01 - Changes so activity indicator works in conjunction with DualPickerView
 #3000.02 - Changes so Result says 'Please wait...' while team data loads
