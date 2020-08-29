@@ -61,7 +61,7 @@ namespace BcxbXf.iOS.extend
 
             if (e.PropertyName == Picker.SelectedIndexProperty.PropertyName)
             {
-                var picker = (UIPickerView)Control.InputView;
+                var picker = (UIPickerView)Control.InputView; 
 
                 SelectPickerValue(picker, _pickerView);
             }
@@ -104,7 +104,7 @@ namespace BcxbXf.iOS.extend
         {
             private DualPickerView _pickerView { get; }
 
-            public int SelectedIndex { get; internal set; }
+            public int SelectedIndex { get; internal set; } 
 
             public CTeamRecord SelectedItem { get; internal set; }
 
@@ -112,8 +112,9 @@ namespace BcxbXf.iOS.extend
             {
                 _pickerView = pickerView;
 
-                SelectedIndex = 0;
-            }
+            //SelectedIndex = 0;
+                pickerView.SelectedItem = 0;
+         }
 
             public override nint GetComponentCount(UIPickerView pickerView)
             {
@@ -138,13 +139,13 @@ namespace BcxbXf.iOS.extend
             {
                 if (component == 0)
                 {
-                    if (row == 0) return "Year";
+                    //if (row == 0) return "Year";
                     LeftComponent p = _pickerView.SelectedSource[(int)row];
                     return (string)p.Name;
                 }
                 else
                 {
-                    if (row == 0) return "Team";
+                    //if (row == 0) return "Team";
                     LeftComponent p = _pickerView.SelectedSource[SelectedIndex];
                     CTeamRecord team = p.RightComponentList[(int)row];
                     return $"{team.City} {team.NickName}";
@@ -155,20 +156,20 @@ namespace BcxbXf.iOS.extend
             public async override void Selected(UIPickerView pickerView, nint row, nint component)
             {
                 if (component == 0)
-                {
+                {   
                     SelectedIndex = (int)pickerView.SelectedRowInComponent(0); // Isn't this same as 'row'???
-                    if (SelectedIndex == 0) return;
+                    //if (SelectedIndex == 0) return;
                     LeftComponent q = _pickerView.SelectedSource[(int)row];
-                    string yr = row == 0 ? "0" : q.Name.ToString().Trim();
+                    string yr = q.Name.ToString().Trim();
 
                  // #3000.01... (See E/N note for how to improve this.)
                     _pickerView.ParentPage.StartActivity();
                     var teamList = await GFileAccess.GetTeamListForYearFromCache(int.Parse(yr));
                     _pickerView.ParentPage.StopActivity();
 
-                    teamList.Insert(0, new CTeamRecord());
+                    //teamList.Insert(0, new CTeamRecord());
                     q.RightComponentList = new ObservableCollection<CTeamRecord>(teamList);
-                    pickerView.Select(row: 1, component: 1, true); // Reset team to row 0 (which is row 1)
+                    pickerView.Select(row: 0, component: 1, true); // Reset team to row 0 (which is row 1)
                     pickerView.ReloadComponent(1);
                 }
 

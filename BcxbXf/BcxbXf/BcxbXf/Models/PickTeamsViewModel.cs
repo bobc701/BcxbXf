@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 
 using BcxbXf.Extend;
 using BCX.BCXCommon;
+using System.Linq;
 
 namespace BcxbXf.Models {
 
@@ -22,18 +23,20 @@ namespace BcxbXf.Models {
       }
 
 
-      void InitializationData() {
+      async void InitializationData() {
 
          //TwoSource.Add(new GroupModel { GroupName = "enterprise", Property = enterprise });
          //TwoSource.Add(new GroupModel { GroupName = "countries", Property = countries });
 
-         TwoSource.Add(new LeftComponent { Name = "Year", RightComponentList = new ObservableCollection<CTeamRecord>() });
+         //TwoSource.Add(new LeftComponent { Name = "Year", RightComponentList = new ObservableCollection<CTeamRecord>() });
          for (int y = 2019; y >= 1901; y--) {
             TwoSource.Add(new LeftComponent { 
                Name = y.ToString(), 
                RightComponentList = new ObservableCollection<CTeamRecord>() 
             });
          }
+         var list0 = await GFileAccess.GetTeamListForYearFromCache(2019);
+         TwoSource[0].RightComponentList = new ObservableCollection<CTeamRecord>(list0);
 
       }
 

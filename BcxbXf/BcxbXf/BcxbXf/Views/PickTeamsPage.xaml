@@ -19,7 +19,7 @@
             <pickerView:DualPickerView 
                 x:Name ="pickerVis"
                 Margin="15,0,15,0"
-                Title="Select team..."
+                Title="Select Year &amp; Team..."
                 HorizontalOptions="FillAndExpand" 
                 SelectedSource="{Binding TwoSource}"
                 FontSize="Small">
@@ -30,7 +30,7 @@
             <pickerView:DualPickerView 
                 x:Name ="pickerHome"
                 Margin="15,0,15,0"
-                Title="Select team..."
+                Title="Select Year &amp; Team..."
                 HorizontalOptions="FillAndExpand" 
                 SelectedSource="{Binding TwoSource}"
                 FontSize="Small">
