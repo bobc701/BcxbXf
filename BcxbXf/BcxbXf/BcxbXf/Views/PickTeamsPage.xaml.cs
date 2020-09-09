@@ -23,7 +23,7 @@ namespace BcxbXf {
       public PickTeamsPage() {
       // ---------------------------------------------------------------
          InitializeComponent();
-         BindingContext = new PickTeamsViewModel(); 
+         BindingContext = new PickTeamsViewModel();
 
          pickerVis.SelectedIndexChanged +=
             (object sender, EventArgs e) => {

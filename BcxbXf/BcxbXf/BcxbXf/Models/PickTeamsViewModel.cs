@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace BcxbXf.Models {
 
-   class PickTeamsViewModel : INotifyPropertyChanged {
+   class PickTeamsViewModel : INotifyPropertyChanged {//ffgg
 
       public event PropertyChangedEventHandler PropertyChanged;
       private ObservableCollection<LeftComponent> twoSource;
@@ -35,8 +35,14 @@ namespace BcxbXf.Models {
                RightComponentList = new ObservableCollection<CTeamRecord>() 
             });
          }
-         var list0 = await GFileAccess.GetTeamListForYearFromCache(2019);
-         TwoSource[0].RightComponentList = new ObservableCollection<CTeamRecord>(list0);
+         try {
+            //throw new Exception("Don't forget to remove this exception"); //For testing
+            var list0 = await GFileAccess.GetTeamListForYearFromCache(2019);
+            TwoSource[0].RightComponentList = new ObservableCollection<CTeamRecord>(list0);
+         }
+         catch (Exception ex) {
+            TwoSource[0].RightComponentList = new ObservableCollection<CTeamRecord>();
+         }
 
       }
 

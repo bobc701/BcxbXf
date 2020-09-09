@@ -85,6 +85,8 @@ namespace BcxbXf
                   }
                   catch (Exception ex) {
                      DisplayAlert("Error", ex.Message, "Dismiss");
+                     Activity2.IsRunning = false;
+                     Activity2.IsVisible = false;
 
                   }
                   break;

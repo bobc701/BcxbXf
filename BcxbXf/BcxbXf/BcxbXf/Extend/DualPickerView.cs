@@ -26,7 +26,7 @@ namespace BcxbXf.Extend
         public DualPickerView()
         {
             Items.Add("");
-            SelectedIndex = -1;
+            SelectedIndex = -1; 
       }
 
         public string PlaceholderColor

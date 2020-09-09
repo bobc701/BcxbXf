@@ -46,7 +46,7 @@
           <Button x:Name="btnCanc" Text="Cancel" Clicked="btnCanc_Clicked" FontAttributes="Bold" />
           <ActivityIndicator 
              x:Name="Activity1" 
-             Color="Red" 
+             Color="Blue" 
              IsVisible="False" IsEnabled="True" IsRunning="False" />
       </StackLayout>
    </ContentPage.Content>

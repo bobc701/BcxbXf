@@ -155,42 +155,51 @@ namespace BcxbXf.iOS.extend
 
             public async override void Selected(UIPickerView pickerView, nint row, nint component)
             {
-                if (component == 0)
-                {   
-                    SelectedIndex = (int)pickerView.SelectedRowInComponent(0); // Isn't this same as 'row'???
-                    //if (SelectedIndex == 0) return;
-                    LeftComponent q = _pickerView.SelectedSource[(int)row];
-                    string yr = q.Name.ToString().Trim();
+                try { 
+                   if (component == 0)
+                   {   
+                       SelectedIndex = (int)pickerView.SelectedRowInComponent(0); // Isn't this same as 'row'???
+                       //if (SelectedIndex == 0) return;
+                       LeftComponent q = _pickerView.SelectedSource[(int)row];
+                       string yr = q.Name.ToString().Trim();
 
-                 // #3000.01... (See E/N note for how to improve this.)
-                    _pickerView.ParentPage.StartActivity();
-                    var teamList = await GFileAccess.GetTeamListForYearFromCache(int.Parse(yr));
-                    _pickerView.ParentPage.StopActivity();
+                    // #3000.01... (See E/N note for how to improve this.)
+                       _pickerView.ParentPage.StartActivity();
+                       var teamList = await GFileAccess.GetTeamListForYearFromCache(int.Parse(yr));
+                       _pickerView.ParentPage.StopActivity();
 
-                    //teamList.Insert(0, new CTeamRecord());
-                    q.RightComponentList = new ObservableCollection<CTeamRecord>(teamList);
-                    pickerView.Select(row: 0, component: 1, true); // Reset team to row 0 (which is row 1)
-                    pickerView.ReloadComponent(1);
+                       //teamList.Insert(0, new CTeamRecord());
+                       q.RightComponentList = new ObservableCollection<CTeamRecord>(teamList);
+                       pickerView.Select(row: 0, component: 1, true); // Reset team to row 0 (which is row 1)
+                       pickerView.ReloadComponent(1);
+                   }
+
+                   // 获取选中的group
+                   LeftComponent p = _pickerView.SelectedSource[SelectedIndex];
+
+                   if (p.RightComponentList.Count <= 0) return;
+
+                   // 获取选中的property
+                   int index = (int)pickerView.SelectedRowInComponent(1);
+                   //if (index == 0) return;
+                   //SelectedItem = p.Name + "-" + p.RightComponentList[index].Name;
+                   SelectedItem = p.RightComponentList[index];
+                   _pickerView.SelectedItem = SelectedItem;
+
+                   if (SelectedItem.Year != 0)
+                          _pickerView.OnSelectedPropertyChanged(_pickerView, SelectedItem);
+                }
+                           
+                catch (Exception ex) {
+               //CAlert.ShowOkAlert("Error selecting year", ex.Message, "OK", ctlr);
+                   _pickerView.ParentPage.StopActivity();
+                   await _pickerView.ParentPage.DisplayAlert("Error loading data", ex.Message, "OK");
                 }
 
-                // 获取选中的group
-                LeftComponent p = _pickerView.SelectedSource[SelectedIndex];
-
-                if (p.RightComponentList.Count <= 0) return;
-
-                // 获取选中的property
-                int index = (int)pickerView.SelectedRowInComponent(1);
-                //if (index == 0) return;
-                //SelectedItem = p.Name + "-" + p.RightComponentList[index].Name;
-                SelectedItem = p.RightComponentList[index];
-                _pickerView.SelectedItem = SelectedItem;
-
-            if (SelectedItem.Year != 0)
-                    _pickerView.OnSelectedPropertyChanged(_pickerView, SelectedItem);
             }
 
 
-            public override nfloat GetComponentWidth(UIPickerView pickerView, nint component)
+   public override nfloat GetComponentWidth(UIPickerView pickerView, nint component)
             {
                 var screenWidth = DisplayWidth;
 

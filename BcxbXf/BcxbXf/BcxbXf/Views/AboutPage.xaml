@@ -41,7 +41,7 @@
             <StackLayout Grid.Row="2" >
 
                <Label
-                   Text="(c) 2019 Zeemerix Digital Solutions"
+                   Text="(c) 2020 Zeemerix Digital Solutions"
                    TextColor="Blue" 
                    HorizontalOptions="CenterAndExpand" 
                    VerticalOptions="Center"
@@ -54,7 +54,7 @@
                />
 
                <Label
-                   Text="Version 1.0.05, Build 1009"
+                   Text="Version 3.0.00, Build 3006"
                    TextColor="Blue"
                    HorizontalOptions="CenterAndExpand" 
                />
