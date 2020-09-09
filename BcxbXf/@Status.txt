@@ -1,3 +1,7 @@
+9/9'20
+#3000.04 -- Debug.WriteLine the team load process
+
+
 8/27'20
 Branch d3004 -- Will try to put activity indicator atop Results text box.
 

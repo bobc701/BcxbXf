@@ -400,6 +400,8 @@ namespace BCX.BCXCommon {
 
    public static async Task<List<CTeamRecord>> GetTeamListForYearOnLine(int year) {
       // --------------------------------------------------------------------------------------
+      // This is not used... see GetTeamListForYearFromCache instead. -bc
+
 
       //var t = new List<CTeamRecord> {
       //   new CTeamRecord { TeamTag = "NYY2018", City = "New York", LineName = "NYY", NickName = "Yankees", UsesDh = true, LgID = "AL" },
@@ -434,7 +436,7 @@ namespace BCX.BCXCommon {
    public static async Task<List<CTeamRecord>> GetTeamListForYearFromCache(int year) {
       // --------------------------------------------------------------------------------------
       List<CTeamRecord> result;
-      Debug.WriteLine($"TeamCache.Count at start of GetTeamListForYearFromCache: {TeamCache.Count}");
+      Debug.WriteLine($"At start of GetTeamListForYearFromCache: {TeamCache.Count} in TeamCache"); //#3000.04
 
       result = TeamCache.Where(t => t.Year == year).ToList();
       if (result.Count > 0) {
@@ -463,6 +465,7 @@ namespace BCX.BCXCommon {
          TeamCache.AddRange(yearList10);
 
          result = TeamCache.Where(t => t.Year == year).ToList();
+         Debug.WriteLine($"Returning from GetTeamListForYearFromCache: {TeamCache.Count} in TeamCache"); //#3000.04
          return result;
 
       }
