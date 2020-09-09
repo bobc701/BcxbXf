@@ -56,10 +56,12 @@ namespace BcxbXf.iOS
                throw new Exception($"Error loading initial list of teams\r\nStatus code: {response.StatusCode}");
             }
             GFileAccess.TeamCache.AddRange(yearList10);
+            Debug.WriteLine($"Teamcache updated in PrimeTeamcache: {GFileAccess.TeamCache.Count()} teams");
          }
          catch (Exception ex) {
             // Just do nothing here. Can't show error dialog.
             // CAlert.ShowOkAlert("Error initializing data", ex.Message, "OK", this);
+            Debug.WriteLine($"Error in PrimeTeamcache: {ex.Message}"); 
          }
 
       }
