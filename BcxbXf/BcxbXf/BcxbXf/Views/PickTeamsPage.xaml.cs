@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -36,6 +37,8 @@ namespace BcxbXf {
                btnUse.IsEnabled =
                   pickerVis.NewPickedTeam.Year != 0 && pickerHome.NewPickedTeam.Year != 0;
             };
+
+         Debug.WriteLine($"--------- TeamCache.Count in PickTeamsPage constructor: {GFileAccess.TeamCache.Count}");
 
          pickerVis.ParentPage = this; //#3000.01
          pickerHome.ParentPage = this;
