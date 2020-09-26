@@ -136,20 +136,22 @@ namespace BcxbXf.iOS.extend
             }
 
 
-            public override string GetTitle(UIPickerView pickerView, nint row, nint component)
-            {
-                if (component == 0)
-                {
-                    //if (row == 0) return "Year";
-                    LeftComponent p = _pickerView.SelectedSource[(int)row];
-                    return (string)p.Name;
-                }
-                else
-                {
-                    //if (row == 0) return "Team";
-                    LeftComponent p = _pickerView.SelectedSource[SelectedIndex];
-                    CTeamRecord team = p.RightComponentList[(int)row];
-                    return $"{team.City} {team.NickName}";
+            public override string GetTitle(UIPickerView pickerView, nint row, nint component) {
+
+            //  Made this into a switch //#3005.05
+                LeftComponent p;
+                switch (component) { 
+                    case 0:
+                       if (row == 0) return "Year"; //#3000.05
+                       p = _pickerView.SelectedSource[(int)row];
+                       return (string)p.Name;
+                    case 1:
+                       if (row == 0) return "Team"; //#3000.05
+                       p = _pickerView.SelectedSource[SelectedIndex];
+                       CTeamRecord team = p.RightComponentList[(int)row];
+                       return $"{team.City} {team.NickName}";
+                    default:
+                       return "Invalid component";
                 }
             }
 
@@ -160,9 +162,10 @@ namespace BcxbXf.iOS.extend
                    if (component == 0)
                    {   
                        SelectedIndex = (int)pickerView.SelectedRowInComponent(0); // Isn't this same as 'row'???
-                       //if (SelectedIndex == 0) return;
+                       //if (SelectedIndex == 0) return; Out #3000.05
                        LeftComponent q = _pickerView.SelectedSource[(int)row];
                        string yr = q.Name.ToString().Trim();
+                       if (yr == "Year") yr = "0"; //#3000.05
 
                     // #3000.01... (See E/N note for how to improve this.)
                        _pickerView.ParentPage.StartActivity();
@@ -172,8 +175,8 @@ namespace BcxbXf.iOS.extend
 
                        //teamList.Insert(0, new CTeamRecord());
                        q.RightComponentList = new ObservableCollection<CTeamRecord>(teamList);
-                       pickerView.Select(row: 0, component: 1, true); // Reset team to row 0 (which is row 1)
                        pickerView.ReloadComponent(1);
+                       pickerView.Select(row: 0, component: 1, true); // Reset team to row 0 (which is row 1)
                    }
 
                    // 获取选中的group
@@ -183,7 +186,7 @@ namespace BcxbXf.iOS.extend
 
                    // 获取选中的property
                    int index = (int)pickerView.SelectedRowInComponent(1);
-                   //if (index == 0) return;
+                   //if (index == 0) return; Out #3000.05
                    //SelectedItem = p.Name + "-" + p.RightComponentList[index].Name;
                    SelectedItem = p.RightComponentList[index];
                    _pickerView.SelectedItem = SelectedItem;

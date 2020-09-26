@@ -440,6 +440,7 @@ namespace BCX.BCXCommon {
 
       result = TeamCache.Where(t => t.Year == year).ToList();
       if (result.Count > 0) {
+         result.Insert(0, new CTeamRecord { TeamTag = "", Year = 0 });
          return result;
       }
       else {
@@ -466,6 +467,8 @@ namespace BCX.BCXCommon {
 
          result = TeamCache.Where(t => t.Year == year).ToList();
          Debug.WriteLine($"Returning from GetTeamListForYearFromCache: {TeamCache.Count} in TeamCache"); //#3000.04
+         result.Insert(0, new CTeamRecord { TeamTag = "", Year = 0 });
+
          return result;
 
       }
