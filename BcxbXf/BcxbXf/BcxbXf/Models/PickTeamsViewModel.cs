@@ -30,7 +30,7 @@ namespace BcxbXf.Models {
          //TwoSource.Add(new GroupModel { GroupName = "countries", Property = countries });
 
          TwoSource.Add(new LeftComponent { Name = "Year", RightComponentList = new ObservableCollection<CTeamRecord>() });
-         for (int y = 2019; y >= 1901; y--) {
+         for (int y = 2020; y >= 1901; y--) {
             TwoSource.Add(new LeftComponent { 
                Name = y.ToString(), 
                RightComponentList = new ObservableCollection<CTeamRecord>() 
@@ -39,7 +39,7 @@ namespace BcxbXf.Models {
          try {
             //throw new Exception("Don't forget to remove this exception"); //For testing
             Debug.WriteLine("Will call GetTeamListForYearFromCache in InitializationData"); //3000.04
-            var list0 = await GFileAccess.GetTeamListForYearFromCache(2019);
+            var list0 = await GFileAccess.GetTeamListForYearFromCache(2020);
             TwoSource[0].RightComponentList = new ObservableCollection<CTeamRecord>(list0);
          }
          catch (Exception ex) {

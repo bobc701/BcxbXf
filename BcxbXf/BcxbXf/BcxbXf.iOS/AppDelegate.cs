@@ -40,12 +40,12 @@ namespace BcxbXf.iOS
 
       private async Task PrimeTeamCache() { // #3000.03
          // ---------------------------------------------------------
-         // This routine will do an initial fill of the teamCache using 2000-2019,
+         // This routine will do an initial fill of the teamCache using 2000-2020,
          // while the splash screen is being displayed.
          // If no internet, this will fail and do nothing.
 
          try {
-            var url = new System.Uri(GFileAccess.client.BaseAddress, $"liveteamrdr/api/team-list/2010/2019");
+            var url = new System.Uri(GFileAccess.client.BaseAddress, $"liveteamrdr/api/team-list/2010/2020");
 
             List<BCX.BCXCommon.CTeamRecord> yearList10;
             HttpResponseMessage response = await GFileAccess.client.GetAsync(url.ToString());

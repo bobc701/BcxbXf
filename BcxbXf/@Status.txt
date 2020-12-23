@@ -1,3 +1,8 @@
+10/27'20
+Branch d3008
+Year 2020 added to year list for the team picker.
+
+
 9/12'20
 #3000.05 -- Put 'Year' & 'Team' headings back, seems to work.
 
