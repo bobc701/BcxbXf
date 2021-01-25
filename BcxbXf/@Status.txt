@@ -1,3 +1,8 @@
+01/23'21
+#0121.01 - Changes for revamped DTO_TeamRoster where each batter
+           and pitcher has his own lgMean.
+
+
 10/27'20
 Branch d3008
 Year 2020 added to year list for the team picker.
