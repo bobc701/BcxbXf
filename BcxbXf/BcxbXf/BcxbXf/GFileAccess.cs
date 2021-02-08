@@ -35,13 +35,26 @@ namespace BCX.BCXCommon {
       private static string ProductName = "Zeemerix Baseball";
 
       public static HttpClient client;
+      public static string WinhostEndPoint;
       public static List<CTeamRecord> TeamCache = new List<CTeamRecord>();
 
 
       static GFileAccess() {
          // --------------------------------------------------------------- static constructor
          // Use httpS here as I have added SSL cert to Z.com on WinHost (7/15'20)...
+
+      // Use this for ptoduction...
          client = new HttpClient() { BaseAddress = new Uri("https://www.zeemerix.com") };
+         WinhostEndPoint = "liveteamrdr/";
+
+      // Use this for test app on Winhost...
+         //client = new HttpClient() { BaseAddress = new Uri("https://www.zeemerix.com") };
+         //WinhostEndPoint = "liveteamrdr_test/";
+
+      // Use this for localhost...
+         //client = new HttpClient() { BaseAddress = new Uri("https://localhost:44389") };
+         //WinhostEndPoint = "";
+
          client.DefaultRequestHeaders.Accept.Clear();
          client.DefaultRequestHeaders.Accept.Add(
              new MediaTypeWithQualityHeaderValue("application/json"));
@@ -378,7 +391,7 @@ namespace BCX.BCXCommon {
 
    public static async Task<DTO_TeamRoster> GetTeamRosterOnLine(string team, int year) {
       // --------------------------------------------------------------------------------------
-      var url = new Uri(client.BaseAddress, $"liveteamrdr/api/team/{team}/{year}");
+      var url = new Uri(client.BaseAddress, $"{WinhostEndPoint}api/team/{team}/{year}");
 
       client.DefaultRequestHeaders.Accept.Clear();
       client.DefaultRequestHeaders.Accept.Add(
@@ -399,25 +412,25 @@ namespace BCX.BCXCommon {
 
 
    public static async Task<List<CTeamRecord>> GetTeamListForYearOnLine(int year) {
-      // --------------------------------------------------------------------------------------
-      // This is not used... see GetTeamListForYearFromCache instead. -bc
+         // --------------------------------------------------------------------------------------
+         // This is not used... see GetTeamListForYearFromCache instead. -bc
 
 
-      //var t = new List<CTeamRecord> {
-      //   new CTeamRecord { TeamTag = "NYY2018", City = "New York", LineName = "NYY", NickName = "Yankees", UsesDh = true, LgID = "AL" },
-      //   new CTeamRecord { TeamTag = "NYM2018", City = "New York", LineName = "NYM", NickName = "Mets", UsesDh = false, LgID = "NL" },
-      //   new CTeamRecord { TeamTag = "BOS2015", City = "Boston", LineName = "Bos", NickName = "Red Sox", UsesDh = true, LgID = "AL" },
-      //   new CTeamRecord { TeamTag = "PHI2015", City = "Philadelphia", LineName = "Phi", NickName = "Phillies", UsesDh = false, LgID = "NL" },
-      //   new CTeamRecord { TeamTag = "WAS2019", City = "Washington", LineName = "Was", NickName = "Nationals", UsesDh = false, LgID = "NL" }
-      //};
-      //return t;
+         //var t = new List<CTeamRecord> {
+         //   new CTeamRecord { TeamTag = "NYY2018", City = "New York", LineName = "NYY", NickName = "Yankees", UsesDh = true, LgID = "AL" },
+         //   new CTeamRecord { TeamTag = "NYM2018", City = "New York", LineName = "NYM", NickName = "Mets", UsesDh = false, LgID = "NL" },
+         //   new CTeamRecord { TeamTag = "BOS2015", City = "Boston", LineName = "Bos", NickName = "Red Sox", UsesDh = true, LgID = "AL" },
+         //   new CTeamRecord { TeamTag = "PHI2015", City = "Philadelphia", LineName = "Phi", NickName = "Phillies", UsesDh = false, LgID = "NL" },
+         //   new CTeamRecord { TeamTag = "WAS2019", City = "Washington", LineName = "Was", NickName = "Nationals", UsesDh = false, LgID = "NL" }
+         //};
+         //return t;
 
-      // Right here I could have logic that maintains a master list and refreshes by 10-year ranges.
+         // Right here I could have logic that maintains a master list and refreshes by 10-year ranges.
 
-      var url = new Uri(client.BaseAddress, $"liveteamrdr/api/team-list/{year}/{year}");
+         var url = new Uri(client.BaseAddress, $"{WinhostEndPoint}api/team-list/{year}/{year}");
 
-      client.DefaultRequestHeaders.Accept.Clear();
-      client.DefaultRequestHeaders.Accept.Add(
+         client.DefaultRequestHeaders.Accept.Clear();
+         client.DefaultRequestHeaders.Accept.Add(
             new MediaTypeWithQualityHeaderValue("application/json"));
 
       List<CTeamRecord> teamList = null;
@@ -448,7 +461,7 @@ namespace BCX.BCXCommon {
          // so, fetch 10 year block from DB and add to cache...
          int year1 = 10 * (year / 10);
          int year2 = year1 + 9;
-         var url = new Uri(client.BaseAddress, $"liveteamrdr/api/team-list/{year1}/{year2}");
+         var url = new Uri(client.BaseAddress, $"{WinhostEndPoint}api/team-list/{year1}/{year2}");
 
          client.DefaultRequestHeaders.Accept.Clear();
          client.DefaultRequestHeaders.Accept.Add(

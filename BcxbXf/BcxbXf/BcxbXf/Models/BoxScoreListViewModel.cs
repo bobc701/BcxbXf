@@ -18,7 +18,6 @@ namespace BcxbXf.Models {
       public string VisName { get { return mGame.t[0].nick; } }
       public string HomeName { get { return mGame.t[1].nick; } }
 
-
       public BoxScoreListViewModel(CGame g, int side = 0) {
       // ------------------------------------------------------
          mGame = g;

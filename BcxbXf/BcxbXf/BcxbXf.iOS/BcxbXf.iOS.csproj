@@ -31,6 +31,7 @@
     <MtouchDebug>true</MtouchDebug>
     <CodesignKey>Apple Development: Bob Clemens (WK5Q9P6NPL)</CodesignKey>
     <CodesignProvision>Zeemerix Dev Profile 3</CodesignProvision>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>

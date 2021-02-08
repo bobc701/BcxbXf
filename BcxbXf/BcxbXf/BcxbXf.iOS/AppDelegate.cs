@@ -45,7 +45,7 @@ namespace BcxbXf.iOS
          // If no internet, this will fail and do nothing.
 
          try {
-            var url = new System.Uri(GFileAccess.client.BaseAddress, $"liveteamrdr/api/team-list/2010/2020");
+            var url = new Uri(GFileAccess.client.BaseAddress, $"{GFileAccess.WinhostEndPoint}api/team-list/2010/2020");
 
             List<BCX.BCXCommon.CTeamRecord> yearList10;
             HttpResponseMessage response = await GFileAccess.client.GetAsync(url.ToString());
