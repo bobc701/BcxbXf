@@ -57,6 +57,23 @@ namespace BcxbXf
             // ---------------------------------------------------------
             Debug.WriteLine("We've returned from " + returningFrom);
 
+            switch (sender) {
+
+               case MainPage f:
+                  break;
+
+               case OptionsPage f:
+                  int i = 1;
+                  f.SpeechOn = true;
+                  break;
+
+               case PlaysPage f:
+                  int y = 7;
+                  f.Play = SPECIAL_PLAY.AtBat;
+                  break;
+
+            }
+
             switch (this.returningFrom) {
 
                case "PickTeamsPage":
@@ -210,7 +227,8 @@ namespace BcxbXf
             throw new Exception($"Error loading data for team, {newTeams[0]}\r\n{ex.Message}");
          }
 
-         mGame.cmean.CombineLeagueMeans(mGame.t[0].lgMean, mGame.t[1].lgMean);
+         //This is now obs due to each B & P having own lgMean's... #2101.01
+         //mGame.cmean.CombineLeagueMeans(mGame.t[0].lgMean, mGame.t[1].lgMean);
 
          mGame.InitGame();
          ShowRHE();               //<---- Put these back in!
