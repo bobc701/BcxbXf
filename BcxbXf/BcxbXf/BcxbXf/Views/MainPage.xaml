@@ -355,7 +355,9 @@
          =====================================================-->
 
       <!--<StackLayout Grid.Row="4" Grid.Column="0" Orientation="Horizontal" >-->
-      <Grid Padding="0" BackgroundColor="Black" Grid.Row="4" Grid.Column="0" >
+      <Grid
+      
+      Padding="0" BackgroundColor="Black" Grid.Row="4" Grid.Column="0" >
          <Grid.ColumnDefinitions>
             <ColumnDefinition Width="4*" />
             <ColumnDefinition Width="*" />
