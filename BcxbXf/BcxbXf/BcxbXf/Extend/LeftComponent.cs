@@ -1,4 +1,5 @@
 ﻿using BCX.BCXCommon;
+using BcxbDataAccess;
 using System;
 using System.Collections.ObjectModel;
 

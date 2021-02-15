@@ -11,6 +11,7 @@ using Foundation;
 using UIKit;
 
 using BCX.BCXCommon;
+using BcxbDataAccess;
 
 namespace BcxbXf.iOS
 {
@@ -33,7 +34,7 @@ namespace BcxbXf.iOS
             LoadApplication(new App());
             PrimeTeamCache(); // We can't await this because overridden method is not async. #3000.03
             Thread.Sleep(4500); // Delay toshow splash 
-            Debug.WriteLine($"TeamCache.Count after FinishedLaunching: {GFileAccess.TeamCache.Count}");
+            Debug.WriteLine($"TeamCache.Count after FinishedLaunching: {DataAccess.TeamCache.Count}");
             return base.FinishedLaunching(app, options);
         }
 
@@ -45,18 +46,18 @@ namespace BcxbXf.iOS
          // If no internet, this will fail and do nothing.
 
          try {
-            var url = new Uri(GFileAccess.client.BaseAddress, $"{GFileAccess.WinhostEndPoint}api/team-list/2010/2020");
+            var url = new Uri(DataAccess.client.BaseAddress, $"{DataAccess.WinhostEndPoint}api/team-list/2010/2020");
 
-            List<BCX.BCXCommon.CTeamRecord> yearList10;
-            HttpResponseMessage response = await GFileAccess.client.GetAsync(url.ToString());
+            List<CTeamRecord> yearList10;
+            HttpResponseMessage response = await DataAccess.client.GetAsync(url.ToString());
             if (response.IsSuccessStatusCode) {
-               yearList10 = await response.Content.ReadAsAsync<List<BCX.BCXCommon.CTeamRecord>>();
+               yearList10 = await response.Content.ReadAsAsync<List<CTeamRecord>>();
             }
             else {
                throw new Exception($"Error loading initial list of teams\r\nStatus code: {response.StatusCode}");
             }
-            GFileAccess.TeamCache.AddRange(yearList10);
-            Debug.WriteLine($"Teamcache updated in PrimeTeamcache: {GFileAccess.TeamCache.Count()} teams"); //#3000.04
+            DataAccess.TeamCache.AddRange(yearList10);
+            Debug.WriteLine($"Teamcache updated in PrimeTeamcache: {DataAccess.TeamCache.Count()} teams"); //#3000.04
          }
          catch (Exception ex) {
             // Just do nothing here. Can't show error dialog.

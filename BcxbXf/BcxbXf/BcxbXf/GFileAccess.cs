@@ -34,32 +34,33 @@ namespace BCX.BCXCommon {
       private static string OrgName = "Zeemerix";
       private static string ProductName = "Zeemerix Baseball";
 
-      public static HttpClient client;
-      public static string WinhostEndPoint;
-      public static List<CTeamRecord> TeamCache = new List<CTeamRecord>();
+      //Out #b2102c
+      //public static HttpClient client;
+      //public static string WinhostEndPoint;
+      //public static List<CTeamRecord> TeamCache = new List<CTeamRecord>();
 
 
-      static GFileAccess() {
-         // --------------------------------------------------------------- static constructor
-         // Use httpS here as I have added SSL cert to Z.com on WinHost (7/15'20)...
+      //static GFileAccess() {
+      //   // --------------------------------------------------------------- static constructor
+      //   // Use httpS here as I have added SSL cert to Z.com on WinHost (7/15'20)...
 
-         // Use this for ptoduction...
-         //client = new HttpClient() { BaseAddress = new Uri("https://www.zeemerix.com") };
-         //WinhostEndPoint = "liveteamrdr/";
+      //   // Use this for ptoduction...
+      //   //client = new HttpClient() { BaseAddress = new Uri("https://www.zeemerix.com") };
+      //   //WinhostEndPoint = "liveteamrdr/";
 
-         // Use this for test app on Winhost...
-         client = new HttpClient() { BaseAddress = new Uri("https://www.zeemerix.com") };
-         WinhostEndPoint = "liveteamrdr_test/";
+      //   // Use this for test app on Winhost...
+      //   client = new HttpClient() { BaseAddress = new Uri("https://www.zeemerix.com") };
+      //   WinhostEndPoint = "liveteamrdr_test/";
 
-         // Use this for localhost...
-         //client = new HttpClient() { BaseAddress = new Uri("https://localhost:44389") };
-         //WinhostEndPoint = "";
+      //   // Use this for localhost...
+      //   //client = new HttpClient() { BaseAddress = new Uri("https://localhost:44389") };
+      //   //WinhostEndPoint = "";
 
-         client.DefaultRequestHeaders.Accept.Clear();
-         client.DefaultRequestHeaders.Accept.Add(
-             new MediaTypeWithQualityHeaderValue("application/json"));
+      //   client.DefaultRequestHeaders.Accept.Clear();
+      //   client.DefaultRequestHeaders.Accept.Add(
+      //       new MediaTypeWithQualityHeaderValue("application/json"));
 
-      }
+      //}
 
 
 #if IOS
@@ -221,10 +222,10 @@ namespace BCX.BCXCommon {
       /// Side effect: arg #2, dh, indicates the league uses DH rule.
       /// </remarks>
       /// 
-      public static List<CTeamRecord> GetTeamsInLeague(string league1, out bool dh) {
+      public static List<BcxbDataAccess.CTeamRecord> GetTeamsInLeague(string league1, out bool dh) {
          // ---------------------------------------------------------------------------
          string rec;
-         var teamList = new List<CTeamRecord>();
+         var teamList = new List<BcxbDataAccess.CTeamRecord>();
          try {
             using (StringReader f = GetTextFileOnLine(league1 + ".bcxl")) {
                //StreamReader f = GetTextFileOnLine(path1); 
@@ -245,7 +246,7 @@ namespace BCX.BCXCommon {
                   // Update: for on-line version, we don't have to worry, can assume the files
                   // are there...
                   //if (GFileAccess.TeamFileIsInstalled(a[0]))
-                  teamList.Add(new CTeamRecord() {
+                  teamList.Add(new BcxbDataAccess.CTeamRecord() {
                      TeamTag = a[0],
                      LineName = a[1],
                      City = a[2],
@@ -388,129 +389,131 @@ namespace BCX.BCXCommon {
       */
    
 
+   //Out #b2102c
+   //public static async Task<DTO_TeamRoster> GetTeamRosterOnLine(string team, int year) {
+   //   // --------------------------------------------------------------------------------------
+   //   var url = new Uri(client.BaseAddress, $"{WinhostEndPoint}api/team/{team}/{year}");
 
-   public static async Task<DTO_TeamRoster> GetTeamRosterOnLine(string team, int year) {
-      // --------------------------------------------------------------------------------------
-      var url = new Uri(client.BaseAddress, $"{WinhostEndPoint}api/team/{team}/{year}");
+   //   client.DefaultRequestHeaders.Accept.Clear();
+   //   client.DefaultRequestHeaders.Accept.Add(
+   //       new MediaTypeWithQualityHeaderValue("application/json"));
 
-      client.DefaultRequestHeaders.Accept.Clear();
-      client.DefaultRequestHeaders.Accept.Add(
-          new MediaTypeWithQualityHeaderValue("application/json"));
+   //   DTO_TeamRoster roster = null;
+   //   HttpResponseMessage response = await client.GetAsync(url.ToString());
+   //   if (response.IsSuccessStatusCode) {
+   //      roster = await response.Content.ReadAsAsync<DTO_TeamRoster>();
+   //   }
+   //   else {
+   //      roster = null;
+   //      throw new Exception($"Error loading team {team} for {year}");
+   //   }
+   //   return roster;
 
-      DTO_TeamRoster roster = null;
-      HttpResponseMessage response = await client.GetAsync(url.ToString());
-      if (response.IsSuccessStatusCode) {
-         roster = await response.Content.ReadAsAsync<DTO_TeamRoster>();
-      }
-      else {
-         roster = null;
-         throw new Exception($"Error loading team {team} for {year}");
-      }
-      return roster;
+   //}
 
-   }
-
-
-   public static async Task<List<CTeamRecord>> GetTeamListForYearOnLine(int year) {
-         // --------------------------------------------------------------------------------------
-         // This is not used... see GetTeamListForYearFromCache instead. -bc
+   //   //Out #b2102c
+   //   public static async Task<List<CTeamRecord>> GetTeamListForYearOnLine(int year) {
+   //      // --------------------------------------------------------------------------------------
+   //      // This is not used... see GetTeamListForYearFromCache instead. -bc
 
 
-         //var t = new List<CTeamRecord> {
-         //   new CTeamRecord { TeamTag = "NYY2018", City = "New York", LineName = "NYY", NickName = "Yankees", UsesDh = true, LgID = "AL" },
-         //   new CTeamRecord { TeamTag = "NYM2018", City = "New York", LineName = "NYM", NickName = "Mets", UsesDh = false, LgID = "NL" },
-         //   new CTeamRecord { TeamTag = "BOS2015", City = "Boston", LineName = "Bos", NickName = "Red Sox", UsesDh = true, LgID = "AL" },
-         //   new CTeamRecord { TeamTag = "PHI2015", City = "Philadelphia", LineName = "Phi", NickName = "Phillies", UsesDh = false, LgID = "NL" },
-         //   new CTeamRecord { TeamTag = "WAS2019", City = "Washington", LineName = "Was", NickName = "Nationals", UsesDh = false, LgID = "NL" }
-         //};
-         //return t;
+   //      //var t = new List<CTeamRecord> {
+   //      //   new CTeamRecord { TeamTag = "NYY2018", City = "New York", LineName = "NYY", NickName = "Yankees", UsesDh = true, LgID = "AL" },
+   //      //   new CTeamRecord { TeamTag = "NYM2018", City = "New York", LineName = "NYM", NickName = "Mets", UsesDh = false, LgID = "NL" },
+   //      //   new CTeamRecord { TeamTag = "BOS2015", City = "Boston", LineName = "Bos", NickName = "Red Sox", UsesDh = true, LgID = "AL" },
+   //      //   new CTeamRecord { TeamTag = "PHI2015", City = "Philadelphia", LineName = "Phi", NickName = "Phillies", UsesDh = false, LgID = "NL" },
+   //      //   new CTeamRecord { TeamTag = "WAS2019", City = "Washington", LineName = "Was", NickName = "Nationals", UsesDh = false, LgID = "NL" }
+   //      //};
+   //      //return t;
 
-         // Right here I could have logic that maintains a master list and refreshes by 10-year ranges.
+   //      // Right here I could have logic that maintains a master list and refreshes by 10-year ranges.
 
-         var url = new Uri(client.BaseAddress, $"{WinhostEndPoint}api/team-list/{year}/{year}");
+   //      var url = new Uri(client.BaseAddress, $"{WinhostEndPoint}api/team-list/{year}/{year}");
 
-         client.DefaultRequestHeaders.Accept.Clear();
-         client.DefaultRequestHeaders.Accept.Add(
-            new MediaTypeWithQualityHeaderValue("application/json"));
+   //      client.DefaultRequestHeaders.Accept.Clear();
+   //      client.DefaultRequestHeaders.Accept.Add(
+   //         new MediaTypeWithQualityHeaderValue("application/json"));
 
-      List<CTeamRecord> teamList = null;
-      HttpResponseMessage response = await client.GetAsync(url.ToString());
-      if (response.IsSuccessStatusCode) {
-         teamList = await response.Content.ReadAsAsync<List<CTeamRecord>>();
-      }
-      else {
-         teamList = null;
-         throw new Exception($"Error loading list of teams for {year}\r\nStatus code: {response.StatusCode}"); // 2.0.01
-      }
-      return teamList;
+   //   List<CTeamRecord> teamList = null;
+   //   HttpResponseMessage response = await client.GetAsync(url.ToString());
+   //   if (response.IsSuccessStatusCode) {
+   //      teamList = await response.Content.ReadAsAsync<List<CTeamRecord>>();
+   //   }
+   //   else {
+   //      teamList = null;
+   //      throw new Exception($"Error loading list of teams for {year}\r\nStatus code: {response.StatusCode}"); // 2.0.01
+   //   }
+   //   return teamList;
 
-   }
+   //}
 
-   public static async Task<List<CTeamRecord>> GetTeamListForYearFromCache(int year) {
-      // --------------------------------------------------------------------------------------
-      List<CTeamRecord> result;
-      Debug.WriteLine($"At start of GetTeamListForYearFromCache: {TeamCache.Count} in TeamCache"); //#3000.04
+   //   //Out #b2102c
+   //   public static async Task<List<CTeamRecord>> GetTeamListForYearFromCache(int year) {
+   //   // --------------------------------------------------------------------------------------
+   //   List<CTeamRecord> result;
+   //   Debug.WriteLine($"At start of GetTeamListForYearFromCache: {TeamCache.Count} in TeamCache"); //#3000.04
 
-      result = TeamCache.Where(t => t.Year == year).ToList();
-      if (result.Count > 0) {
-         result.Insert(0, new CTeamRecord { TeamTag = "", Year = 0 });
-         return result;
-      }
-      else {
-         // The year is not in the teamCache, 
-         // so, fetch 10 year block from DB and add to cache...
-         int year1 = 10 * (year / 10);
-         int year2 = year1 + 9;
-         var url = new Uri(client.BaseAddress, $"{WinhostEndPoint}api/team-list/{year1}/{year2}");
+   //   result = TeamCache.Where(t => t.Year == year).ToList();
+   //   if (result.Count > 0) {
+   //      result.Insert(0, new CTeamRecord { TeamTag = "", Year = 0 });
+   //      return result;
+   //   }
+   //   else {
+   //      // The year is not in the teamCache, 
+   //      // so, fetch 10 year block from DB and add to cache...
+   //      int year1 = 10 * (year / 10);
+   //      int year2 = year1 + 9;
+   //      var url = new Uri(client.BaseAddress, $"{WinhostEndPoint}api/team-list/{year1}/{year2}");
 
-         client.DefaultRequestHeaders.Accept.Clear();
-         client.DefaultRequestHeaders.Accept.Add(
-               new MediaTypeWithQualityHeaderValue("application/json"));
+   //      client.DefaultRequestHeaders.Accept.Clear();
+   //      client.DefaultRequestHeaders.Accept.Add(
+   //            new MediaTypeWithQualityHeaderValue("application/json"));
 
-         List<CTeamRecord> yearList10;
-         HttpResponseMessage response = await client.GetAsync(url.ToString());
-         if (response.IsSuccessStatusCode) {
-            yearList10 = await response.Content.ReadAsAsync<List<CTeamRecord>>();
-         }
-         else {
-            yearList10 = null;
-            throw new Exception($"Error loading list of teams for {year}\r\nStatus code: {response.StatusCode}");
-         }
-         TeamCache.AddRange(yearList10);
+   //      List<CTeamRecord> yearList10;
+   //      HttpResponseMessage response = await client.GetAsync(url.ToString());
+   //      if (response.IsSuccessStatusCode) {
+   //         yearList10 = await response.Content.ReadAsAsync<List<CTeamRecord>>();
+   //      }
+   //      else {
+   //         yearList10 = null;
+   //         throw new Exception($"Error loading list of teams for {year}\r\nStatus code: {response.StatusCode}");
+   //      }
+   //      TeamCache.AddRange(yearList10);
 
-         result = TeamCache.Where(t => t.Year == year).ToList();
-         Debug.WriteLine($"Returning from GetTeamListForYearFromCache: {TeamCache.Count} in TeamCache"); //#3000.04
-         result.Insert(0, new CTeamRecord { TeamTag = "", Year = 0 });
+   //      result = TeamCache.Where(t => t.Year == year).ToList();
+   //      Debug.WriteLine($"Returning from GetTeamListForYearFromCache: {TeamCache.Count} in TeamCache"); //#3000.04
+   //      result.Insert(0, new CTeamRecord { TeamTag = "", Year = 0 });
 
-         return result;
+   //      return result;
 
-      }
+   //   }
 
-   }
+   //}
 
-   public static void ClearTeamCache() {
-      // ----------------------------------------------------------
-      TeamCache.Clear();
+   //   //Out #b2102c
+   //   public static void ClearTeamCache() {
+   //   // ----------------------------------------------------------
+   //   TeamCache.Clear();
 
-   }
+   //}
 
 }
 
+// Out #b2102c...
+//public struct CTeamRecord {
+//      // ---------------------------------------------------
+//      public string TeamTag { get; set; }
+//      public int Year { get; set; }
+//      public string LineName { get; set; }
+//      public string City { get; set; }
+//      public string NickName { get; set; }
+//      public bool UsesDh { get; set; }
+//      public string LgID { get; set; }
 
-public struct CTeamRecord {
-      // ---------------------------------------------------
-      public string TeamTag { get; set; }
-      public int Year { get; set; }
-      public string LineName { get; set; }
-      public string City { get; set; }
-      public string NickName { get; set; }
-      public bool UsesDh { get; set; }
-      public string LgID { get; set; }
-
-      public override string ToString() {
-         return Year == 0 ? "" : $"{Year} - {City} {NickName}";
-      }
-   }
+//      public override string ToString() {
+//         return Year == 0 ? "" : $"{Year} - {City} {NickName}";
+//      }
+//   }
 
 }
 

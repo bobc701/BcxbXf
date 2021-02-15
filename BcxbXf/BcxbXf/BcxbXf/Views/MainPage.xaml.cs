@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Diagnostics;
 using Xamarin.Forms;
+
 using BCX.BCXB;
 using BCX.BCXCommon;
 using BcxbXf.Views;
+using BcxbDataAccess;
 
 
 namespace BcxbXf
@@ -208,7 +210,8 @@ namespace BcxbXf
          try {
             string tm = newTeams[1].TeamTag.Trim(); 
             int yr = newTeams[1].Year; 
-            DTO_TeamRoster ros = await GFileAccess.GetTeamRosterOnLine(tm, yr);
+            //DTO_TeamRoster ros = await GFileAccess.GetTeamRosterOnLine(tm, yr);
+            DTO_TeamRoster ros = await DataAccess.GetTeamRosterOnLine(tm, yr); //#b2102c
             if (ros == null) throw new Exception($"Error: Could not load data for team, {newTeams[1]}");
             mGame.t[1].ReadTeam(ros, 1);
          }
@@ -219,7 +222,7 @@ namespace BcxbXf
          try {
             string tm = newTeams[0].TeamTag.Trim(); 
             int yr = newTeams[0].Year; 
-            DTO_TeamRoster ros = await GFileAccess.GetTeamRosterOnLine(tm, yr);
+            DTO_TeamRoster ros = await DataAccess.GetTeamRosterOnLine(tm, yr);
             if (ros == null) throw new Exception($"Error: Could not load data for team, {newTeams[0]}");
             mGame.t[0].ReadTeam(ros, 0);
          }

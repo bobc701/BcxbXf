@@ -10,13 +10,14 @@ using Xamarin.Forms.Xaml;
 
 using BCX.BCXCommon;
 using BcxbXf.Models;
+using BcxbDataAccess;
 
 namespace BcxbXf {
    [XamlCompilation(XamlCompilationOptions.Compile)]
    public partial class PickTeamsPage : ContentPage {
 
 
-      public CTeamRecord[] SelectedTeams { get; set; } = new CTeamRecord[2]; //<-- This is how selections are passed back to MainPage.
+      public BcxbDataAccess.CTeamRecord[] SelectedTeams { get; set; } = new BcxbDataAccess.CTeamRecord[2]; //<-- This is how selections are passed back to MainPage.
 
       //public Action Dismiss;
 
@@ -38,7 +39,7 @@ namespace BcxbXf {
                   pickerVis.NewPickedTeam.Year != 0 && pickerHome.NewPickedTeam.Year != 0;
             };
 
-         Debug.WriteLine($"--------- TeamCache.Count in PickTeamsPage constructor: {GFileAccess.TeamCache.Count}");
+         Debug.WriteLine($"--------- TeamCache.Count in PickTeamsPage constructor: {DataAccess.TeamCache.Count}");
 
          pickerVis.ParentPage = this; //#3000.01
          pickerHome.ParentPage = this;
@@ -64,8 +65,8 @@ namespace BcxbXf {
       private void btnCanc_Clicked(object sender, EventArgs e) {
       // -------------------------------------------------------
          //DisplayAlert("", "Cancel", "OK");
-         SelectedTeams[0] = new CTeamRecord();
-         SelectedTeams[1] = new CTeamRecord();
+         SelectedTeams[0] = new BcxbDataAccess.CTeamRecord();
+         SelectedTeams[1] = new BcxbDataAccess.CTeamRecord();
          Navigation.PopModalAsync();
       }
 
@@ -97,10 +98,10 @@ namespace BcxbXf {
       // Call this from Selected in the custom renderer.
       // So that renderer is not coupled with GFileAccess.
 
-      public async Task<List<CTeamRecord>> GetTeamList(int yr) {
+      public async Task<List<BcxbDataAccess.CTeamRecord>> GetTeamList(int yr) {
       // ---------------------------------------------------------
          StartActivity();
-         var teamList = await GFileAccess.GetTeamListForYearFromCache(yr);
+         var teamList = await DataAccess.GetTeamListForYearFromCache(yr);
          StopActivity();
          return teamList;
 

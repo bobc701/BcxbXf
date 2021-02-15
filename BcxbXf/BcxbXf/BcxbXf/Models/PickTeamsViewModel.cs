@@ -8,6 +8,8 @@ using System.Diagnostics;
 
 using BcxbXf.Extend;
 using BCX.BCXCommon;
+using BcxbDataAccess;
+
 using System.Linq;
 
 namespace BcxbXf.Models {
@@ -39,7 +41,7 @@ namespace BcxbXf.Models {
          try {
             //throw new Exception("Don't forget to remove this exception"); //For testing
             Debug.WriteLine("Will call GetTeamListForYearFromCache in InitializationData"); //3000.04
-            var list0 = await GFileAccess.GetTeamListForYearFromCache(2020);
+            var list0 = await DataAccess.GetTeamListForYearFromCache(2020);
             TwoSource[0].RightComponentList = new ObservableCollection<CTeamRecord>(list0);
          }
          catch (Exception ex) {

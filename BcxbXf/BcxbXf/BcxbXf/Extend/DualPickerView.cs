@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using BCX.BCXCommon;
+using BcxbDataAccess;
 
 namespace BcxbXf.Extend
 {
