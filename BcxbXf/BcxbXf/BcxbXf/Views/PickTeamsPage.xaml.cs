@@ -18,6 +18,7 @@ namespace BcxbXf {
 
 
       public BcxbDataAccess.CTeamRecord[] SelectedTeams { get; set; } = new BcxbDataAccess.CTeamRecord[2]; //<-- This is how selections are passed back to MainPage.
+      private DataAccess dataAccess = new();
 
       //public Action Dismiss;
 
@@ -39,7 +40,7 @@ namespace BcxbXf {
                   pickerVis.NewPickedTeam.Year != 0 && pickerHome.NewPickedTeam.Year != 0;
             };
 
-         Debug.WriteLine($"--------- TeamCache.Count in PickTeamsPage constructor: {DataAccess.TeamCache.Count}");
+         Debug.WriteLine($"--------- TeamCache.Count in PickTeamsPage constructor: {dataAccess.TeamCache.Count}");
 
          pickerVis.ParentPage = this; //#3000.01
          pickerHome.ParentPage = this;
@@ -101,7 +102,7 @@ namespace BcxbXf {
       public async Task<List<BcxbDataAccess.CTeamRecord>> GetTeamList(int yr) {
       // ---------------------------------------------------------
          StartActivity();
-         var teamList = await DataAccess.GetTeamListForYearFromCache(yr);
+         var teamList = await dataAccess.GetTeamListForYearFromCache(yr);
          StopActivity();
          return teamList;
 

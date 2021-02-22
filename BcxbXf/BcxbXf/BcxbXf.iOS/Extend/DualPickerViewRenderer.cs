@@ -105,6 +105,8 @@ namespace BcxbXf.iOS.extend
     //  ---------------------------------------------
         {
             private DualPickerView _pickerView { get; }
+            private DataAccess dataAccess = new DataAccess();
+
 
             public int SelectedIndex { get; internal set; } 
 
@@ -171,7 +173,7 @@ namespace BcxbXf.iOS.extend
                     // #3000.01... (See E/N note for how to improve this.)
                        _pickerView.ParentPage.StartActivity();
                        Debug.WriteLine("Will call GetTeamListForYearFromCache in PickerSource.Selected"); //3000.04
-                       var teamList = await DataAccess.GetTeamListForYearFromCache(int.Parse(yr));
+                       var teamList = await dataAccess.GetTeamListForYearFromCache(int.Parse(yr));
                        _pickerView.ParentPage.StopActivity();
 
                        //teamList.Insert(0, new CTeamRecord());
