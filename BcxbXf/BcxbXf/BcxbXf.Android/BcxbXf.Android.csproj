@@ -104,6 +104,10 @@
     <Folder Include="Resources\drawable-xxxhdpi\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\BcxbLib3\BcxbDataAccess\BcxbDataAccess.csproj">
+      <Project>{bf2ff495-c6ba-47ba-8717-7c287f939761}</Project>
+      <Name>BcxbDataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BcxbXf\BcxbXf.csproj">
       <Project>{A6D78DB6-2D77-4111-8E4E-8FBA3785D9AE}</Project>
       <Name>BcxbXf</Name>

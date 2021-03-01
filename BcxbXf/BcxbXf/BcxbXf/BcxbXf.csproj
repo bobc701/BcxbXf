@@ -89,7 +89,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\BcxbLib_SAP\BcxbDataAccess\BcxbDataAccess.csproj" />
+    <ProjectReference Include="..\..\..\..\..\BcxbLib3\BcxbDataAccess\BcxbDataAccess.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -137,5 +137,5 @@
     </EmbeddedResource>
   </ItemGroup>
 
-  <Import Project="..\..\..\..\..\BcxbLib_SAP\BcxbLib_SAP_b1_cteam\BcxbLib_SAP.projitems" Label="Shared" />
+  <Import Project="..\..\..\..\..\BcxbLib3\BcxbLib_SAP\BcxbLib_SAP.projitems" Label="Shared" />
 </Project>

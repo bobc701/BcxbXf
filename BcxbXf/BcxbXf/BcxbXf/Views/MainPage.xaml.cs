@@ -385,35 +385,35 @@ namespace BcxbXf
 
          // REBUILD THIS FROM IOS APP
 
-         mGame.ERequestModelFile += delegate (short n) {
-            // --------------------------------------------------------------------
-            var rdr = GFileAccess.GetModelFile(n);
-            return rdr;
-         };
-
-         mGame.ERequestEngineFile += delegate (string fName) {
-            // ------------------------------------------------------------------------
-            var rdr = GFileAccess.GetModelFile(fName);
-            return rdr;
-         };
-
-         //mGame.ERequestTeamFileReader += delegate (string fName) {
+         //mGame.ERequestModelFile += delegate (short n) {
          //   // --------------------------------------------------------------------
-         //   var rdr = GFileAccess.GetTeamFileReader(fName);
+         //   var rdr = GFileAccess.GetModelFile(n);
          //   return rdr;
          //};
 
-         mGame.ERequestTeamFileWriter += delegate (string fName) {
-            // --------------------------------------------------------------------
-            var rdr = GFileAccess.GetTeamFileWriter(fName);
-            return rdr;
-         };
+         //mGame.ERequestEngineFile += delegate (string fName) {
+         //   // ------------------------------------------------------------------------
+         //   var rdr = GFileAccess.GetModelFile(fName);
+         //   return rdr;
+         //};
 
-         mGame.ERequestBoxFileWriter += delegate (string fName) {
-            // --------------------------------------------------------------------
-            var rdr = new StreamWriter(fName);
-            return rdr;
-         };
+         ////mGame.ERequestTeamFileReader += delegate (string fName) {
+         ////   // --------------------------------------------------------------------
+         ////   var rdr = GFileAccess.GetTeamFileReader(fName);
+         ////   return rdr;
+         ////};
+
+         //mGame.ERequestTeamFileWriter += delegate (string fName) {
+         //   // --------------------------------------------------------------------
+         //   var rdr = GFileAccess.GetTeamFileWriter(fName);
+         //   return rdr;
+         //};
+
+         //mGame.ERequestBoxFileWriter += delegate (string fName) {
+         //   // --------------------------------------------------------------------
+         //   var rdr = new StreamWriter(fName);
+         //   return rdr;
+         //};
 
          mGame.EShowFielders += ShowFielders;
          mGame.EShowLinescore += ShowLinescoreOne;

@@ -325,8 +325,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\BcxbLib_SAP\BcxbDataAccess\BcxbDataAccess.csproj">
-      <Project>{1ab1aee0-74c3-42db-9856-9cd7efcde497}</Project>
+    <ProjectReference Include="..\..\..\..\..\BcxbLib3\BcxbDataAccess\BcxbDataAccess.csproj">
+      <Project>{bf2ff495-c6ba-47ba-8717-7c287f939761}</Project>
       <Name>BcxbDataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\BcxbXf\BcxbXf.csproj">

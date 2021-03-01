@@ -14,7 +14,7 @@ using BCX.BCXB;
 
 namespace BCX.BCXCommon {
 
-   public static class GFileAccess {
+   public class GFileAccess {
       /* ---------------------------------------------------------------------
        * This serves up file objects for the rest of the app. It is anticipated 
        * that this will need to have a separate version for each platform.
@@ -138,7 +138,7 @@ namespace BCX.BCXCommon {
 #endif
 
 
-      public static StreamReader GetModelFile(short engNum) {
+      public StreamReader GetModelFile(short engNum) {
       // ------------------------------------------------------------------
       // This returns a file object for CFEng1,2 oe 3.
       // ------------------------------------------------------------------
@@ -155,7 +155,7 @@ namespace BCX.BCXCommon {
       }
 
 
-      public static StreamReader GetModelFile(string fName) {
+      public StreamReader GetModelFile(string fName) {
          // ------------------------------------------------------------------
          // This returns a file object for CFEng1,2 oe 3.
          // ------------------------------------------------------------------
@@ -199,7 +199,7 @@ namespace BCX.BCXCommon {
       /// Example: "Strings.Fielding1.txt"
       /// </summary>
       /// ------------------------------------------------------------------------------
-      public static StreamReader GetOtherFileReader(string fileName) {
+      public StreamReader GetOtherFileReader(string fileName) {
 
          string path1 = fileName;
          try {
