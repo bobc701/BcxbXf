@@ -827,7 +827,7 @@ namespace BcxbXf
          fPlays = new PlaysPage(mGame);
          returningFrom = "PlaysPage";
          await Navigation.PushAsync(fPlays);
-
+         var p = fPlays.Play;
       }
 
       async void mnuMngHome_OnClick(object sender, EventArgs e) {

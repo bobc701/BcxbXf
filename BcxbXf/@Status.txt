@@ -1,3 +1,20 @@
+04/13'21
+--------
+Repo: BcxbXf (b2104b)
+New PickTeamsCust view, having got LiveRdr working with the new api calls for custom.
+
+
+04/12'21
+--------
+Projects:
+Repo: BcxbLib3 (b2102a)
+-- BcxbDataAccess
+-- BcxbLib_SAP
+-- [TextBcxbLib (not incl here)]
+Repo: BcxbXf (b2104a)
+-- BcxbXf 
+
+
 01/23'21
 #0121.01 - Changes for revamped DTO_TeamRoster where each batter
            and pitcher has his own lgMean.

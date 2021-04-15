@@ -22,6 +22,15 @@ namespace BCX.BCXCommon {
 
       //Locations
       //---------
+
+      public void SetFolders() {
+
+         // For this app, no action needed, folders are not used.
+         // But it's called by CGame so need this stub.
+
+      }
+
+
 #if IOS
       private static string appRoot; //For iOS, fill these from a ViewDidLoad.
       private static string docFolder;
