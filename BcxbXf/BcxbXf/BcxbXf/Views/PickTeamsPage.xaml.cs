@@ -10,22 +10,27 @@ using Xamarin.Forms.Xaml;
 
 using BCX.BCXCommon;
 using BcxbXf.Models;
+using BcxbXf.Views;
 using BcxbDataAccess;
 
+
 namespace BcxbXf {
+
    [XamlCompilation(XamlCompilationOptions.Compile)]
-   public partial class PickTeamsPage : ContentPage {
+   public partial class PickTeamsRealPage : ContentPage {
 
-
-      public BcxbDataAccess.CTeamRecord[] SelectedTeams { get; set; } = new BcxbDataAccess.CTeamRecord[2]; //<-- This is how selections are passed back to MainPage.
+      //public CTeamRecord[] SelectedTeams { get; set; } = new BcxbDataAccess.CTeamRecord[2]; //<-- This is how selections are passed back to MainPage.
 
       //public Action Dismiss;
 
+      private PickTeamsPrepPage fPickPrep { get; set; }
 
-      public PickTeamsPage() {
+
+      public PickTeamsRealPage(PickTeamsPrepPage pickPrep) {
       // ---------------------------------------------------------------
          InitializeComponent();
          BindingContext = new PickTeamsViewModel();
+         fPickPrep = pickPrep;
 
          pickerVis.SelectedIndexChanged +=
             (object sender, EventArgs e) => {
@@ -50,24 +55,24 @@ namespace BcxbXf {
       }
 
 
-      private void btnUse_Clicked(object sender, EventArgs e) {
+      private async void btnUse_Clicked(object sender, EventArgs e) {
          // -------------------------------------------------------
          //DisplayAlert("", "Use these teams", "OK");
-         SelectedTeams[0] = pickerVis.NewPickedTeam; //(CTeamRecord)pickerVis.SelectedItem; 
-         SelectedTeams[1] = pickerHome.NewPickedTeam;//(CTeamRecord)pickerHome.SelectedItem;
+         fPickPrep.SelectedTeams[0] = pickerVis.NewPickedTeam; //(CTeamRecord)pickerVis.SelectedItem; 
+         fPickPrep.SelectedTeams[1] = pickerHome.NewPickedTeam;//(CTeamRecord)pickerHome.SelectedItem;
 
          //Dismiss?.Invoke();
-         Navigation.PopModalAsync();
+         await Navigation.PopToRootAsync();
 
       }
 
 
       private void btnCanc_Clicked(object sender, EventArgs e) {
-      // -------------------------------------------------------
+         // -------------------------------------------------------
          //DisplayAlert("", "Cancel", "OK");
-         SelectedTeams[0] = new BcxbDataAccess.CTeamRecord();
-         SelectedTeams[1] = new BcxbDataAccess.CTeamRecord();
-         Navigation.PopModalAsync();
+         fPickPrep.SelectedTeams[0] = new BcxbDataAccess.CTeamRecord();
+         fPickPrep.SelectedTeams[1] = new BcxbDataAccess.CTeamRecord();
+         Navigation.PopAsync();
       }
 
       private void picker_IndexChanged(object sender, EventArgs e) {

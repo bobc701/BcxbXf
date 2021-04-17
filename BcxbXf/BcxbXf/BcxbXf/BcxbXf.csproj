@@ -101,6 +101,9 @@
     <Compile Update="Views\AvailablePage.xaml.cs">
       <DependentUpon>AvailablePage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\PickTeamsPrepPage.xaml.cs">
+      <DependentUpon>PickTeamsPrepPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -131,6 +134,9 @@
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PickTeamsPrepPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\PlaysPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

@@ -10,8 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace BcxbXf.Views {
    [XamlCompilation(XamlCompilationOptions.Compile)]
    public partial class PickTeamsCustPage : ContentPage {
-      public PickTeamsCustPage() {
+
+      public PickTeamsCustPage(PickTeamsPrepPage fPickPrep) {
+
          InitializeComponent();
+
       }
    }
 }

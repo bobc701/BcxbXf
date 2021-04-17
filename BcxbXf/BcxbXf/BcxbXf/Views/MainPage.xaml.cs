@@ -25,7 +25,9 @@ namespace BcxbXf
       //private GProfileDisk disk1 = null;
 
       //public string[] selectedTeams = new string[2];
-      private PickTeamsPage fPickTeams { get; set; } = null;
+      private PickTeamsRealPage fPickTeamsReal { get; set; } = null;
+      private PickTeamsCustPage fPickTeamsCust { get; set; } = null;
+      private PickTeamsPrepPage fPickTeamsPrep { get; set; } = null;
       private LineupCardPage fLineup { get; set; } = null;
       private PlaysPage fPlays { get; set; } = null;
       private OptionsPage fOptions { get; set; } = null;
@@ -78,19 +80,31 @@ namespace BcxbXf
 
             switch (this.returningFrom) {
 
+               case "PickTeamsCustPage":
+
+                  try {
+
+                  }
+                  catch (Exception ex) {
+                     DisplayAlert("Error", ex.Message, "Dismiss");
+                     Activity2.IsRunning = false;
+                     Activity2.IsVisible = false;
+                  }
+                  break;
+
                case "PickTeamsPage":
 
                   try {
-                     if (fPickTeams?.SelectedTeams[0].Year == 0) return;
-                     if (fPickTeams?.SelectedTeams[1].Year == 0) return;
+                     if (fPickTeamsPrep?.SelectedTeams[0].Year == 0) return;
+                     if (fPickTeamsPrep?.SelectedTeams[1].Year == 0) return;
 
-                     Debug.WriteLine("Vititing team: " + fPickTeams.SelectedTeams[0]);
-                     Debug.WriteLine("Home team: " + fPickTeams.SelectedTeams[1]);
+                     Debug.WriteLine("Vititing team: " + fPickTeamsPrep.SelectedTeams[0]);
+                     Debug.WriteLine("Home team: " + fPickTeamsPrep.SelectedTeams[1]);
 
                      txtResults.Text = "\nLoading player stats. Please wait..."; //#3000.02... note 'async delegate' above.
                      Activity2.IsVisible = true;
                      Activity2.IsRunning = true;
-                     await SetupNewGame(fPickTeams.SelectedTeams);
+                     await SetupNewGame(fPickTeamsPrep.SelectedTeams);
                      txtResults.Text =
                         "\nTap 'Mng' above to change starting lineups." +
                         "\nWhen done, tap 'Start' below." +
@@ -99,7 +113,7 @@ namespace BcxbXf
                      Activity2.IsRunning = false;
                      Activity2.IsVisible = false;
 
-                     fPickTeams = null;
+                     fPickTeamsReal = null;
 
                   }
                   catch (Exception ex) {
@@ -728,50 +742,10 @@ namespace BcxbXf
       // -----------------------------------------------------------------
          try {
 
-      // Do this here in order to determine Internet connectivity
-      // before opening the PickTeams page...
-            //List<string> leagueList = GFileAccess.GetLeagueList();
-            //List<string> teamList = new List<string>();
-
-            //foreach (string lg in leagueList) {
-            //   List<CTeamRecord> tlist = GFileAccess.GetTeamsInLeague(lg, out bool dh);
-            //   foreach (CTeamRecord t in tlist) {
-            //      teamList.Add(t.TeamTag);
-            //   }
-            //}
-
-
-            fPickTeams = new PickTeamsPage();
-
-            //#2002.01: Overhaul of return logic...
-            //fPickTeams.Dismiss += () =>
-            //{
-            //   try {
-            //      if ((fPickTeams?.SelectedTeams[0] ?? "") == "") return;
-            //      if ((fPickTeams?.SelectedTeams[1] ?? "") == "") return;
-
-            //      Debug.WriteLine("Vititing team: " + fPickTeams.SelectedTeams[0]);
-            //      Debug.WriteLine("Home team: " + fPickTeams.SelectedTeams[1]);
-
-            //      SetupNewGame(fPickTeams.SelectedTeams);
-            //      txtResults.Text =
-            //         "\nTap 'Mng' above to change starting lineups." +
-            //         "\nWhen done, tap 'Start' below." +
-            //         "\n\nMake sure phone is not in silent mode" +
-            //         "\nto hear audio play-by-play.";
-            //      fPickTeams = null;
-
-            //   }
-            //   catch (Exception ex) {
-            //      DisplayAlert("Error", ex.Message, "Dismiss");
-
-            //   }
-
-            //};
+            fPickTeamsPrep = new PickTeamsPrepPage();
 
             returningFrom = "PickTeamsPage";
-            //await Navigation.PushModalAsync(new PickTeamsPage(selectedTeams));
-            await Navigation.PushModalAsync(fPickTeams);
+            await Navigation.PushAsync(fPickTeamsPrep);
          }
          catch (Exception ex) {
             string msg = ex.Message +
@@ -827,7 +801,6 @@ namespace BcxbXf
          fPlays = new PlaysPage(mGame);
          returningFrom = "PlaysPage";
          await Navigation.PushAsync(fPlays);
-         var p = fPlays.Play;
       }
 
       async void mnuMngHome_OnClick(object sender, EventArgs e) {
