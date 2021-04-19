@@ -20,7 +20,7 @@
                 HorizontalOptions="FillAndExpand" 
                 ItemsSource="{Binding UserTeamList}"
                 ItemDisplayBinding="{ Binding City }"
-               FontSize="Small">
+                FontSize="Small">
             </Picker>
          </StackLayout>
          <StackLayout Orientation="Horizontal" Padding="0,10,0,0" Margin="0,10,0,0">
