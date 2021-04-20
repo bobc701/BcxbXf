@@ -42,8 +42,18 @@
              <Picker x:Name="pickerHome" Title="Pick team" TextColor="Black" SelectedIndexChanged="picker_IndexChanged" />
           </StackLayout>-->
 
-          <Button x:Name="btnUse" Text="New game with these teams" FontAttributes="Bold" Clicked="btnUse_Clicked" IsEnabled="False" />
-          <Button x:Name="btnCanc" Text="Cancel" Clicked="btnCanc_Clicked" FontAttributes="Bold" />
+          <Button 
+             x:Name="btnUse" 
+             Text="New game with these teams" 
+             FontAttributes="Bold" 
+             Clicked="btnUse_Clicked" IsEnabled="False"
+             Style="{StaticResource ButtonStyleMain}" />
+          <Button 
+             x:Name="btnCanc" 
+             Text="Cancel" 
+             Clicked="btnCanc_Clicked" 
+             FontAttributes="Bold" 
+             Style="{StaticResource ButtonStyleMain}" />
           <ActivityIndicator 
              x:Name="Activity1" 
              Color="Blue" 

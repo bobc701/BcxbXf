@@ -4,5 +4,18 @@
              x:Class="BcxbXf.App">
     <Application.Resources>
 
-    </Application.Resources>
+      <ResourceDictionary>
+         <Style x:Key="ButtonStyleMain" TargetType="Button">
+            <Setter Property="FontSize" Value="Medium" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="BackgroundColor" Value="BlanchedAlmond" />
+            <!--<Setter Property="WidthRequest" Value="40" />-->
+            <!--<Setter Property="HeightRequest" Value="40" />-->
+            <Setter Property="Border" Value="1" />
+            <Setter Property="Margin" Value="20,0,40,0" />
+            <Setter Property="Padding" Value="0" />
+         </Style>
+      </ResourceDictionary>
+
+   </Application.Resources>
 </Application>
