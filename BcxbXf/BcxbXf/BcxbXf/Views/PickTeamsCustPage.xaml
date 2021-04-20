@@ -2,14 +2,33 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BcxbXf.Views.PickTeamsCustPage">
+
     <ContentPage.Content>
+
       <StackLayout Padding="10,20,0,0" Margin="0,10,0,0">
          <Label Text="Pick Teams" FontAttributes="Bold" />
          <Label Text="Tap 'Visiting Team' and select a year &amp; team from the list. Then do the same for 'Home Team'. Finally, tap 'New game with these teams'." />
-         <!--<StackLayout Orientation="Horizontal" Padding="0,50,0,15">
-             <Label Text="Visiting team:" />
-             <Picker x:Name="pickerVis" Title="Pick team" TextColor="Black" SelectedIndexChanged="picker_IndexChanged" />
-          </StackLayout>-->
+
+         <Label 
+            Margin="0,10,0,0"
+            Text="Zeemerix custom team user name:" />
+         <Editor 
+            x:Name = "txtUserName" 
+            Margin="20,0,0,0" Style="Border:1px;"
+            Placeholder="Enter User Name" 
+            Text="{Binding UserName}"/>
+         <Button 
+            x:Name="btnGetTeams" 
+            BorderWidth="1"
+            BackgroundColor="BlanchedAlmond"
+            Margin="20,0,40,0"
+            Text="Get Teams" FontAttributes="Bold" Clicked="btnGetTeams_Clicked" 
+            IsEnabled="True" />
+         <Label 
+            x:Name ="lblUserStatus" 
+            Margin="20,0,0,0"
+            FontAttributes="Italic"
+            Text="{Binding UserStatus, Mode=TwoWay}"/>
 
          <StackLayout Orientation="Horizontal" Padding="0,10,0,0" Margin="0,10,0,0">
             <Label Text="Visiting team:" />
@@ -23,11 +42,12 @@
                 FontSize="Small">
             </Picker>
          </StackLayout>
+
          <StackLayout Orientation="Horizontal" Padding="0,10,0,0" Margin="0,10,0,0">
             <Label Text="Home team:" />
             <Picker 
                 x:Name ="pickerHome"
-                Margin="15,0,15,0"
+                Margin="15,0,15,0" 
                 Title="Select Year &amp; Team..."
                 HorizontalOptions="FillAndExpand" 
                 ItemsSource="{Binding UserTeamList}" 
@@ -41,12 +61,32 @@
              <Picker x:Name="pickerHome" Title="Pick team" TextColor="Black" SelectedIndexChanged="picker_IndexChanged" />
           </StackLayout>-->
 
-         <Button x:Name="btnUse" Text="New game with these teams" FontAttributes="Bold" Clicked="btnUse_Clicked" IsEnabled="False" />
-         <Button x:Name="btnCanc" Text="Cancel" Clicked="btnCanc_Clicked" FontAttributes="Bold" />
+         <Button 
+            x:Name="btnUse" 
+            Text="New game with these teams" 
+            FontAttributes="Bold" 
+            BorderWidth="1"
+            Padding="0,0,0,0"
+            Margin="20,0,40,0"
+            BackgroundColor="BlanchedAlmond"
+            Clicked="btnUse_Clicked" 
+            IsEnabled="False" />
+         <Button 
+            x:Name="btnCanc" 
+            Text="Cancel" 
+            BorderWidth="1"
+            Padding="0,0,0,0"
+            Margin="20,0,40,0"
+            BackgroundColor="BlanchedAlmond"
+            Clicked="btnCanc_Clicked" 
+            FontAttributes="Bold" />
          <ActivityIndicator 
              x:Name="Activity1" 
              Color="Blue" 
              IsVisible="False" IsEnabled="True" IsRunning="False" />
+
       </StackLayout>
+
    </ContentPage.Content>
+
 </ContentPage>

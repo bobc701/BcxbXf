@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -17,10 +19,12 @@ using BcxbDataAccess;
 namespace BcxbXf.Views {
 
    [XamlCompilation(XamlCompilationOptions.Compile)]
-   public partial class PickTeamsCustPage : ContentPage {
+   public partial class PickTeamsCustPage : ContentPage, INotifyPropertyChanged {
 
       private PickTeamsPrepPage fPickPrep { get; set; }
       public List<CTeamRecord> UserTeamList { get; set; }
+      public string UserName { get; set; } = "";
+      public string UserStatus { get; set; } = "";
 
       public PickTeamsCustPage(PickTeamsPrepPage pickPrep) {
 
@@ -34,6 +38,7 @@ namespace BcxbXf.Views {
          BindingContext = this;
 
          fPickPrep = pickPrep;
+
 
          pickerVis.SelectedIndexChanged +=
             (object sender, EventArgs e) => {
@@ -54,8 +59,14 @@ namespace BcxbXf.Views {
          //pickerHome.ParentPage = this;
 
       }
+         
 
+      public event PropertyChangedEventHandler PropertyChanged;
+      protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) {
+         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+      }
 
+      
       private async void btnUse_Clicked(object sender, EventArgs e) {
          // -------------------------------------------------------
          fPickPrep.SelectedTeams[0] = (CTeamRecord)pickerVis.SelectedItem;
@@ -111,6 +122,11 @@ namespace BcxbXf.Views {
 
       }
 
+      private void btnGetTeams_Clicked(object sender, EventArgs e) {
+
+         this.UserStatus = $"5 teams found for {UserName}";
+         OnPropertyChanged("UserStatus");
+      }
    }
 
 }
