@@ -14,7 +14,7 @@
             Text="Zeemerix custom team user name:" />
          <Editor 
             x:Name = "txtUserName" 
-            Margin="20,0,0,0" Style="Border:1px;"
+            Margin="20,0,0,0" 
             Placeholder="Enter User Name" 
             Text="{Binding UserName}"/>
          <Button 
@@ -74,11 +74,11 @@
          <Button 
             x:Name="btnCanc" 
             Text="Cancel" 
+            Command="{Binding CancelCmd}"
             BorderWidth="1"
             Padding="0,0,0,0"
             Margin="20,0,40,0"
             BackgroundColor="BlanchedAlmond"
-            Clicked="btnCanc_Clicked" 
             FontAttributes="Bold" />
          <ActivityIndicator 
              x:Name="Activity1" 

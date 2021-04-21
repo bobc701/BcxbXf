@@ -26,15 +26,13 @@ namespace BcxbXf.Views {
       public string UserName { get; set; } = "";
       public string UserStatus { get; set; } = "";
 
+   // ------------ Constructor -----------------------------
       public PickTeamsCustPage(PickTeamsPrepPage pickPrep) {
 
          InitializeComponent();
 
-         UserTeamList = new() {
-            new CTeamRecord { City = "Sluggers", LineName = "Slg", NickName = "" },
-            new CTeamRecord { City = "Rocket Man", LineName = "RMn", NickName = "" },
-            new CTeamRecord { City = "Dodgers", LineName = "LAD", NickName = "" }
-         };
+         CancelCmd = new Command(OnCancel);
+
          BindingContext = this;
 
          fPickPrep = pickPrep;
@@ -61,10 +59,11 @@ namespace BcxbXf.Views {
       }
          
 
-      public event PropertyChangedEventHandler PropertyChanged;
-      protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) {
-         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-      }
+      //public event PropertyChangedEventHandler PropertyChanged;
+
+      //protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) {
+      //   PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+      //}
 
       
       private async void btnUse_Clicked(object sender, EventArgs e) {
@@ -77,13 +76,24 @@ namespace BcxbXf.Views {
       }
 
 
-      private void btnCanc_Clicked(object sender, EventArgs e) {
-         // -------------------------------------------------------
-         //DisplayAlert("", "Cancel", "OK");
-         fPickPrep.SelectedTeams[0] = new BcxbDataAccess.CTeamRecord();
-         fPickPrep.SelectedTeams[1] = new BcxbDataAccess.CTeamRecord();
-         Navigation.PopAsync();
+      public Command CancelCmd { get; private set; }
+
+      async void OnCancel() {
+
+         fPickPrep.SelectedTeams[0] = (CTeamRecord)pickerVis.SelectedItem;
+         fPickPrep.SelectedTeams[1] = (CTeamRecord)pickerHome.SelectedItem;
+
+         await Navigation.PopToRootAsync();
+
       }
+
+      //private void btnCanc_Clicked(object sender, EventArgs e) {
+      //   // -------------------------------------------------------
+      //   //DisplayAlert("", "Cancel", "OK");
+      //   fPickPrep.SelectedTeams[0] = new BcxbDataAccess.CTeamRecord();
+      //   fPickPrep.SelectedTeams[1] = new BcxbDataAccess.CTeamRecord();
+      //   Navigation.PopAsync();
+      //}
 
       //private void picker_IndexChanged(object sender, EventArgs e) {
       //   // ------------------------------------------------------------------
@@ -124,9 +134,16 @@ namespace BcxbXf.Views {
 
       private void btnGetTeams_Clicked(object sender, EventArgs e) {
 
-         this.UserStatus = $"5 teams found for {UserName}";
+         UserTeamList = new() {
+            new CTeamRecord { City = "Sluggers", LineName = "Slg", NickName = "" },
+            new CTeamRecord { City = "Rocket Man", LineName = "RMn", NickName = "" },
+            new CTeamRecord { City = "Dodgers", LineName = "LAD", NickName = "" }
+         };
+         OnPropertyChanged("UserTeamList");
+
+         this.UserStatus = $"{UserTeamList.Count} teams found for {UserName}";
          OnPropertyChanged("UserStatus");
-      }
+     }
    }
 
 }
