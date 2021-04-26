@@ -14,7 +14,7 @@ using System.Linq;
 
 namespace BcxbXf.Models {
 
-   class PickTeamsViewModel : INotifyPropertyChanged {//ffgg
+   class PickTeamsViewModel : INotifyPropertyChanged {
 
       public event PropertyChangedEventHandler PropertyChanged;
       private ObservableCollection<LeftComponent> twoSource;

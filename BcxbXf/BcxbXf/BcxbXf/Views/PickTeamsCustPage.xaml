@@ -11,24 +11,28 @@
 
          <Label 
             Margin="0,10,0,0"
-            Text="Zeemerix custom team user name:" />
-         <Editor 
+            Text="Zeemerix custom team user name:" 
+         />
+         <Entry 
             x:Name = "txtUserName" 
             Margin="20,0,0,0" 
             Placeholder="Enter User Name" 
-            Text="{Binding UserName}"/>
+            Text="{Binding UserName}"
+         />
+
          <Button 
             x:Name="btnGetTeams" 
-            BorderWidth="1"
-            BackgroundColor="BlanchedAlmond"
-            Margin="20,0,40,0"
+            Style="{StaticResource ButtonStyleMain}"
             Text="Get Teams" FontAttributes="Bold" Clicked="btnGetTeams_Clicked" 
-            IsEnabled="True" />
+            Command="{Binding GetTeamsCmd}"
+            IsEnabled="True" 
+         />
          <Label 
             x:Name ="lblUserStatus" 
             Margin="20,0,0,0"
             FontAttributes="Italic"
-            Text="{Binding UserStatus, Mode=TwoWay}"/>
+            Text="{Binding UserStatus, Mode=TwoWay}"
+         />
 
          <StackLayout Orientation="Horizontal" Padding="0,10,0,0" Margin="0,10,0,0">
             <Label Text="Visiting team:" />
@@ -39,7 +43,8 @@
                 HorizontalOptions="FillAndExpand" 
                 ItemsSource="{Binding UserTeamList}"
                 ItemDisplayBinding="{ Binding City }"
-                FontSize="Small">
+                FontSize="Small"
+                SelectedItem="{Binding PickerVis_SelectedItem}" >
             </Picker>
          </StackLayout>
 
@@ -52,7 +57,8 @@
                 HorizontalOptions="FillAndExpand" 
                 ItemsSource="{Binding UserTeamList}" 
                 ItemDisplayBinding="{ Binding City }"
-                FontSize="Small">
+                FontSize="Small"
+                SelectedItem="{Binding PickerHome_SelectedItem}" >
             </Picker>
          </StackLayout>
 
@@ -64,26 +70,21 @@
          <Button 
             x:Name="btnUse" 
             Text="New game with these teams" 
-            FontAttributes="Bold" 
-            BorderWidth="1"
-            Padding="0,0,0,0"
-            Margin="20,0,40,0"
-            BackgroundColor="BlanchedAlmond"
+            Style="{StaticResource ButtonStyleMain}"
             Clicked="btnUse_Clicked" 
             IsEnabled="False" />
          <Button 
             x:Name="btnCanc" 
             Text="Cancel" 
-            Command="{Binding CancelCmd}"
-            BorderWidth="1"
-            Padding="0,0,0,0"
-            Margin="20,0,40,0"
+            Style="{StaticResource ButtonStyleMain}"
             BackgroundColor="BlanchedAlmond"
-            FontAttributes="Bold" />
+            Command="{Binding CancelCmd}" />
          <ActivityIndicator 
              x:Name="Activity1" 
              Color="Blue" 
-             IsVisible="False" IsEnabled="True" IsRunning="False" />
+             IsVisible="{Binding Activity1_IsVisible}" 
+             IsRunning="{Binding Activity1_IsRunning}"
+         />
 
       </StackLayout>
 
