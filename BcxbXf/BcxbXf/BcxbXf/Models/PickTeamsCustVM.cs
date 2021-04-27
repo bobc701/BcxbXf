@@ -45,6 +45,9 @@ namespace BcxbXf.Models {
 
       public bool Activity1_IsRunning { get; set; }
       public bool Activity1_IsVisible { get; set; }
+      public bool PickerVis_IsEnabled { get; set; }
+      public bool PickerHome_IsEnabled { get; set; }
+
 
 
       CTeamRecord selectedTeam_Vis;
@@ -151,14 +154,20 @@ namespace BcxbXf.Models {
       void OnExecute_GetTeams() {
 
          UserTeamList = new() {
-            new CTeamRecord { City = "Sluggers", LineName = "Slg", NickName = "" },
-            new CTeamRecord { City = "Rocket Man", LineName = "RMn", NickName = "" },
-            new CTeamRecord { City = "Dodgers", LineName = "LAD", NickName = "" }
+            new CTeamRecord { City = "Sluggers", LineName = "Slg", NickName = "", Year = 0 },
+            new CTeamRecord { City = "Rocket Man", LineName = "RMn", NickName = "", Year = 0 },
+            new CTeamRecord { City = "Dodgers", LineName = "LAD", NickName = "", Year = 0 }
          };
          OnPropertyChanged("UserTeamList");
 
-         this.UserStatus = $"{UserTeamList.Count} teams found for {UserName}";
+         int num = UserTeamList.Count;
+         UserStatus = 
+            $"{num switch {0 => "No", _ => num.ToString()}} completed teams found for {UserName}";
          OnPropertyChanged("UserStatus");
+
+         bool ok = (UserTeamList.Count > 0);
+         PickerVis_IsEnabled = ok; OnPropertyChanged(nameof(PickerVis_IsEnabled));
+         PickerHome_IsEnabled = ok; OnPropertyChanged(nameof(PickerHome_IsEnabled));
 
       }
 

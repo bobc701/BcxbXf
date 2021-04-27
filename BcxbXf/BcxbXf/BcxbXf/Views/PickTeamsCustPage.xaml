@@ -44,7 +44,8 @@
                 ItemsSource="{Binding UserTeamList}"
                 ItemDisplayBinding="{ Binding City }"
                 FontSize="Small"
-                SelectedItem="{Binding SelectedTeam_Vis}" >
+                SelectedItem="{Binding SelectedTeam_Vis}" 
+                IsEnabled="{Binding PickerHome_IsEnabled}" >
             </Picker>
          </StackLayout>
 
@@ -56,9 +57,10 @@
                 Title="Select Year &amp; Team..."
                 HorizontalOptions="FillAndExpand" 
                 ItemsSource="{Binding UserTeamList}" 
-                ItemDisplayBinding="{ Binding City }"
+                ItemDisplayBinding="{ Binding City }" 
                 FontSize="Small"
-                SelectedItem="{Binding SelectedTeam_Home}" >
+                SelectedItem="{Binding SelectedTeam_Home}" 
+                IsEnabled="{Binding PickerHome_IsEnabled}">
             </Picker>
          </StackLayout>
 
