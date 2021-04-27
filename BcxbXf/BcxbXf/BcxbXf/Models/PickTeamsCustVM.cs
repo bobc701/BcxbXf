@@ -29,7 +29,7 @@ namespace BcxbXf.Models {
          get => userName;
          set {
             userName = value;
-            OnUserNameChanged();
+            OnExecute_UserNameChanged();
          }
       }
 
@@ -37,13 +37,34 @@ namespace BcxbXf.Models {
 
       public Command CancelCmd { get; private set; }
       public Command GetTeamsCmd { get; private set; }
+      public Command UseCmd { get; private set; }
+   
       public Command UserNameChangedCmd { get; private set; }
+      public Command SelectionChangedVisCmd { get; set; }
+      public Command SelectionChangedHomeCmd { get; set; }
 
-      public bool Activity1_IsRunning;
-      public bool Activity1_IsVisible;
+      public bool Activity1_IsRunning { get; set; }
+      public bool Activity1_IsVisible { get; set; }
 
-      public CTeamRecord pickerVis_SelectedItem;
-      public CTeamRecord pickerHome_SelectedItem;
+
+      CTeamRecord selectedTeam_Vis;
+      public CTeamRecord SelectedTeam_Vis {
+         get => selectedTeam_Vis;
+         set {
+            selectedTeam_Vis = value;
+            OnExecute_SelectionChanged_Vis();
+         }
+      }
+
+      CTeamRecord selectedTeam_Home;
+      public CTeamRecord SelectedTeam_Home {
+         get => selectedTeam_Home;
+         set {
+            selectedTeam_Home = value;
+            OnExecute_SelectionChanged_Home();
+         }
+      }
+
 
       // Look at this (unrelated) code. Interesting syntax.
       // First, note that it is a property. 
@@ -54,28 +75,19 @@ namespace BcxbXf.Models {
       // Constructor ---------
       public PickTeamsCustVM(PickTeamsPrepPage pickPrep) {
 
-         CancelCmd = new Command(OnCancel);
-         GetTeamsCmd = new Command(OnGetTeams, OnCanExecuteGetTeams);
-         UserNameChangedCmd = new Command(OnUserNameChanged);
+         CancelCmd = new Command(OnExecute_Cancel);
+         GetTeamsCmd = new Command(OnExecute_GetTeams, OnCanExecute_GetTeams);
+         UseCmd = new Command(OnExecute_Use, OnCanExecute_Use);
 
+         UserNameChangedCmd = new Command(OnExecute_UserNameChanged);
+         SelectionChangedVisCmd = new Command(OnExecute_SelectionChanged_Vis);
+         SelectionChangedHomeCmd = new Command(OnExecute_SelectionChanged_Home);
 
          BindingContext = this;
 
          fPickPrep = pickPrep;
 
 
-         pickerVis.SelectedIndexChanged +=
-            (object sender, EventArgs e) => {
-               btnUse.IsEnabled =
-               pickerVis.SelectedItem is not null && pickerHome.SelectedItem is not null;
-            };
-
-         pickerHome.SelectedIndexChanged +=
-            (object sender, EventArgs e) => {
-               btnUse.IsEnabled =
-               pickerVis.SelectedItem is not null && pickerHome.SelectedItem is not null;
-
-            };
 
          Debug.WriteLine($"--------- TeamCache.Count in PickTeamsPage constructor: {DataAccess.TeamCache.Count}");
 
@@ -91,24 +103,43 @@ namespace BcxbXf.Models {
       //   PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
       //}
 
+      void OnExecute_SelectionChanged_Vis() {
+      // Handles SelectionChanged_Vis's event
 
-      private async void btnUse_Clicked(object sender, EventArgs e) {
-         // -------------------------------------------------------
+         UseCmd.ChangeCanExecute();
+
+      }
+
+
+      void OnExecute_SelectionChanged_Home() {
+      // Handles SelectionChanged_Home's event
+
+         UseCmd.ChangeCanExecute();
+
+      }
+
+
+      async void OnExecute_Use() { 
+      // Handles the UseCmd's Execute event...
+
          //fPickPrep.SelectedTeams[0] = (CTeamRecord)pickerVis.SelectedItem;
          //fPickPrep.SelectedTeams[1] = (CTeamRecord)pickerHome.SelectedItem;
-         fPickPrep.SelectedTeams[0] = pickerVis_SelectedItem; 
-         fPickPrep.SelectedTeams[1] = pickerHome_SelectedItem;
-         OnPropertyChanged("pickerVis_SelectedItem");
-         OnPropertyChanged("pickerHome_SelectedItem");
+         fPickPrep.SelectedTeams[0] = selectedTeam_Vis; 
+         fPickPrep.SelectedTeams[1] = selectedTeam_Home;
 
          //await Navigation.PopToRootAsync();
          await Application.Current.MainPage.Navigation.PopToRootAsync();
 
       }
 
+      bool OnCanExecute_Use() {
+         // Handels the UseCmd's CanExecute event
+         return selectedTeam_Vis.City is not null && selectedTeam_Home.City is not null;
 
+      }
+   
 
-      async void OnCancel() {
+      async void OnExecute_Cancel() {
 
          fPickPrep.SelectedTeams[0] = new BcxbDataAccess.CTeamRecord();
          fPickPrep.SelectedTeams[1] = new BcxbDataAccess.CTeamRecord();
@@ -117,7 +148,7 @@ namespace BcxbXf.Models {
 
       }
 
-      void OnGetTeams() {
+      void OnExecute_GetTeams() {
 
          UserTeamList = new() {
             new CTeamRecord { City = "Sluggers", LineName = "Slg", NickName = "" },
@@ -131,11 +162,17 @@ namespace BcxbXf.Models {
 
       }
 
-      void OnUserNameChanged() => GetTeamsCmd.ChangeCanExecute();
 
-      bool OnCanExecuteGetTeams() => UserName != "";
+      bool OnCanExecute_GetTeams() => UserName != "";
 
 
+      void OnExecute_UserNameChanged() => GetTeamsCmd.ChangeCanExecute();
+
+
+      void OnSelectionChanged() {
+
+         
+      }
 
       //private void btnCanc_Clicked(object sender, EventArgs e) {
       //   // -------------------------------------------------------

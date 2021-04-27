@@ -23,7 +23,7 @@
          <Button 
             x:Name="btnGetTeams" 
             Style="{StaticResource ButtonStyleMain}"
-            Text="Get Teams" FontAttributes="Bold" Clicked="btnGetTeams_Clicked" 
+            Text="Get Teams" FontAttributes="Bold" 
             Command="{Binding GetTeamsCmd}"
             IsEnabled="True" 
          />
@@ -44,7 +44,7 @@
                 ItemsSource="{Binding UserTeamList}"
                 ItemDisplayBinding="{ Binding City }"
                 FontSize="Small"
-                SelectedItem="{Binding PickerVis_SelectedItem}" >
+                SelectedItem="{Binding SelectedTeam_Vis}" >
             </Picker>
          </StackLayout>
 
@@ -58,7 +58,7 @@
                 ItemsSource="{Binding UserTeamList}" 
                 ItemDisplayBinding="{ Binding City }"
                 FontSize="Small"
-                SelectedItem="{Binding PickerHome_SelectedItem}" >
+                SelectedItem="{Binding SelectedTeam_Home}" >
             </Picker>
          </StackLayout>
 
@@ -71,14 +71,16 @@
             x:Name="btnUse" 
             Text="New game with these teams" 
             Style="{StaticResource ButtonStyleMain}"
-            Clicked="btnUse_Clicked" 
-            IsEnabled="False" />
+            IsEnabled="False" 
+            Command="{Binding UseCmd}"
+         />
          <Button 
             x:Name="btnCanc" 
             Text="Cancel" 
             Style="{StaticResource ButtonStyleMain}"
             BackgroundColor="BlanchedAlmond"
-            Command="{Binding CancelCmd}" />
+            Command="{Binding CancelCmd}"
+         />
          <ActivityIndicator 
              x:Name="Activity1" 
              Color="Blue" 

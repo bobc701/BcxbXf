@@ -26,7 +26,6 @@ namespace BcxbXf.Views {
 
          InitializeComponent();
          BindingContext = new PickTeamsCustVM(pickPrep);
-         Navigation.PopAsync();
       }
 
    }
