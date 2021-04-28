@@ -54,7 +54,8 @@ namespace BcxbXf.Models {
       public CTeamRecord SelectedTeam_Vis {
          get => selectedTeam_Vis;
          set {
-            selectedTeam_Vis = value;
+            //selectedTeam_Vis = value;
+            SetProperty(ref selectedTeam_Vis, value);
             OnExecute_SelectionChanged_Vis();
          }
       }
@@ -63,7 +64,8 @@ namespace BcxbXf.Models {
       public CTeamRecord SelectedTeam_Home {
          get => selectedTeam_Home;
          set {
-            selectedTeam_Home = value;
+            //selectedTeam_Home = value;
+            SetProperty(ref selectedTeam_Home, value);
             OnExecute_SelectionChanged_Home();
          }
       }
@@ -89,7 +91,7 @@ namespace BcxbXf.Models {
          BindingContext = this;
 
          fPickPrep = pickPrep;
-
+         
 
 
          Debug.WriteLine($"--------- TeamCache.Count in PickTeamsPage constructor: {DataAccess.TeamCache.Count}");
@@ -151,13 +153,18 @@ namespace BcxbXf.Models {
 
       }
 
-      void OnExecute_GetTeams() {
+      async void OnExecute_GetTeams() {
 
-         UserTeamList = new() {
-            new CTeamRecord { City = "Sluggers", LineName = "Slg", NickName = "", Year = 0 },
-            new CTeamRecord { City = "Rocket Man", LineName = "RMn", NickName = "", Year = 0 },
-            new CTeamRecord { City = "Dodgers", LineName = "LAD", NickName = "", Year = 0 }
-         };
+         //UserTeamList = new() {
+         //   new CTeamRecord { City = "Sluggers", LineName = "Slg", NickName = "", Year = 0 },
+         //   new CTeamRecord { City = "Rocket Man", LineName = "RMn", NickName = "", Year = 0 },
+         //   new CTeamRecord { City = "Dodgers", LineName = "LAD", NickName = "", Year = 0 }
+         //};
+
+         StartActivity();
+         UserTeamList = await DataAccess.GetTeamListForYearFromCache(yr);
+         StopActivity();
+
          OnPropertyChanged("UserTeamList");
 
          int num = UserTeamList.Count;
@@ -245,6 +252,18 @@ namespace BcxbXf.Models {
 
       //   //OnUserNameChanged();
 
+      bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null) {
+         // I got this from...
+         // https://docs.microsoft.com/en-us/xamarin/xamarin-forms/app-fundamentals/data-binding/commanding
+
+         if (Object.Equals(storage, value))
+            return false;
+
+         storage = value;
+         OnPropertyChanged(propertyName);
+         return true;
+
+      }
    }
 
 }
