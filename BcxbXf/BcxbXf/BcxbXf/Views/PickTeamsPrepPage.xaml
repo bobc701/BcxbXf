@@ -3,12 +3,54 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BcxbXf.Views.PickTeamsPrepPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-         <Button x:Name="btnRealTeams" Text="Real Teams" Clicked="btnRealTeams_Clicked"/>
-         <Button x:Name="btnCustomTeams" Text="Custom Teams" Clicked="btnCustomTeams_Clicked"/>
-      </StackLayout>
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+            <Label
+               Grid.Row="0"
+               HeightRequest="30"
+            />
+            <Label 
+                Grid.Row="1"
+                Text="Use Real MLB Teams"
+                FontAttributes="Bold"
+                HorizontalOptions="CenterAndExpand" 
+            />
+            <Label 
+                Grid.Row="2"
+                Text="Use any NL or AL teams from 1901 to 2020"
+                HorizontalOptions="Center" 
+            />
+            <Button 
+                Grid.Row="3"
+                x:Name="btnRealTeams" 
+                Text="Use MLB Teams" 
+                Clicked="btnRealTeams_Clicked"
+                Style="{StaticResource ButtonStyleMain}" 
+            />
+            <Label
+                  Grid.Row="4"
+                  HeightRequest="30"
+               />
+            <Label 
+                Grid.Row="5"
+                Text="Use Cutom Teams"
+                FontAttributes="Bold"
+                HorizontalOptions="CenterAndExpand" 
+             />
+             <Label 
+                Grid.Row="6"
+                Text=
+                   "Use custom teams made up of actual MLB players from any mix of years and MLB teams. Use Zeemerix Custom Team Builder at: www.zeemerix.com/teambldr."
+                LineBreakMode="WordWrap"
+                Padding="16,0,16,0"
+                HorizontalOptions="Center" 
+             />
+             <Button 
+                Grid.Row="7"
+                x:Name="btnCustomTeams" 
+                Text="Use Custom Teams" 
+                Clicked="btnCustomTeams_Clicked"
+                Style="{StaticResource ButtonStyleMain}" 
+             />
+      </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -85,7 +85,7 @@ namespace BcxbXf
                   try {
                      for (int i = 0; i <= 1; i++) {
                         if (fPickTeamsPrep?.SelectedTeams[i].Year == 0 &&
-                            fPickTeamsPrep?.SelectedTeams[1].UserTeamID == 0) return;
+                            fPickTeamsPrep?.SelectedTeams[1].UserTeamID == 0) return; //User did not pick
                      }
 
                      Debug.WriteLine("Vititing team: " + fPickTeamsPrep.SelectedTeams[0]);
