@@ -80,23 +80,13 @@ namespace BcxbXf
 
             switch (this.returningFrom) {
 
-               case "PickTeamsCustPage":
-
-                  try {
-
-                  }
-                  catch (Exception ex) {
-                     DisplayAlert("Error", ex.Message, "Dismiss");
-                     Activity2.IsRunning = false;
-                     Activity2.IsVisible = false;
-                  }
-                  break;
-
                case "PickTeamsPage":
 
                   try {
-                     if (fPickTeamsPrep?.SelectedTeams[0].Year == 0) return;
-                     if (fPickTeamsPrep?.SelectedTeams[1].Year == 0) return;
+                     for (int i = 0; i <= 1; i++) {
+                        if (fPickTeamsPrep?.SelectedTeams[i].Year == 0 &&
+                            fPickTeamsPrep?.SelectedTeams[1].UserTeamID == 0) return;
+                     }
 
                      Debug.WriteLine("Vititing team: " + fPickTeamsPrep.SelectedTeams[0]);
                      Debug.WriteLine("Home team: " + fPickTeamsPrep.SelectedTeams[1]);
@@ -210,7 +200,8 @@ namespace BcxbXf
 
          //mGame.UsingDh = selectedTeams[1].UsesDh; 
 
-         if ((newTeams[0].Year == 0 ) || (newTeams[1].Year == 0)) return; //User did not pick.       
+         if ((newTeams[0].Year == 0 && newTeams[0].UserTeamID == 0) ||       
+             (newTeams[1].Year == 0 && newTeams[1].UserTeamID == 0)) return; //User did not pick. 
 
          // User has selected 2 teams for new game.
          // So set up the two CTeam objects for the 2 teams...
@@ -222,11 +213,15 @@ namespace BcxbXf
          mGame.PlayState = PLAY_STATE.START;
 
          try {
-            string tm = newTeams[1].TeamTag.Trim(); 
-            int yr = newTeams[1].Year; 
-            //DTO_TeamRoster ros = await GFileAccess.GetTeamRosterOnLine(tm, yr);
-            DTO_TeamRoster ros = await DataAccess.GetTeamRosterOnLine(tm, yr); //#b2102c
-            if (ros == null) throw new Exception($"Error: Could not load data for team, {newTeams[1]}");
+            string tm = newTeams[1].TeamTag.Trim();
+            int yr = newTeams[1].Year;
+            int teamID = newTeams[1].UserTeamID; //For custom teams
+            DTO_TeamRoster ros;
+            switch (teamID) {
+               case 0:  ros = await DataAccess.GetTeamRosterOnLine(tm, yr); break;
+               default: ros = await DataAccess.GetCustTeamRoster(teamID); break;
+            }  
+            if (ros == null) throw new Exception($"Error: Could not load data for team, {newTeams[1].NickName}");
             mGame.t[1].ReadTeam(ros, 1);
          }
          catch (Exception ex) {
@@ -235,9 +230,14 @@ namespace BcxbXf
 
          try {
             string tm = newTeams[0].TeamTag.Trim(); 
-            int yr = newTeams[0].Year; 
-            DTO_TeamRoster ros = await DataAccess.GetTeamRosterOnLine(tm, yr);
-            if (ros == null) throw new Exception($"Error: Could not load data for team, {newTeams[0]}");
+            int yr = newTeams[0].Year;
+            int teamID = newTeams[0].UserTeamID; //For custom teams
+            DTO_TeamRoster ros;
+            switch (teamID) {
+               case 0: ros = await DataAccess.GetTeamRosterOnLine(tm, yr); break;
+               default: ros = await DataAccess.GetCustTeamRoster(teamID); break;
+            }
+            if (ros == null) throw new Exception($"Error: Could not load data for team, {newTeams[0].NickName}");
             mGame.t[0].ReadTeam(ros, 0);
          }
          catch (Exception ex) {

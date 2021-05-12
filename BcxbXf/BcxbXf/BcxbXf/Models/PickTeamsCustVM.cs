@@ -162,7 +162,7 @@ namespace BcxbXf.Models {
          //};
 
          StartActivity();
-         UserTeamList = await DataAccess.GetTeamListForYearFromCache(yr);
+         UserTeamList = await DataAccess.GetCustTeamListForUser(userName);
          StopActivity();
 
          OnPropertyChanged("UserTeamList");
