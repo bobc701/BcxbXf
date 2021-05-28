@@ -7,78 +7,94 @@
 
       <StackLayout Padding="10,20,0,0" Margin="0,10,0,0">
          <Label Text="Pick Teams" FontAttributes="Bold" />
-         <Label Text="Tap 'Visiting Team' and select a year &amp; team from the list. Then do the same for 'Home Team'. Finally, tap 'New game with these teams'." />
+         <Label Text="First, enter the user name that you created in zeemerix.com/teambldr. Then tap 'Get Teams'..." />
 
-         <Label 
-            Margin="0,10,0,0"
-            Text="Zeemerix custom team user name:" 
-         />
-         <Entry 
+         <StackLayout Orientation="Horizontal" Margin="20,10,0,0">
+
+            <Label 
+            Text="User name:" 
+            />
+
+            <Entry 
             x:Name = "txtUserName" 
             Margin="20,0,0,0" 
             Placeholder="Enter User Name" 
             Text="{Binding UserName}"
          />
+         </StackLayout>
 
          <Button 
             x:Name="btnGetTeams" 
             Style="{StaticResource ButtonStyleMain}"
-            Text="Get Teams" FontAttributes="Bold" 
+            Text="Get Teams" 
+            FontAttributes="None" 
             Command="{Binding GetTeamsCmd}"
             IsEnabled="True" 
          />
          <Label 
             x:Name ="lblUserStatus" 
+            HorizontalOptions="Center"
             Margin="20,0,0,0"
-            FontAttributes="Italic"
+            FontAttributes="Bold"
             Text="{Binding UserStatus, Mode=TwoWay}"
          />
 
-         <StackLayout Orientation="Horizontal" Padding="0,10,0,0" Margin="0,10,0,0">
-            <Label Text="Visiting team:" />
-            <Picker 
-                x:Name ="pickerVis"
-                Margin="15,0,15,0"
-                Title="Select Year &amp; Team..."
-                HorizontalOptions="FillAndExpand" 
-                ItemsSource="{Binding UserTeamList}"
-                ItemDisplayBinding="{ Binding City }"
-                FontSize="Small"
-                SelectedItem="{Binding SelectedTeam_Vis}" 
-                IsEnabled="{Binding PickerHome_IsEnabled}" >
-            </Picker>
-         </StackLayout>
+         <StackLayout x:Name="stack1" IsVisible="{Binding PickerHome_IsEnabled}">
 
-         <StackLayout Orientation="Horizontal" Padding="0,10,0,0" Margin="0,10,0,0">
-            <Label Text="Home team:" />
-            <Picker 
-                x:Name ="pickerHome"
-                Margin="15,0,15,0" 
-                Title="Select Year &amp; Team..."
-                HorizontalOptions="FillAndExpand" 
-                ItemsSource="{Binding UserTeamList}" 
-                ItemDisplayBinding="{ Binding City }" 
-                FontSize="Small"
-                SelectedItem="{Binding SelectedTeam_Home}" 
-                IsEnabled="{Binding PickerHome_IsEnabled}">
-            </Picker>
-         </StackLayout>
+            <Label 
+               Padding="0,20,0,0"
+               Text="Now, tap 'Visiting Team' and select a year &amp; team from the list. Then do the same for 'Home Team'. Finally, tap 'New game with these teams'."
+            />
 
-         <!--<StackLayout Orientation="Horizontal" Padding="0,0,0,15">
+            <StackLayout Orientation="Horizontal" Padding="0,10,0,0" Margin="0,10,0,0">
+               <Label Text="Visiting team:" />
+               <Picker 
+                   x:Name ="pickerVis"
+                   Margin="15,0,15,0"
+                   Title="Select Year &amp; Team..."
+                   HorizontalOptions="FillAndExpand" 
+                   ItemsSource="{Binding UserTeamList}"
+                   ItemDisplayBinding="{ Binding City }"
+                   FontSize="Small"
+                   SelectedItem="{Binding SelectedTeam_Vis}" 
+                   IsEnabled="{Binding PickerHome_IsEnabled}" >
+               </Picker>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" Padding="0,0,0,0" Margin="0,10,0,0">
+               <Label Text="Home team:" />
+               <Picker 
+                   x:Name ="pickerHome"
+                   Margin="15,0,15,0" 
+                   Title="Select Year &amp; Team..."
+                   HorizontalOptions="FillAndExpand" 
+                   ItemsSource="{Binding UserTeamList}" 
+                   ItemDisplayBinding="{ Binding City }" 
+                   FontSize="Small"
+                   SelectedItem="{Binding SelectedTeam_Home}" 
+                   IsEnabled="{Binding PickerHome_IsEnabled}">
+               </Picker>
+            </StackLayout>
+
+            <!--<StackLayout Orientation="Horizontal" Padding="0,0,0,15">
              <Label Text="Home team:" />
              <Picker x:Name="pickerHome" Title="Pick team" TextColor="Black" SelectedIndexChanged="picker_IndexChanged" />
           </StackLayout>-->
 
-         <Button 
+            <Button 
             x:Name="btnUse" 
             Text="New game with these teams" 
             Style="{StaticResource ButtonStyleMain}"
             IsEnabled="False" 
             Command="{Binding UseCmd}"
          />
+
+         </StackLayout>
+
          <Button 
             x:Name="btnCanc" 
-            Text="Cancel" 
+            Text="Cancel"
+            Margin="20,15,30,0"
             Style="{StaticResource ButtonStyleMain}"
             BackgroundColor="BlanchedAlmond"
             Command="{Binding CancelCmd}"
