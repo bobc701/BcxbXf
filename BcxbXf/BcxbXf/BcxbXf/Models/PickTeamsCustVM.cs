@@ -209,15 +209,15 @@ namespace BcxbXf.Models {
 
       public void StartActivity() { // #3000.01
                                  
-         Activity1_IsVisible = true; OnPropertyChanged("Activity_IsRunning");
-         Activity1_IsRunning = true; OnPropertyChanged("Activity_IsVisible");
+         Activity1_IsVisible = true; OnPropertyChanged("Activity1_IsVisible");
+         Activity1_IsRunning = true; OnPropertyChanged("Activity1_IsRunning");
       }
 
 
       public void StopActivity() { // #3000.01
                                   
-         Activity1_IsRunning = false; OnPropertyChanged("Activity_IsRunning");
-         Activity1_IsVisible = false; OnPropertyChanged("Activity_IsVisible");
+         Activity1_IsRunning = false; OnPropertyChanged("Activity1_IsRunning");
+         Activity1_IsVisible = false; OnPropertyChanged("Activity1_IsVisible");
 
       }
 

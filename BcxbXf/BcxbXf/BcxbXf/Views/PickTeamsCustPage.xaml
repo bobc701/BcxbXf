@@ -12,12 +12,14 @@
          <StackLayout Orientation="Horizontal" Margin="20,10,0,0">
 
             <Label 
+            Margin="0,5,0,0" 
             Text="User name:" 
             />
 
             <Entry 
             x:Name = "txtUserName" 
-            Margin="20,0,0,0" 
+            Margin="20,0,10,0" 
+            BackgroundColor="LightGray"
             Placeholder="Enter User Name" 
             Text="{Binding UserName}"
          />
@@ -102,8 +104,8 @@
          <ActivityIndicator 
              x:Name="Activity1" 
              Color="Blue" 
-             IsVisible="{Binding Activity1_IsVisible}" 
-             IsRunning="{Binding Activity1_IsRunning}"
+             IsVisible="{Binding Activity1_IsVisible, Mode=TwoWay}" 
+             IsRunning="{Binding Activity1_IsRunning, Mode=TwoWay}"
          />
 
       </StackLayout>
