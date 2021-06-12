@@ -30,7 +30,9 @@
 	<key>CFBundleName</key>
 	<string>BcxbXf</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.1.00</string>
+	<string>3.2.00</string>
+  <key>CFBundleIconName</key>
+  <string>AppIcons</string>
 	<key>UIRequiresFullScreen</key>
 	<true/>
 	<key>XSAppIconAssets</key>
@@ -40,12 +42,12 @@
 		<key>UIApplicationSupportsMultipleScenes</key>
 		<false/>
 	</dict>
-  <key>NSAppTransportSecurity</key>
-  <dict>
-    <key>NSAllowsLocalNetworking</key>
-    <true/>
-  </dict>
-  <key>CFBundleVersion</key>
-	<string>3009</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
+	</dict>
+	<key>CFBundleVersion</key>
+	<string>3010</string>
 </dict>
 </plist>
