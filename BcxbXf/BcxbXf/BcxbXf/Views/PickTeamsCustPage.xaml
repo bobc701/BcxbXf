@@ -1,31 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BcxbXf.Views.PickTeamsCustPage">
+             x:Class="BcxbXf.Views.PickTeamsCustPage"
+             NavigationPage.HasBackButton="False"
+             Title="Use Custom Teams"
+     >
 
     <ContentPage.Content>
 
-      <StackLayout Padding="10,20,0,0" Margin="0,10,0,0">
-         <Label Text="Pick Teams" FontAttributes="Bold" />
-         <Label Text="First, enter the user name that you created in zeemerix.com/teambldr. Then tap 'Get Teams'..." />
+      <ScrollView>
+         <StackLayout Padding="10,20,0,0" Margin="0,10,0,0">
+            <Label Text="Select Teams" FontAttributes="Bold" />
+            <Label Text="First, enter the user name that you created in zeemerix.com/teambldr. Then tap 'Get Teams'..." />
 
-         <StackLayout Orientation="Horizontal" Margin="20,10,0,0">
+            <StackLayout Orientation="Horizontal" Margin="20,10,0,0">
 
-            <Label 
+               <Label 
             Margin="0,5,0,0" 
             Text="User name:" 
             />
 
-            <Entry 
+               <Entry 
             x:Name = "txtUserName" 
             Margin="20,0,10,0" 
             BackgroundColor="LightGray"
             Placeholder="Enter User Name" 
             Text="{Binding UserName}"
          />
-         </StackLayout>
+            </StackLayout>
 
-         <Button 
+            <Button 
             x:Name="btnGetTeams" 
             Style="{StaticResource ButtonStyleMain}"
             Text="Get Teams" 
@@ -33,7 +37,7 @@
             Command="{Binding GetTeamsCmd}"
             IsEnabled="True" 
          />
-         <Label 
+            <Label 
             x:Name ="lblUserStatus" 
             HorizontalOptions="Center"
             Margin="20,0,0,0"
@@ -41,16 +45,16 @@
             Text="{Binding UserStatus, Mode=TwoWay}"
          />
 
-         <StackLayout x:Name="stack1" IsVisible="{Binding PickerHome_IsEnabled}">
+            <StackLayout x:Name="stack1" IsVisible="{Binding PickerHome_IsEnabled}">
 
-            <Label 
+               <Label 
                Padding="0,20,0,0"
                Text="Now, tap 'Visiting Team' and select a year &amp; team from the list. Then do the same for 'Home Team'. Finally, tap 'New game with these teams'."
             />
 
-            <StackLayout Orientation="Horizontal" Padding="0,10,0,0" Margin="0,10,0,0">
-               <Label Text="Visiting team:" />
-               <Picker 
+               <StackLayout Orientation="Horizontal" Padding="0,10,0,0" Margin="0,10,0,0">
+                  <Label Text="Visiting team:" />
+                  <Picker 
                    x:Name ="pickerVis"
                    Margin="15,0,15,0"
                    Title="Select Year &amp; Team..."
@@ -60,12 +64,12 @@
                    FontSize="Small"
                    SelectedItem="{Binding SelectedTeam_Vis}" 
                    IsEnabled="{Binding PickerHome_IsEnabled}" >
-               </Picker>
-            </StackLayout>
+                  </Picker>
+               </StackLayout>
 
-            <StackLayout Orientation="Horizontal" Padding="0,0,0,0" Margin="0,10,0,0">
-               <Label Text="Home team:" />
-               <Picker 
+               <StackLayout Orientation="Horizontal" Padding="0,0,0,0" Margin="0,10,0,0">
+                  <Label Text="Home team:" />
+                  <Picker 
                    x:Name ="pickerHome"
                    Margin="15,0,15,0" 
                    Title="Select Year &amp; Team..."
@@ -75,15 +79,15 @@
                    FontSize="Small"
                    SelectedItem="{Binding SelectedTeam_Home}" 
                    IsEnabled="{Binding PickerHome_IsEnabled}">
-               </Picker>
-            </StackLayout>
+                  </Picker>
+               </StackLayout>
 
-            <!--<StackLayout Orientation="Horizontal" Padding="0,0,0,15">
+               <!--<StackLayout Orientation="Horizontal" Padding="0,0,0,15">
              <Label Text="Home team:" />
              <Picker x:Name="pickerHome" Title="Pick team" TextColor="Black" SelectedIndexChanged="picker_IndexChanged" />
           </StackLayout>-->
 
-            <Button 
+               <Button 
             x:Name="btnUse" 
             Text="New game with these teams" 
             Style="{StaticResource ButtonStyleMain}"
@@ -91,9 +95,9 @@
             Command="{Binding UseCmd}"
          />
 
-         </StackLayout>
+            </StackLayout>
 
-         <Button 
+            <Button 
             x:Name="btnCanc" 
             Text="Cancel"
             Margin="20,15,30,0"
@@ -101,14 +105,15 @@
             BackgroundColor="BlanchedAlmond"
             Command="{Binding CancelCmd}"
          />
-         <ActivityIndicator 
+            <ActivityIndicator 
              x:Name="Activity1" 
              Color="Blue" 
              IsVisible="{Binding Activity1_IsVisible, Mode=TwoWay}" 
              IsRunning="{Binding Activity1_IsRunning, Mode=TwoWay}"
          />
 
-      </StackLayout>
+         </StackLayout>
+         </ScrollView>
 
    </ContentPage.Content>
 
