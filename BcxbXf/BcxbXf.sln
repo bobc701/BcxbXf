@@ -12,6 +12,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{81E8BB36-201A-4CBB-83A2-B89AD8F2B8B6}"
 	ProjectSection(SolutionItems) = preProject
 		@Status.txt = @Status.txt
+		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "BcxbLib_SAP", "..\..\..\BcxbLib3\BcxbLib_SAP\BcxbLib_SAP.shproj", "{F4A628C7-5F7F-4B62-AD11-85A58328A825}"
