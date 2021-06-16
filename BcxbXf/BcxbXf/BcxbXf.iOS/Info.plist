@@ -31,8 +31,8 @@
 	<string>BcxbXf</string>
 	<key>CFBundleShortVersionString</key>
 	<string>3.2.00</string>
-  <key>CFBundleIconName</key>
-  <string>AppIcons</string>
+	<key>CFBundleIconName</key>
+	<string>AppIcons</string>
 	<key>UIRequiresFullScreen</key>
 	<true/>
 	<key>XSAppIconAssets</key>
@@ -48,6 +48,6 @@
 		<true/>
 	</dict>
 	<key>CFBundleVersion</key>
-	<string>3010</string>
+	<string>3014</string>
 </dict>
 </plist>

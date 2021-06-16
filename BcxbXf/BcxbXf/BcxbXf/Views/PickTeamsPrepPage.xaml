@@ -2,8 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:resources="Resources.Resource1.Resx"
-             x:Class="BcxbXf.Views.PickTeamsPrepPage">
-    <ContentPage.Content>
+             x:Class="BcxbXf.Views.PickTeamsPrepPage"
+             Title="New Game"
+    >
+
+   <ContentPage.Content>
         <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
             <Label
                Grid.Row="0"

@@ -169,7 +169,7 @@ namespace BcxbXf.Models {
 
          int num = UserTeamList.Count;
          UserStatus = 
-            $"{num switch {0 => "No", _ => num.ToString()}} completed teams found for {UserName}";
+            $"{num switch {0 => "No", _ => num.ToString()}} available teams for {UserName}";
          OnPropertyChanged("UserStatus");
 
          bool ok = (UserTeamList.Count > 0);

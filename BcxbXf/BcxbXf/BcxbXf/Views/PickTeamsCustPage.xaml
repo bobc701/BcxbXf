@@ -49,7 +49,7 @@
 
                <Label 
                Padding="0,20,0,0"
-               Text="Now, tap 'Visiting Team' and select a year &amp; team from the list. Then do the same for 'Home Team'. Finally, tap 'New game with these teams'."
+               Text="Now, tap 'Visiting Team' and select a team from the list. Then do the same for 'Home Team'. Finally, tap 'New game with these teams'."
             />
 
                <StackLayout Orientation="Horizontal" Padding="0,10,0,0" Margin="0,10,0,0">
