@@ -153,7 +153,8 @@ namespace BcxbXf
          try {
             mGame = new CGame();
             AssignEventHandlers();
-            mGame.SetupEngineAndModel();
+            //mGame.SetupEngineAndModel();
+            EnginePrep.SetupSimEngine(mGame);
             SetupScreen();
             txtResults.Text =
               "\nTap 'New Game' above to get started.";
