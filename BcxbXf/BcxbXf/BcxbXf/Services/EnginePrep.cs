@@ -46,17 +46,17 @@ namespace BcxbXf {
          //jsonString = ResourceReader.ReadEmbeddedRecouce("TestBcxbLib.Resources.Model.model1.json");
          //CModelBldr.LoadModel(jsonString1, sim);
 
-         using (rdr = Repository.GetTextFileOnDisk("TREE5-Lisp.json")) {
+         using (rdr = Repository.GetTextFileOnDisk("Model.TREE5-Lisp.json")) {
             jsonString = rdr.ReadToEnd();
          }
          CModelBldr.LoadModel(jsonString, sim);
 
-         using (rdr = Repository.GetTextFileOnDisk("AL5-Lisp.json")) {
+         using (rdr = Repository.GetTextFileOnDisk("Model.AL5-Lisp.json")) {
             jsonString = rdr.ReadToEnd();
          }
          CModelBldr.LoadModel(jsonString, sim);
 
-         using (rdr = Repository.GetTextFileOnDisk("GTAB5.txt")) {
+         using (rdr = Repository.GetTextFileOnDisk("Model.GTAB5.txt")) {
             CModelBldr.LoadGTab(rdr, sim);
          }
 

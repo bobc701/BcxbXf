@@ -17,7 +17,7 @@ namespace BcxbXf.Services
       // FileName should include folders separated by '.'.
       // EG: Model.cfeng1 <-- Note: Case sensitive!
       // --------------------------------------------------------------------------------
-         var assembly = typeof(MainPage).GetTypeInfo().Assembly;
+         //var assembly = typeof(MainPage).GetTypeInfo().Assembly;
          string path = @"BcxbXf.Resources." + fName;
 
          // For testing, look at these...
@@ -28,11 +28,11 @@ namespace BcxbXf.Services
           * - File name
           * - Extension ('bcxt')
           */ 
-         var files = Assembly.GetExecutingAssembly().GetManifestResourceNames();
-         files = assembly.GetManifestResourceNames();
+         //var files = Assembly.GetExecutingAssembly().GetManifestResourceNames();
+         //files = assembly.GetManifestResourceNames();
 
-         Stream strm = assembly.GetManifestResourceStream(path);
-         //strm = Assembly.GetExecutingAssembly().GetManifestResourceStream(path);
+         //Stream strm = assembly.GetManifestResourceStream(path);
+         Stream strm = Assembly.GetExecutingAssembly().GetManifestResourceStream(path);
          return new StreamReader(strm);
 
       }
