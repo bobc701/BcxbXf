@@ -54,7 +54,7 @@
                />
 
                <Label
-                   Text="Version 3.2.00, Build 3014"
+                   Text="Version 3.2.01, Build 3015"
                    TextColor="Blue"
                    HorizontalOptions="CenterAndExpand" 
                />
