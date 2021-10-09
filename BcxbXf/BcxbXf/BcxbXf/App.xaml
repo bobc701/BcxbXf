@@ -15,26 +15,7 @@
             <Setter Property="Margin" Value="20,0,40,0" />
             <Setter Property="Padding" Value="0" />
          </Style>
-
-
       </ResourceDictionary>
 
    </Application.Resources>
 </Application>
-
-
-<!--This is from James M's coffeee app.
-         Notice not just using 'Style' -->
-
-<!--<Application.Resources>
-   <ResourceDictionary>
-      <Color x:Key="Primary">#2196F3</Color>-->
-
-
-<!--Here is example how he uses it...-->
-<!--<Shell.Resources>
-
-   <ResourceDictionary>
-      <Style x:Key="BaseStyle" TargetType="Element">
-         <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
-         <Setter Property="Shell.ForegroundColor" Value="White" />-->
