@@ -27,7 +27,7 @@ namespace BcxbXf.Models {
 
          BatterBoxVis = new ObservableCollection<CBatBoxSet>();
          var bsTot = new CBatBoxSet() { boxName = "Total"};
-         for (int i = 1; i <= CGame.SZ_BAT; i++) {
+         for (int i = 1; i <= CGame.SZ_BAT-1; i++) {
             bx = g.t[side].xbox[i];
             if (bx == 0) break;
             bat = g.t[side].bat[bx];
@@ -47,7 +47,7 @@ namespace BcxbXf.Models {
 
 
          PitcherBoxVis = new ObservableCollection<CPitBoxSet>();
-         for (int i = 1; i <= CGame.SZ_PIT; i++) {
+         for (int i = 1; i <= CGame.SZ_PIT-1; i++) {
             px = g.t[side].ybox[i];
             if (px == 0) break;
             pit = g.t[side].pit[px];

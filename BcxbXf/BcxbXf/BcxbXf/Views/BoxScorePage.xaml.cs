@@ -9,6 +9,7 @@ using Xamarin.Forms.Xaml;
 
 using BcxbXf.Models;
 using BCX.BCXB;
+using System.Diagnostics;
 
 namespace BcxbXf.Views {
 
@@ -16,12 +17,15 @@ namespace BcxbXf.Views {
    public partial class BoxScorePage : ContentPage {
 
       CGame mGame;
+      BoxScoreListViewModel _boxModel;
 
       public BoxScorePage(CGame g, int side = 0) {
          // ---------------------------------------------------
          InitializeComponent();
          mGame = g;
-         BindingContext = new BoxScoreListViewModel(g, side);
+         _boxModel = new BoxScoreListViewModel(g, side);
+         BindingContext = _boxModel;
+         Debug.WriteLine($"------------ BatteBoxVis[1].h: {_boxModel.BatterBoxVis[1].h} -------------------------");
          this.Title = "Box Score";
 
       // This here is for testing...
