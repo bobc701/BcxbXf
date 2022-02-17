@@ -13,7 +13,7 @@ namespace BcxbXf.Models {
       public ObservableCollection<CPitBoxSet> PitcherBoxVis { get; set; }
       //public ObservableCollection<CPitBoxSet> PitcherBoxHome { get; set; }
 
-      public CBatBoxSet BatterBoxVis_tot { get; set; }
+      //public CBatBoxSet BatterBoxVis_tot { get; set; }
       private CGame mGame;
       public string VisName { get { return mGame.t[0].nick; } }
       public string HomeName { get { return mGame.t[1].nick; } }
@@ -34,7 +34,7 @@ namespace BcxbXf.Models {
             BatterBoxVis.Add(bat.bs);
             bsTot += bat.bs; //Operator overload! 
          }
-         BatterBoxVis.Add(bsTot); //This is the totals row.
+         BatterBoxVis.Add(g.t[side].btot); //This is the totals row.
 
 
          //BatterBoxHome = new ObservableCollection<CBatBoxSet>();
@@ -52,7 +52,7 @@ namespace BcxbXf.Models {
             if (px == 0) break;
             pit = g.t[side].pit[px];
             pit.ps.boxName = pit.pname2;
-            /*for (int j=1; j<=10; j++)*/ PitcherBoxVis.Add(pit.ps);
+            PitcherBoxVis.Add(pit.ps);
          }
 
 
@@ -65,8 +65,8 @@ namespace BcxbXf.Models {
          //}
 
          //var bs1 = new CBatBoxSet();
-         foreach (var bs in BatterBoxVis) bsTot = bsTot + bs; //Operator overload!
-         BatterBoxVis_tot = bsTot;
+         //foreach (var bs in BatterBoxVis) bsTot = bsTot + bs; //Operator overload!
+         //BatterBoxVis_tot = bsTot;
 
       }
 

@@ -74,9 +74,6 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\Model\AL5-Lisp.json" />
-    <EmbeddedResource Include="Resources\Model\cfeng1.bcx" />
-    <EmbeddedResource Include="Resources\Model\cfeng2.bcx" />
-    <EmbeddedResource Include="Resources\Model\cfeng3.bcx" />
     <EmbeddedResource Include="Resources\Model\CFlistNames.txt" />
     <EmbeddedResource Include="Resources\Model\GTAB5.txt" />
     <EmbeddedResource Include="Resources\Model\TREE5-Lisp.json" />
