@@ -17,7 +17,7 @@ namespace BcxbXf
 {
 
    public partial class MainPage : ContentPage  {
-   // ---------------------------------------------------------
+   
       CGame mGame;
 
       public bool SpeechOn = true;
@@ -51,14 +51,14 @@ namespace BcxbXf
 
 
       public MainPage() {
-         // -------------------------------------------
+         
          InitializeComponent();
          ViewDidLoad();
          EnableControls();
 
 
          Appearing += async delegate (object sender, EventArgs e) {
-            // ---------------------------------------------------------
+          
             Debug.WriteLine("We've returned from " + returningFrom);
 
             switch (sender) {
@@ -148,7 +148,7 @@ namespace BcxbXf
 
 
       private void ViewDidLoad() {
-         // -------------------------------------------
+         
          //GFileAccess.SetFolders();
          try {
             mGame = new CGame();
@@ -168,7 +168,7 @@ namespace BcxbXf
 
 
       public void btnGo_Clicked(object sender, EventArgs e) {
-      // --------------------------------------------------------
+      
          bool clocking = false;
          //BCX.BCXCommon.CActivityIndicator acty = null;
          btnGo.Text = "";
@@ -261,7 +261,7 @@ namespace BcxbXf
       }
 
       private void SetupScreen() {
-         // ------------------------------------------------------
+         
 
          // =====================================
          // Fielding and base runner display area
@@ -354,7 +354,7 @@ namespace BcxbXf
 
 
       private void ShowRunners() {
-         // --------------------------------------------------------------
+         
          //if (mGame.IsFastRunMode) return;
          for (int b = 1; b <= 3; b++) {
             lblRunner[b].Text = mGame.r[b].name;
@@ -367,7 +367,7 @@ namespace BcxbXf
 
 
       private void ShowRunnersOnly() {
-         // --------------------------------------------------------------
+         
          // This version of ShowRunners leaves the batter blank.
          //if (mGame.IsFastRunMode) return;
          for (int b = 1; b <= 3; b++) { lblRunner[b].Text = mGame.r[b].name; lblRunner[b].IsVisible = true; }
@@ -378,7 +378,7 @@ namespace BcxbXf
 
 
       private void ShowFielders(int fl) {
-         // --------------------------------------------------------------
+         
          for (int p = 1; p <= 9; p++) {
             if (mGame.t[fl].who[p] > 0)
                lblFielder[p].Text = mGame.t[fl].bat[mGame.t[fl].who[p]].bname;
@@ -538,7 +538,7 @@ namespace BcxbXf
 
          mGame.EFmtFieldingBar += delegate (
             CFieldingParamSet fPar, string labels, string fielderName) {
-            // ---------------------------------------------------------------------
+            
                if (mGame.runMode != CGame.RunMode.Normal && mGame.runMode != CGame.RunMode.FastEOP) return;
                this.IsFieldingPlay = true;
                btnProfileDisks.Source = "glove_img1a.png";
@@ -546,7 +546,7 @@ namespace BcxbXf
   
 
          mGame.EClearResults += async () => {
-            // -------------------------------------------------------------------
+            
             //if (mGame.IsFastRunMode) return;
             txtResults.Text = "";
             await Task.Yield();
@@ -556,17 +556,16 @@ namespace BcxbXf
 
 
          mGame.ENotifyUser += delegate (string s) {
-         // ---------------------------------------------------------------------
+         
             DisplayAlert("", s, "OK");
 
          };
 
-
-
       }
 
+
       public void PostOuts() {
-         // --------------------------------------------------------------
+         
          lblOuts1.Source = mGame.ok > 0 ? "redball" : "whtball";
          lblOuts2.Source = mGame.ok > 1 ? "redball" : "whtball";
          lblOuts3.Source = mGame.ok > 2 ? "redball" : "whtball";
@@ -657,7 +656,7 @@ namespace BcxbXf
 
 
       private void cmdShiftLeft_Clicked(object sender, EventArgs e) {
-         // -----------------------------------------------------------
+         
          if (LinescoreStartInning > 9) {
             LinescoreStartInning -= 9;
             ShowLinescoreFull();
@@ -667,7 +666,7 @@ namespace BcxbXf
 
 
       private void cmdShiftRight_Clicked(object sender, EventArgs e) {
-         // ------------------------------------------------------------
+         
          if (mGame.inn > LinescoreStartInning + 8) {
             LinescoreStartInning += 9;
             ShowLinescoreFull();
@@ -677,7 +676,7 @@ namespace BcxbXf
 
 
       private void EnableControls() {
-         // ----------------------------------------------------------------
+         
          switch (mGame.PlayState) {
 
             case PLAY_STATE.PLAY:
@@ -740,7 +739,7 @@ namespace BcxbXf
 
 
       async void mnuPickTeams_OnClick(object sender, EventArgs e) {
-      // -----------------------------------------------------------------
+      
          try {
 
             fPickTeamsPrep = new PickTeamsPrepPage();
@@ -757,7 +756,7 @@ namespace BcxbXf
       }
 
       async void mnuMngVis_OnClick(object sender, EventArgs e) {
-      // -------------------------------------------------------------
+      
          fLineup = new LineupCardPage(mGame, 0);
          returningFrom = "LineupCardPage";
 
@@ -766,7 +765,7 @@ namespace BcxbXf
 
 
       async private void btnBoxScore_Clicked(object sender, EventArgs e) {
-      // -------------------------------------------------------------
+      
          var fBoxScore = new BoxScorePage(mGame, 0);
          returningFrom = "BoxScorePage";
          await Navigation.PushAsync(fBoxScore);
@@ -774,7 +773,7 @@ namespace BcxbXf
       }
 
       async private void btnProfileDisks_Clicked(object sender, EventArgs e) {
-         // -------------------------------------------------------------
+         
          if (!this.IsFieldingPlay) {
             var fDisks = new ProfileDisk2Page(mGame);
             returningFrom = "ProfileDiskPage";
@@ -790,7 +789,7 @@ namespace BcxbXf
       }
 
       async private void mnuHelp_OnClick(object sender, EventArgs e) {
-         // -------------------------------------------------------
+         
          var fAbout = new AboutPage();
          returningFrom = "AboutPage";
          await Navigation.PushAsync(fAbout);
@@ -798,7 +797,7 @@ namespace BcxbXf
       }
 
       async private void mnuPlays_OnClick(object sender, EventArgs e) {
-      // --------------------------------------------------------------
+      
          fPlays = new PlaysPage(mGame);
          returningFrom = "PlaysPage";
          await Navigation.PushAsync(fPlays);
@@ -808,7 +807,7 @@ namespace BcxbXf
 
       }
       async void mnuOptions_OnClick(object sender, EventArgs e) {
-      // ----------------------------------------------------------
+      
          fOptions = new OptionsPage(mGame, this.SpeechOn);
          returningFrom = "OptionsPage";
          await Navigation.PushAsync(fOptions);

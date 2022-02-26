@@ -20,7 +20,7 @@
             />
             <Label 
                 Grid.Row="2"
-                Text="Use any NL or AL teams from 1901 to 2020"
+                Text="Use any NL or AL teams from 1901 to 2021"
                 HorizontalOptions="Center" 
             />
             <Button 
@@ -47,7 +47,7 @@
                 Padding="16,0,16,0"
                 HorizontalOptions="Center">
                 <Label.Text>
-Use custom teams made up of actual MLB players from any mix of years and MLB teams from 1901 to 2020.
+Use custom teams made up of actual MLB players from any mix of years and MLB teams from 1901 to 2021.
 
 To create your custom teams, use the Zeemerix Custom Team Builder at:
 http://www.zeemerix.com/teambldr.

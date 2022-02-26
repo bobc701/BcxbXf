@@ -41,12 +41,12 @@ namespace BcxbXf.iOS
 
       private async Task PrimeTeamCache() { // #3000.03
          // ---------------------------------------------------------
-         // This routine will do an initial fill of the teamCache using 2000-2020,
+         // This routine will do an initial fill of the teamCache using 2010-2021,
          // while the splash screen is being displayed.
          // If no internet, this will fail and do nothing.
 
          try {
-            var url = new Uri(DataAccess.client.BaseAddress, $"{DataAccess.WinhostEndPoint}api/team-list/2010/2020");
+            var url = new Uri(DataAccess.client.BaseAddress, $"{DataAccess.WinhostEndPoint}api/team-list/2010/2021");
 
             List<CTeamRecord> yearList10;
             HttpResponseMessage response = await DataAccess.client.GetAsync(url.ToString());
